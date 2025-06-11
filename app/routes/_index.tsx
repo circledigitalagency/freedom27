@@ -199,12 +199,12 @@ export default function Index() {
 						/>
 					</div>
 				</section>
-				<section className="flex flex-row w-full justify-center items-center px-24 h-[50vh] bg-blue-100">
+				{/* <section className="flex flex-row w-full justify-center items-center px-24 h-[50vh] bg-blue-100">
 					<h1 className="text-2xl md:text-3xl lg:text-4xl font-medium mb-4 text-tan">
 						Ways We Support You
 					</h1>
 					<p>Mindfulness Hikes & Outdoor Retreats</p>
-				</section>
+				</section> */}
 			</div>
 		</MainLayout>
 	);

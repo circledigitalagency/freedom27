@@ -19,12 +19,12 @@ const MainLayout = ({
 			<header>
 				<nav className="sm:px-24 py-6 px-4 flex justify-between items-center">
 					<Link to="/">
-						<div className="h-20 w-32 bg-red-200" />
+						<div className="h-20 w-32 " />
 					</Link>
 					<div className="hidden md:block">
 						<div className="flex flex-row gap-6 items-center justify-end">
 							{menu.map((men, index) => (
-								<Link to={men.path} key={index}>
+								<Link to="/" key={index}>
 									<motion.p
 										whileHover={{
 											x: 5,
