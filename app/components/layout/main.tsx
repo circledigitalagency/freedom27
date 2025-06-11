@@ -4,7 +4,13 @@ import { menu } from "~/lib/data";
 import { motion } from "framer-motion";
 import { cn } from "~/lib/utils";
 
-const MainLayout = ({ children }: { children: ReactNode }) => {
+const MainLayout = ({
+	children,
+	isHome,
+}: {
+	children: ReactNode;
+	isHome?: boolean;
+}) => {
 	const [isHovering, setIsHovering] = useState(false);
 	const [activeOption, setActiveOption] = useState<string>();
 

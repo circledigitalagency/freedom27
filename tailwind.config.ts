@@ -25,7 +25,6 @@ export default {
 			colors: {
 				tan: "#767042",
 				background: "#FDFDF8",
-
 				foreground: "hsl(var(--foreground))",
 				card: {
 					DEFAULT: "hsl(var(--card))",
@@ -65,6 +64,9 @@ export default {
 					"4": "hsl(var(--chart-4))",
 					"5": "hsl(var(--chart-5))",
 				},
+			},
+			backgroundImage: {
+				hero: "url('/images/hero-2.jpg')",
 			},
 		},
 	},
