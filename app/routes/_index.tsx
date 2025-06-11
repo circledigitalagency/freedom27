@@ -90,7 +90,7 @@ export default function Index() {
 			<div className="flex flex-col space-y-16">
 				<div className="relative w-full h-[80vh]">
 					<img
-						src="/images/hero-2.jpg"
+						src="https://res.cloudinary.com/dg1g6ctku/image/upload/v1749658075/hero-2_karkjm.jpg"
 						alt="hero"
 						className="w-full h-full object-cover"
 					/>
@@ -195,7 +195,7 @@ export default function Index() {
 						<img
 							className="w-full h-full rounded-xl"
 							alt="balance"
-							src="/images/001-balance.png"
+							src="https://res.cloudinary.com/dg1g6ctku/image/upload/v1749658266/Group_39570_fx3msj.jpg"
 						/>
 					</div>
 				</section>
