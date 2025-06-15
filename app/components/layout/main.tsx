@@ -24,7 +24,7 @@ const MainLayout = ({
 					<div className="hidden md:block">
 						<div className="flex flex-row gap-6 items-center justify-end">
 							{menu.map((men, index) => (
-								<Link to="/" key={index}>
+								<Link to={men.path} key={index}>
 									<motion.p
 										whileHover={{
 											x: 5,
@@ -40,7 +40,7 @@ const MainLayout = ({
 											ease: "easeOut",
 										}}
 										className={cn(
-											"transition duration-700 ease-in-out text-tan"
+											"transition duration-700 ease-in-out text-primary"
 										)}
 									>
 										{men.label}

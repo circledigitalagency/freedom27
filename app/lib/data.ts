@@ -7,10 +7,10 @@ export const menu: NavItem[] = [
 	},
 	{
 		label: "Mindfulness",
-		path: "mindfulness",
+		path: "/mindfulness",
 	},
 	{
-		label: "Services",
+		label: "Coaching Services",
 		path: "/services",
 	},
 	{
