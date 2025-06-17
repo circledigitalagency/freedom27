@@ -1,6 +1,7 @@
 import { Link } from "@remix-run/react";
 import { Trees } from "lucide-react";
 import MainLayout from "~/components/layout/main";
+import ButtonLink from "~/components/link/button-link";
 
 export default function Page() {
 	const approach = [
@@ -244,9 +245,11 @@ export default function Page() {
 					coaching offers a nurturing space to reconnect with yourself and grow
 					at your own pace.
 				</p>
-				<Link to="" className="text-accent p-4 border border-accent">
-					Book One-on-One Life Coaching
-				</Link>
+				<ButtonLink
+					to="/shop"
+					title="Book One-on-One Life Coaching"
+					linkStyle="border-primary text-primary"
+				/>
 			</section>
 		</MainLayout>
 	);

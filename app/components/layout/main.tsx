@@ -61,8 +61,8 @@ const MainLayout = ({
 						<div className="h-20 w-32 " />
 					</Link>
 					<div className="flex flex-row sm:space-x-10 space-x-5">
-						<NavLink path="/about-us" title="About us" />
 						<NavLink path="/mindfulness" title="Mindfulness" />
+						<NavLink path="/about-us" title="About us" />
 						<NavLink path="/services" title="Coaching Services" />
 						<NavLink path="/courses" title="Courses" />
 						<NavLink path="/shop" title="Shop" />
