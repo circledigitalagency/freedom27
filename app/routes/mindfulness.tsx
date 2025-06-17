@@ -205,10 +205,7 @@ export default function Page() {
 					<h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary">
 						Experiences We Integrate
 					</h1>
-					{/* <p>
-						Each experience is tailored to specific groups, ensuring maximum
-						impact and personal transformation.
-					</p> */}
+
 					<div className="grid grid-cols-3 gap-20">
 						{experiences.map((exp, index) => (
 							<div
