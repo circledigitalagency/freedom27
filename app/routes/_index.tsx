@@ -6,7 +6,7 @@ import {
 	TreePineIcon,
 } from "lucide-react";
 import MainLayout from "~/components/layout/main";
-import { motion } from "framer-motion";
+
 import { Link } from "@remix-run/react";
 import HorizontalImageBackground from "~/components/layout/horizontal-image-bg";
 import Header from "~/components/text/header";
@@ -14,6 +14,7 @@ import Shop from "~/components/pages/shop";
 import ButtonLink from "~/components/link/button-link";
 import LogoCarousel from "~/components/carousel/partners";
 import { affiliates } from "~/lib/data";
+import HeroCarousel from "~/components/carousel/hero";
 
 export const meta: MetaFunction = () => {
 	return [
@@ -21,56 +22,12 @@ export const meta: MetaFunction = () => {
 		{
 			name: "description",
 			content:
-				"Freedom 27 is a mindfulness and personal development initiative founded by Tshepo Matlou, offering integrated experiences designed to foster mental well-being, self-improvement, life coaching and trauma healing. Through hikes, workshops, coaching sessions, and retreats. Individuals, couples and groups engage in tailored programs to cultivate clarity, emotional balance, and resilience.",
+				"Freedom 27 is a mindfulness and personal development company founded by Tshepo Matlou, offering integrated experiences designed to foster mental well-being, self-improvement, life coaching and trauma healing. Through hikes, workshops, coaching sessions, and retreats. Individuals, couples and groups engage in tailored programs to cultivate clarity, emotional balance, and resilience.",
 		},
 	];
 };
 
 export default function Index() {
-	const words = ["Heal.", "Grow.", "Thrive."];
-
-	const containerVariants = {
-		hidden: { opacity: 0 },
-		visible: {
-			opacity: 1,
-			transition: {
-				staggerChildren: 0.5,
-				delayChildren: 0.3,
-			},
-		},
-	};
-
-	const wordVariants = {
-		hidden: {
-			opacity: 0,
-			y: 50,
-		},
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				duration: 0.8,
-				ease: "easeOut",
-			},
-		},
-	};
-
-	const subtitleVariants = {
-		hidden: {
-			opacity: 0,
-			y: 30,
-		},
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				duration: 0.6,
-				ease: "easeOut",
-				delay: 2.6, // After heading animation completes
-			},
-		},
-	};
-
 	const arrowVariants = {
 		hidden: {
 			opacity: 0,
@@ -128,63 +85,8 @@ export default function Index() {
 
 	return (
 		<MainLayout>
-			<div className="flex flex-col space-y-40">
-				<HorizontalImageBackground
-					image="https://res.cloudinary.com/dg1g6ctku/image/upload/v1749658075/hero-2_karkjm.jpg"
-					alt="hero"
-					containerStyle="h-[70vh]"
-					children={
-						<>
-							<div className="text-center max-w-3xl mx-auto">
-								<motion.h1
-									className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
-									variants={containerVariants}
-									initial="hidden"
-									animate="visible"
-								>
-									{words.map((word, index) => (
-										<motion.span
-											key={index}
-											variants={wordVariants}
-											className="inline-block mr-4"
-										>
-											{word}
-										</motion.span>
-									))}
-								</motion.h1>
-
-								<motion.p
-									className="text-xl md:text-2xl mb-8"
-									variants={subtitleVariants}
-									initial="hidden"
-									animate="visible"
-								>
-									A wellness journey rooted in mindfulness, self-awareness, and
-									inner freedom.
-								</motion.p>
-							</div>
-
-							<motion.div
-								className="absolute bottom-8"
-								variants={arrowVariants}
-								initial="hidden"
-								animate="visible"
-							>
-								<motion.div
-									animate={{ y: [0, 10, 0] }}
-									transition={{
-										duration: 2,
-										repeat: Number.POSITIVE_INFINITY,
-										ease: "easeInOut",
-									}}
-									className="w-20 h-20 flex justify-center items-center bg-white/20 rounded-full"
-								>
-									<ChevronDown size={36} />
-								</motion.div>
-							</motion.div>
-						</>
-					}
-				/>
+			<div className="flex flex-col space-y-32">
+				<HeroCarousel />
 				<section className="flex flex-row w-full justify-center items-center px-24">
 					<div className="flex-col space-y-14">
 						<Header
@@ -196,8 +98,8 @@ export default function Index() {
 							<div className="flex flex-row items-start space-x-2">
 								<HeartHandshakeIcon className="text-secondary" />
 								<p className="w-3/5 text-left">
-									Freedom 27 is a mindfulness and personal development
-									initiative founded by{" "}
+									Freedom 27 is a mindfulness and personal development company
+									founded by{" "}
 									<span className="text-accent font-medium hover:underline">
 										<Link to="/about-us">Tshepo Matlou</Link>
 									</span>
@@ -232,11 +134,11 @@ export default function Index() {
 							</Link>
 						</div>
 					</div>
-					<div className="h-3/4 w-3/6">
+					<div className="h-[30%] w-[30%]">
 						<img
 							className="w-full h-full"
-							alt="balance"
-							src="https://res.cloudinary.com/dg1g6ctku/image/upload/v1749658266/Group_39570_fx3msj.jpg"
+							alt="A Sanctuary for Mind, Body & Spirit"
+							src="/images/what-is-freedom.jpg"
 						/>
 					</div>
 				</section>
@@ -257,7 +159,7 @@ export default function Index() {
 									<img
 										src={prog.img}
 										alt={prog.img}
-										className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+										className="object-cover w-full h-full "
 									/>
 									<div className="absolute inset-0 bg-black/20 z-10"></div>
 								</div>
@@ -280,65 +182,6 @@ export default function Index() {
 						</Link>
 					</div>
 				</section>
-
-				<section className="flex flex-col w-full justify-start items-start px-24 space-y-10">
-					<Header
-						title="BREATHING, MEDITATION, ENERGY, PRANAYAMA"
-						subTitile="Online Courses and Private Coaching"
-						titleStyle="text-primary"
-					/>
-					<div className="flex flex-row justify-between items-center">
-						<div className="flex flex-col space-y-5 w-[50%]">
-							<p>
-								<span className="text-primary font-medium">
-									LEVEL 1 + 2 COURSES:
-								</span>{" "}
-								Our online trainings will provide your with a deeper
-								understanding as well as practical techniques for integration.
-							</p>
-							<ul className="list-disc flex flex-col gap-4 px-5 text-sm">
-								<li>Self-paced, online learning from anywhere in the world</li>
-								<li>
-									Each level consists of 5 modules with extra bonus material in
-									each module
-								</li>
-								<li>
-									Self-study material includes: PDF downloads, video tutorials,
-									links to external sources, specific home practice techniques,
-									extra recommended reading
-								</li>
-								<li>Private live online Q/A mentoring sessions included</li>
-								<li>Suggested-frame is 2-3 hours self-study per week</li>
-								<li>
-									Level 1 can be done in 6 weeks | Level 1 + 2 together can be
-									done in 3 months
-								</li>
-								<li>
-									There are techniques you will learn to practice after each
-									module, as well as an assignment at the end
-								</li>
-								<li>
-									If you need to refer back to anything, or do a refresher, the
-									course material will be available to you for 12 months
-								</li>
-							</ul>
-						</div>
-
-						<div className="h-[40%] w-[40%]">
-							<img
-								src="/images/yoga.jpg"
-								alt="course"
-								className="w-full h-full object-fill"
-							/>
-						</div>
-					</div>
-
-					<ButtonLink
-						to="/courses"
-						linkStyle="text-primary border-primary"
-						title="Explore Courses"
-					/>
-				</section>
 				<Shop showAll={false} containerStyle="space-y-10" />
 				<section className="flex flex-col w-full justify-center items-center px-24 space-y-10">
 					<Header
@@ -352,7 +195,7 @@ export default function Index() {
 				<HorizontalImageBackground
 					image="/images/peace.jpg"
 					alt="peace"
-					containerStyle="h-[40vh]"
+					containerStyle="h-[30vh]"
 					children={
 						<div className="flex flex-col space-y-5 justify-center items-center">
 							<Header

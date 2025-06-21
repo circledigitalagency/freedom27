@@ -13,3 +13,20 @@ export interface LogoCarouselProps {
 	}[];
 	autoplaySpeed?: number;
 }
+
+export interface GalleryItem {
+	id: number;
+	title: string;
+	description: string;
+	image: string;
+	category: string;
+	tags: string[];
+	photographer?: string;
+	date?: string;
+}
+
+export interface GalleryCategory {
+	id: string;
+	name: string;
+	count: number;
+}
