@@ -1,4 +1,4 @@
-import { NavItem } from "./types";
+import { NavItem, Shop } from "./types";
 
 export const menu: NavItem[] = [
 	{
@@ -68,7 +68,7 @@ export const affiliates = [
 		alt: "alrd",
 	},
 	{
-		src: "/images/fnb-logo.png",
+		src: "/images/fnb-logo.webp",
 		alt: "fnb",
 	},
 	{
@@ -92,7 +92,7 @@ export const affiliates = [
 		alt: "ewsc",
 	},
 	{
-		src: "/images/gp.png",
+		src: "/images/gp.gif",
 		alt: "gp",
 	},
 	{
@@ -100,7 +100,7 @@ export const affiliates = [
 		alt: "icas",
 	},
 	{
-		src: "/images/igt.jpg",
+		src: "/images/igt.gif",
 		alt: "igt",
 	},
 	{
@@ -112,7 +112,7 @@ export const affiliates = [
 		alt: "erwat",
 	},
 	{
-		src: "/images/momentum.webp",
+		src: "/images/momentum.png",
 		alt: "momentum",
 	},
 	{
@@ -140,7 +140,7 @@ export const affiliates = [
 		alt: "transnet",
 	},
 	{
-		src: "/images/trsa.png",
+		src: "/images/trsa.jpg",
 		alt: "trsa",
 	},
 	{
@@ -322,5 +322,95 @@ export const blogPosts = [
 		readTime: "8 min read",
 		image: "/placeholder.svg?height=300&width=400",
 		category: "Healing",
+	},
+];
+
+export const shopData: Shop[] = [
+	{
+		id: "book",
+		image: "/images/book.svg",
+		name: "Freedom - Pursuit of Liberty",
+		description:
+			"Discover the strength in surrender. This book guides you through healing old wounds, embracing change, and finding peace through mindfulness and self-awareness.",
+		price: 350,
+	},
+	{
+		id: "oneOnone",
+		image: "/images/subconscious-healing.jpg",
+		name: "One on One Life Coaching",
+		description:
+			"Personalized sessions to support your growth, clarity, and emotional well-being — guided by compassionate listening and transformative tools.",
+		packages: [
+			{
+				id: "4sessions",
+				name: "4 Sessions",
+				price: 1200,
+			},
+		],
+	},
+	{
+		id: "couple",
+		image: "/images/coaching02.jpg",
+		name: "Couples session",
+		description:
+			"Strengthen connection, communication, and emotional harmony in your relationship through mindful, heart-centered guidance.",
+		packages: [
+			{
+				id: "4sessions",
+				name: "4 Sessions",
+				price: 1800,
+			},
+		],
+	},
+];
+
+export const values = [
+	"Empowerment",
+	"Authenticity",
+	"Courage",
+	"Resilience",
+	"Freedom",
+];
+
+export const qualifications = [
+	{
+		degree: "Masters in Leadership & Management",
+		school: "",
+	},
+	{
+		degree: "Management Advanced Programme",
+		school: "Wits Business School",
+	},
+	{
+		degree: "Advanced Public Management Development Programme",
+		school: "University of Pretoria",
+	},
+	{
+		degree: "Diploma in Marketing Management",
+		school: "Tshwane College",
+	},
+	{
+		degree: "Executive and Management Coaching",
+		school: "University of Cape Town",
+	},
+	{
+		degree: "Mastery Coaching",
+		school: "(ISNS); Team Coaching – Meta Coaching Foundation",
+	},
+	{
+		degree: "Mauritius Mentoring and Coaching for Public Managers",
+		school: "School of Government",
+	},
+	{
+		degree: "Strategies for Personal Growth and Development",
+		school: "YALI",
+	},
+	{
+		degree: "Management Strategies for People and Resources",
+		school: "YALI",
+	},
+	{
+		degree: "Prince2 and PMBOK",
+		school: "",
 	},
 ];

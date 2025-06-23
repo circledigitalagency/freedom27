@@ -26,7 +26,7 @@ export default function Page() {
 				}
 			/>
 
-			<div className="flex flex-col w-full px-32 py-20">
+			<div className="flex flex-col w-full sm:px-32 px-5 py-20">
 				<section className="flex flex-col w-full justify-center items-start space-y-6 py-10">
 					<h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary">
 						What Is Mindfulness?
@@ -47,13 +47,13 @@ export default function Page() {
 					</ul>
 				</section>
 			</div>
-			<section className="flex flex-col justify-center items-center bg-blue-100 w-full h-[60vh]">
+			<section className="flex flex-col sm:justify-center justify-start items-center bg-gray-50 w-full sm:h-[60vh] h-fit">
 				<section className="flex flex-col w-full justify-center items-center space-y-8 py-10">
 					<h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary">
 						Our Approach
 					</h1>
 
-					<div className="grid grid-cols-5 gap-10">
+					<div className="grid grid-cols-1 sm:grid-cols-5 gap-10">
 						{approach.map((ap, index) => (
 							<div
 								className="w-[17rem] h-[17rem] relative group cursor-pointer"
@@ -80,33 +80,39 @@ export default function Page() {
 					</div>
 				</section>
 
-				<div className="flex items-center space-x-2">
+				<div className="flex sm:flex-row flex-col items-center sm:space-x-2 space-y-2 py-10">
 					<p>Want personal guidance in mindfulness?</p>
 					<Link to="" className="text-primary underline">
 						Book a session
 					</Link>
 				</div>
 			</section>
-			<div className="flex flex-col w-full px-32 py-20">
+			<div className="flex flex-col w-full sm:px-32 px-5 py-20">
 				<section className="flex flex-col w-full justify-center items-center space-y-10 py-20">
 					<h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary">
 						Experiences We Integrate
 					</h1>
 
-					<div className="grid grid-cols-3 gap-20">
+					<div className="grid grid-cols-1 sm:grid-cols-3 gap-20">
 						{experiences.map((exp, index) => (
 							<div
-								className="flex flex-col justify-center items-start space-y-5 p-6 w-[25rem] h-[25rem] border border-accent"
+								className="flex flex-col justify-center items-start sm:space-y-5 space-y-3 sm:p-6 p-4 sm:w-[25rem] sm:h-[25rem] w-[20rem] h-[20rem] border border-accent"
 								key={index}
 							>
 								<div className="flex gap-2 items-center">
-									<img src={exp.icon} alt={exp.icon} className="w-16 h-16" />
-									<p className="text-accent">{exp.label}</p>
+									<img
+										src={exp.icon}
+										alt={exp.icon}
+										className="sm:w-16 sm:h-16 w-12 h-12"
+									/>
+									<p className="text-accent text-sm sm:text-base">
+										{exp.label}
+									</p>
 								</div>
 								<div className="space-y-4 h-36 content-center">
 									{exp.value.map((val, index) => (
 										<ul
-											className="list-disc flex flex-col gap-4 px-5 text-sm"
+											className="list-disc flex flex-col gap-4 px-5 text-xs sm:text-sm"
 											key={index}
 										>
 											<li>{val}</li>
@@ -114,19 +120,19 @@ export default function Page() {
 									))}
 								</div>
 								<div className="flex flex-col space-y-2">
-									<p className="text-secondary text-sm">Takeaways</p>
-									<p className="text-sm">{exp.takeaways}</p>
+									<p className="text-secondary sm:text-sm text-xs">Takeaways</p>
+									<p className="sm:text-sm text-xs">{exp.takeaways}</p>
 								</div>
 							</div>
 						))}
 					</div>
 				</section>
 			</div>
-			<section className="flex flex-col space-y-8 justify-center items-center bg-blue-100 w-full h-72">
+			<section className="flex flex-col space-y-8 justify-center items-center bg-gray-50 w-full sm:h-72 h-96">
 				<h1 className="text-2xl font-medium text-primary">
 					Create Space for Yourself
 				</h1>
-				<p className="w-[50%] text-center text-accent">
+				<p className="sm:w-[50%] w-[90%] text-center text-accent">
 					If you’re seeking calm, clarity, or healing, one-on-one mindfulness
 					coaching offers a nurturing space to reconnect with yourself and grow
 					at your own pace.

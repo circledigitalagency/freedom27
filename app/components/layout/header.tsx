@@ -6,6 +6,7 @@ import { cn } from "~/lib/utils";
 import { SquigglyLine } from "../shapes/squiggly-line";
 import { useScroll } from "~/hooks/use-scroll";
 import { MailIcon, PhoneCall } from "lucide-react";
+import BurgerMenu from "./burger-menu";
 
 export default function Header() {
 	const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -25,20 +26,22 @@ export default function Header() {
 			animate={{ y: 0 }}
 			transition={{ duration: 0.5, ease: "easeOut" }}
 		>
-			<div className="flex flex-row justify-between items-center h-8 bg-primary px-24">
-				<p className="text-white italic text-xs">
+			<div className="flex flex-row justify-between items-center h-8 bg-primary px-2 lg:px-24">
+				<p className="text-white italic text-[10px] lg:text-xs line-clamp-1">
 					“You are not alone, let us help you break free and achieve greatness”
 				</p>
 				<div className="flex flex-row space-x-5 items-center">
 					<div className="flex flex-row items-center space-x-2">
 						<PhoneCall size={15} color="white" />
-						<p className="font-light text-sm text-white">083 784 8001</p>
+						<p className="font-light hidden md:block text-sm text-white">
+							083 784 8001
+						</p>
 					</div>
 					<div className="flex flex-row items-center space-x-2">
 						<MailIcon size={15} color="white" />
 						<a
 							href="mailto:info@csresources.co.za"
-							className="font-light text-sm text-white cursor-pointer"
+							className="font-light hidden md:block text-sm text-white cursor-pointer"
 						>
 							tshepo@freedom27.co.za
 						</a>
@@ -47,7 +50,7 @@ export default function Header() {
 			</div>
 			<nav className="sm:px-24 py-6 px-4 flex justify-between items-center">
 				<Link to="/">
-					<div className="h-20 w-56 ">
+					<div className="h-20 w-56">
 						<img
 							src="/images/freedom-logo.png"
 							alt="logo"
@@ -56,7 +59,7 @@ export default function Header() {
 					</div>
 				</Link>
 				<div className="hidden md:block">
-					<div className="flex flex-row gap-6 mens-center justify-end">
+					<div className="flex flex-row gap-6 items-center justify-end">
 						{menu.map((men, index) => (
 							<Link to={men.path} key={index} className="relative">
 								<motion.p
@@ -87,6 +90,7 @@ export default function Header() {
 						))}
 					</div>
 				</div>
+				<BurgerMenu />
 			</nav>
 		</motion.header>
 	);

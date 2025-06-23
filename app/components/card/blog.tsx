@@ -48,7 +48,7 @@ export function BlogCard({
 
 			<div className="p-6">
 				<motion.h3
-					className="text-lg font-normal text-accent mb-3 line-clamp-2  transition-colors"
+					className="sm:text-lg text-base font-normal text-accent mb-3 line-clamp-2  transition-colors"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ delay: index * 0.1 + 0.2 }}
@@ -57,7 +57,7 @@ export function BlogCard({
 				</motion.h3>
 
 				<motion.p
-					className="mb-4 font-light line-clamp-3 leading-relaxed"
+					className="mb-4 font-light line-clamp-3 leading-relaxed text-sm sm:text-base"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ delay: index * 0.1 + 0.3 }}
@@ -74,16 +74,18 @@ export function BlogCard({
 					<div className="flex items-center space-x-4">
 						<div className="flex items-center space-x-1">
 							<User size={14} />
-							<span className="text-sm">{author}</span>
+							<span className="sm:text-sm text-xs">{author}</span>
 						</div>
-						<div className="flex items-center space-x-1">
+						<div className="sm:flex items-center space-x-1 hidden">
 							<Calendar size={14} />
-							<span className="text-sm">{date}</span>
+							<span className="sm:text-sm text-xs">{date}</span>
 						</div>
 					</div>
 					<div className="flex items-center space-x-1">
 						<Clock size={14} className="text-secondary" />
-						<span className="text-sm text-secondary">{readTime}</span>
+						<span className="sm:text-sm text-xs text-secondary">
+							{readTime}
+						</span>
 					</div>
 				</motion.div>
 			</div>

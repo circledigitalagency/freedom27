@@ -2,60 +2,11 @@ import { GraduationCap, MinusCircleIcon, PlusCircleIcon } from "lucide-react";
 import LogoCarousel from "~/components/carousel/partners";
 import HorizontalImageBackground from "~/components/layout/horizontal-image-bg";
 import MainLayout from "~/components/layout/main";
+import ButtonLink from "~/components/link/button-link";
 import Header from "~/components/text/header";
-import { media } from "~/lib/data";
+import { media, qualifications, values } from "~/lib/data";
 
 export default function Page() {
-	const values = [
-		"Empowerment",
-		"Authenticity",
-		"Courage",
-		"Resilience",
-		"Freedom",
-	];
-
-	const qualifications = [
-		{
-			degree: "Masters in Leadership & Management",
-			school: "",
-		},
-		{
-			degree: "Management Advanced Programme",
-			school: "Wits Business School",
-		},
-		{
-			degree: "Advanced Public Management Development Programme",
-			school: "University of Pretoria",
-		},
-		{
-			degree: "Diploma in Marketing Management",
-			school: "Tshwane College",
-		},
-		{
-			degree: "Executive and Management Coaching",
-			school: "University of Cape Town",
-		},
-		{
-			degree: "Mastery Coaching",
-			school: "(ISNS); Team Coaching – Meta Coaching Foundation",
-		},
-		{
-			degree: "Mauritius Mentoring and Coaching for Public Managers",
-			school: "School of Government",
-		},
-		{
-			degree: "Strategies for Personal Growth and Development",
-			school: "YALI",
-		},
-		{
-			degree: "Management Strategies for People and Resources",
-			school: "YALI",
-		},
-		{
-			degree: "Prince2 and PMBOK",
-			school: "",
-		},
-	];
 	return (
 		<MainLayout>
 			<HorizontalImageBackground
@@ -76,7 +27,7 @@ export default function Page() {
 				}
 			/>
 			<div className="flex flex-col space-y-32 py-10">
-				<section className="flex flex-row w-full justify-between items-start space-x-10 px-24 ">
+				<section className="flex flex-row w-full justify-between items-start space-x-10 sm:px-24 px-5">
 					<div className="flex flex-col space-y-5">
 						<p>
 							<span className="text-primary font-medium">Freedom 27</span> is a
@@ -100,17 +51,17 @@ export default function Page() {
 						</p>
 					</div>
 				</section>
-				<section className="flex flex-row w-full justify-between items-start px-24 ">
-					<div className="flex flex-col space-y-5 w-1/2">
+				<section className="flex sm:flex-row flex-col space-y-10 w-full justify-between items-start sm:px-24 px-5">
+					<div className="flex flex-col space-y-5 sm:w-1/2">
 						<Header title="Our Vision" subTitile="" titleStyle="text-primary" />
 						<p className="w-[80%]">
 							Our vision is to become one of the leading personal and leadership
 							development company in Africa
 						</p>
 					</div>
-					<div className="flex flex-col space-y-5 w-1/2">
+					<div className="flex flex-col space-y-5 sm:w-1/2 items-end">
 						<Header title="Our Aim" subTitile="" titleStyle="text-primary" />
-						<p>
+						<p className="text-right">
 							We aim to develop and support individuals and leaders, discover
 							their core values, passions and set goals. Improving the quality
 							of life and helping to reach their potentials and live a
@@ -118,9 +69,9 @@ export default function Page() {
 						</p>
 					</div>
 				</section>
-				<section className="flex flex-col space-y-8 justify-center items-center bg-blue-100 w-full h-72">
+				<section className="flex flex-col space-y-8 justify-center items-center bg-gray-50 w-full h-72">
 					<h1 className="text-2xl font-medium text-primary">Our Values</h1>
-					<div className="grid grid-cols-5 gap-10">
+					<div className="grid grid-cols-2 sm:grid-cols-5 gap-10">
 						{values.map((val, index) => (
 							<div className="flex flex-row space-x-2 items-center" key={index}>
 								<div className="h-4 w-4  bg-secondary" />
@@ -129,7 +80,7 @@ export default function Page() {
 						))}
 					</div>
 				</section>
-				<section className="flex flex-row w-full justify-between items-start space-x-10 px-24">
+				<section className="flex sm:flex-row flex-col w-full justify-between items-start sm:space-x-10 space-y-5 sm:px-24 px-5">
 					<div className="h-full w-full">
 						<img
 							src="/images/tshepo01.JPG"
@@ -179,7 +130,7 @@ export default function Page() {
 						</p>
 					</div>
 				</section>
-				<section className="flex flex-col w-full justify-between items-start space-y-10 px-24">
+				<section className="flex flex-col w-full justify-between items-start space-y-10 sm:px-24 px-5">
 					<div className="flex items-start">
 						<Header
 							title="Qualifications"
@@ -187,7 +138,7 @@ export default function Page() {
 							titleStyle="text-primary"
 						/>
 					</div>
-					<div className="grid grid-cols-3 gap-10">
+					<div className="grid grid-cols-2 sm:grid-cols-3 gap-10">
 						{qualifications.map((quali, index) => (
 							<div className="flex flex-col items-start space-x-2" key={index}>
 								<img src="/images/badge.png" className="w-20 h-24" />
@@ -202,7 +153,7 @@ export default function Page() {
 					</div>
 				</section>
 				<section className="flex flex-col w-full justify-between items-start space-y-10">
-					<div className="flex items-start px-24">
+					<div className="flex items-start px-5 sm:px-24">
 						<Header
 							title="Media Exposure"
 							subTitile="Recognized in the Media"
@@ -211,7 +162,7 @@ export default function Page() {
 					</div>
 					<LogoCarousel logos={media} />
 				</section>
-				<section className="flex flex-row w-full justify-between items-start space-x-10 px-24">
+				<section className="flex sm:flex-row flex-col w-full justify-between items-start sm:space-x-10 space-y-10 px-5 sm:px-24">
 					<Header
 						title="*Checkout His Book"
 						subTitile="Freedom – In Pursuit of Liberty"
@@ -232,16 +183,17 @@ export default function Page() {
 								inner balance — through self-awareness, mindset shifts, and
 								mindful living.
 							</p>
-							<p className="text-lg text-accent">R 350.00</p>
-							<div className="flex flex-row justify-between items-center">
-								<div className="flex flex-row items-center space-x-4">
-									<MinusCircleIcon size={20} />
-									<div className="flex h-6 w-6 border justify-center items-center border-primary/50">
-										<p>1</p>
+							<ButtonLink
+								to={`/checkout/book`}
+								title={
+									<div className="flex flex-row items-center space-x-2 group-hover:text-white text-primary ">
+										<p className="text-sm">Buy</p>
+										<div className="w-px h-4 bg-primary group-hover:bg-white" />
+										<p className="text-sm">R 350.00</p>
 									</div>
-									<PlusCircleIcon size={20} />
-								</div>
-							</div>
+								}
+								linkStyle="border-primary w-32 h-10 p-1"
+							/>
 						</div>
 					</div>
 				</section>

@@ -7,6 +7,7 @@ import NavLink from "../link/nav-link";
 import { Separator } from "../ui/separator";
 import { FacebookIcon, InstagramIcon, LucideLinkedin } from "lucide-react";
 import Header from "./header";
+import Logo from "./logo";
 
 const MainLayout = ({
 	children,
@@ -23,16 +24,8 @@ const MainLayout = ({
 				<footer className="flex flex-col gap-12 sm:px-24 px-4 py-16">
 					<Separator />
 					<div className="flex sm:flex-row flex-col w-full justify-between sm:items-center">
-						<Link to="/">
-							<div className="h-20 w-56 ">
-								<img
-									src="/images/freedom-logo.png"
-									alt="logo"
-									className="object-fill"
-								/>
-							</div>
-						</Link>
-						<div className="flex flex-row sm:space-x-10 space-x-5">
+						<Logo />
+						<div className="flex flex-row sm:space-x-10 space-x-5 mt-2 sm:mt-0">
 							<NavLink path="/about-us" title="About us" />
 							<NavLink path="/services" title="Services" />
 							<NavLink path="/gallery" title="Gallery" />

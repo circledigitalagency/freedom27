@@ -107,16 +107,18 @@ export default function HeroCarousel() {
 				<div className="flex">
 					{heroSlides.map((slide, index) => (
 						<div key={slide.id} className="flex-[0_0_100%] min-w-0">
-							<div className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+							<div className="relative h-[60vh] min-h-[300px]  sm:min-h-[400px] md:h-[60vh] md:min-h-[500px] w-full overflow-hidden">
 								<img
 									src={slide.image || "/placeholder.svg"}
 									alt=""
-									className="object-cover"
+									className="absolute inset-0 w-full h-full object-cover"
 								/>
 								<div className="absolute inset-0 bg-black/40" />
 
-								<div className="absolute inset-0 flex items-center justify-center">
-									{slide.content}
+								<div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-8">
+									<div className="text-center max-w-full sm:max-w-2xl md:max-w-4xl">
+										{slide.content}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -125,26 +127,26 @@ export default function HeroCarousel() {
 			</div>
 
 			<button
-				className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/20 border border-white/30 text-white transition-colors hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
+				className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex sm:h-12 sm:w-12 h-8 w-8 items-center justify-center rounded-full bg-white/20 border border-white/30 text-white transition-colors hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
 				onClick={scrollPrev}
 				aria-label="Previous slide"
 			>
-				<ChevronLeft className="h-6 w-6" />
+				<ChevronLeft className="sm:h-6 sm:w-6 h-4 w-4" />
 			</button>
 
 			<button
-				className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/20 border border-white/30 text-white transition-colors hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
+				className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex sm:h-12 sm:w-12 h-8 w-8 items-center justify-center rounded-full bg-white/20 border border-white/30 text-white transition-colors hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
 				onClick={scrollNext}
 				aria-label="Next slide"
 			>
-				<ChevronRight className="h-6 w-6" />
+				<ChevronRight className="sm:h-6 sm:w-6 h-4 w-4" />
 			</button>
 
 			<div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
 				{heroSlides.map((_, index) => (
 					<button
 						key={index}
-						className={`h-2 w-8 rounded-full transition-all duration-300 ${
+						className={`h-1 lg:h-2 w-8 rounded-full transition-all duration-300 ${
 							index === selectedIndex
 								? "bg-white"
 								: "bg-white/50 hover:bg-white/70"

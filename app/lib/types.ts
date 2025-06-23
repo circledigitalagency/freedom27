@@ -30,3 +30,18 @@ export interface GalleryCategory {
 	name: string;
 	count: number;
 }
+
+export interface Shop {
+	id: "book" | "oneOnone" | "couple";
+	image: string;
+	name: string;
+	price?: number;
+	description: string;
+	packages?: [
+		{
+			id: "4sessions" | "12sessions" | "8sessions";
+			name: string;
+			price: number;
+		}
+	];
+}

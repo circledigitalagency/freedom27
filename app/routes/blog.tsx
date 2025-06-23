@@ -11,14 +11,14 @@ export default function Page() {
 				<div className="py-10 bg-gray-50">
 					{blogPosts.slice(0, 1).map((post, index) => (
 						<div
-							className="flex flex-row space-x-5 h-[60vh] w-full"
+							className="flex sm:flex-row flex-col space-x-5 sm:h-[60vh] h-fit w-full"
 							key={index}
 						>
-							<div className="h-40 w-[50%]">
+							<div className="h-40 sm:w-[50%]">
 								<img src={post.image} alt="image" />
 							</div>
-							<div className="flex flex-col space-y-4 py-8 w-[50%]">
-								<div className="bg-accent/80 flex justify-center items-center p-2 w-[15%]">
+							<div className="flex flex-col space-y-4 py-8 sm:w-[50%]">
+								<div className="bg-accent/80 flex justify-center items-center p-2 sm:w-[15%] w-[25%]">
 									<p className="text-white text-sm">Latest Article</p>
 								</div>
 								<div className="flex items-center space-x-1">
@@ -28,7 +28,7 @@ export default function Page() {
 									</span>
 								</div>
 								<motion.h3
-									className="text-3xl font-normal text-accent mb-3 transition-colors w-[70%]"
+									className="text-3xl font-normal text-accent mb-3 transition-colors sm:w-[70%]"
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									transition={{ delay: index * 0.1 + 0.2 }}
@@ -37,7 +37,7 @@ export default function Page() {
 								</motion.h3>
 
 								<motion.p
-									className="mb-4 font-light leading-relaxed w-[80%]"
+									className="mb-4 font-light leading-relaxed sm:w-[80%] w-[90%]"
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									transition={{ delay: index * 0.1 + 0.3 }}
@@ -58,7 +58,7 @@ export default function Page() {
 						</div>
 					))}
 				</div>
-				<div className="flex flex-col py-5 px-24">
+				<div className="flex flex-col py-5 sm:px-32 px-5">
 					<div className="flex flex-col space-y-5">
 						<div className="flex flex-col space-y-2">
 							<p className="font-medium text-2xl text-primary">

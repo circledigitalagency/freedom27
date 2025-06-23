@@ -1,6 +1,7 @@
 import { Link } from "@remix-run/react";
 import { motion } from "framer-motion";
 import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
+import ButtonLink from "../link/button-link";
 
 export function Hero1() {
 	const words = ["Heal.", "Grow.", "Thrive."];
@@ -67,7 +68,7 @@ export function Hero1() {
 			</motion.h1>
 
 			<motion.p
-				className="text-xl md:text-2xl mb-8 text-white"
+				className="text-lg md:text-2xl mb-8 text-white"
 				variants={subtitleVariants}
 				initial="hidden"
 				animate="visible"
@@ -82,16 +83,16 @@ export function Hero1() {
 export function Hero2() {
 	return (
 		<div className="">
-			<div className="flex flex-row items-center justify-center">
-				<div className="w-[45vh]  flex flex-col p-8">
+			<div className="flex flex-row items-center justify-start">
+				<div className="w-[45vh] flex flex-col sm:p-8 p-6">
 					<img src="/images/book.svg" alt="book" className="object-contain" />
 				</div>
-				<div className="w-1/2 flex flex-col space-y-12 p-8">
+				<div className="w-1/2 flex flex-col sm:space-y-12 space-y-5 sm:p-8">
 					<div className="space-y-5">
-						<p className="text-5xl w-[80%] font-medium text-white">
+						<p className="text-xl sm:text-5xl sm:w-[80%] font-medium text-white">
 							Freedom - Pursuit of Liberty
 						</p>
-						<p className="text-base font-light text-white w-[80%]">
+						<p className="text-xs sm:text-base font-light text-white w-[80%] line-clamp-5">
 							Discover the strength in surrender. This book guides you through
 							healing old wounds, embracing change, and finding peace through
 							mindfulness and self-awareness.
@@ -99,11 +100,14 @@ export function Hero2() {
 					</div>
 
 					<div className="flex flex-row justify-between items-center">
-						<button className="flex flex-row items-center space-x-2 justify-center border border-white w-36 h-10 p-1">
-							<p className="text-white">Buy</p>
+						<Link
+							to={`/checkout/book`}
+							className="flex flex-row items-center space-x-2 justify-center border border-white sm:w-36 w-28 h-10 sm:p-1"
+						>
+							<p className="text-xs sm:text-base text-white">Buy</p>
 							<div className="w-px h-4 bg-white" />
-							<p className="text-base text-white">R 350.00</p>
-						</button>
+							<p className="text-xs sm:text-base text-white">R 350.00</p>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -114,7 +118,7 @@ export function Hero2() {
 export function Hero3() {
 	return (
 		<div className="flex flex-col space-y-6 items-center justify-center rounded-xl p-8 mt-10 text-white">
-			<p className="text-5xl font-semibold">Looking for a Coach?</p>
+			<p className="text-3xl sm:text-5xl font-semibold">Looking for a Coach?</p>
 			<p className="text-sm w-[80%] text-center">
 				Get personalized support on your journey to freedom and inner peace.
 				Work 1-on-1 with a coach to heal, grow, and move forward with intention.

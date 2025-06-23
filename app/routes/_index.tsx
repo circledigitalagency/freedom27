@@ -85,9 +85,9 @@ export default function Index() {
 
 	return (
 		<MainLayout>
-			<div className="flex flex-col space-y-32">
+			<div className="flex flex-col space-y-24 lg:space-y-32">
 				<HeroCarousel />
-				<section className="flex flex-row w-full justify-center items-center px-24">
+				<section className="flex flex-col w-full justify-center items-center px-5 lg:px-24">
 					<div className="flex-col space-y-14">
 						<Header
 							title="What is Freedom 27?"
@@ -97,7 +97,7 @@ export default function Index() {
 						<div className="space-y-7">
 							<div className="flex flex-row items-start space-x-2">
 								<HeartHandshakeIcon className="text-secondary" />
-								<p className="w-3/5 text-left">
+								<p className="lg:w-3/5 w-[90%] text-left">
 									Freedom 27 is a mindfulness and personal development company
 									founded by{" "}
 									<span className="text-accent font-medium hover:underline">
@@ -110,7 +110,7 @@ export default function Index() {
 							</div>
 							<div className="flex flex-row items-start space-x-2">
 								<TreePineIcon className="text-secondary" />
-								<p className="w-3/5 text-left">
+								<p className="lg:w-3/5 w-[90%] text-left">
 									Through hikes, workshops, coaching sessions, and retreats.
 									Individuals, couples and groups engage in tailored programs to
 									cultivate clarity, emotional balance, and resilience.
@@ -118,7 +118,7 @@ export default function Index() {
 							</div>
 							<div className="flex flex-row items-start space-x-2">
 								<SproutIcon className="text-secondary" />
-								<p className="w-3/5 text-left">
+								<p className="lg:w-3/5 w-[90%] text-left">
 									Whether you're navigating a life transition, looking to deepen
 									your self-awareness, or seeking tools to manage stress.
 								</p>
@@ -134,7 +134,7 @@ export default function Index() {
 							</Link>
 						</div>
 					</div>
-					<div className="h-[30%] w-[30%]">
+					<div className="h-[30%] w-[30%] hidden sm:block">
 						<img
 							className="w-full h-full"
 							alt="A Sanctuary for Mind, Body & Spirit"
@@ -142,14 +142,15 @@ export default function Index() {
 						/>
 					</div>
 				</section>
-				<section className="flex flex-col w-full justify-center items-center px-24 bg-blue-100 py-20 space-y-16">
+				<section className="flex flex-col w-full justify-center items-center px-5 sm:px-24 bg-gray-50 py-20 space-y-16">
 					<Header
 						title="Offerings & Programs"
 						titleStyle="text-primary"
 						subTitile="Wellness Experiences to Support Every Journey"
 						containerStyle="items-center justify-center"
+						subTitileStyle="text-center"
 					/>
-					<div className="grid grid-cols-3 gap-10">
+					<div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
 						{programs.map((prog, index) => (
 							<div
 								className="w-[20rem] h-[20rem] relative group cursor-pointer"
@@ -172,7 +173,7 @@ export default function Index() {
 							</div>
 						))}
 					</div>
-					<div className="flex items-center space-x-3">
+					<div className="flex sm:flex-row flex-col items-center sm:space-x-3 space-y-3">
 						<p>
 							No matter your starting point, there’s a gentle, supportive space
 							waiting for you.
@@ -183,7 +184,7 @@ export default function Index() {
 					</div>
 				</section>
 				<Shop showAll={false} containerStyle="space-y-10" />
-				<section className="flex flex-col w-full justify-center items-center px-24 space-y-10">
+				<section className="flex flex-col w-full justify-center items-center px-5 sm:px-24 space-y-10">
 					<Header
 						title="Our Trusted Partners"
 						subTitile=""
@@ -195,13 +196,14 @@ export default function Index() {
 				<HorizontalImageBackground
 					image="/images/peace.jpg"
 					alt="peace"
-					containerStyle="h-[30vh]"
+					containerStyle="sm:h-[30vh] h-[40vh]"
 					children={
 						<div className="flex flex-col space-y-5 justify-center items-center">
 							<Header
 								title="Start your wellness journey today."
-								titleStyle="text-white"
+								titleStyle="text-white text-center"
 								subTitile="Take the first step toward clarity, balance, and freedom."
+								subTitileStyle="text-center"
 							/>
 							<Link
 								to="/about-us"
