@@ -1,4 +1,4 @@
-import { NavItem, Shop } from "./types";
+import { GalleryItem, NavItem, Shop } from "./types";
 
 export const menu: NavItem[] = [
 	{
@@ -25,134 +25,130 @@ export const menu: NavItem[] = [
 
 export const media = [
 	{
-		src: "/images/702.webp",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214255/702_ciun7x.webp",
 		alt: "702 Radio Station",
 	},
 	{
-		src: "/images/bbc.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214255/bbc_vzzpxg.png",
 		alt: "BBC World Service",
 	},
 	{
-		src: "/images/cape-pulprit.jpg",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214256/cape-pulprit_jrhajw.jpg",
 		alt: "Cape Pulprit Radio Station",
 	},
 	{
-		src: "/images/CGTN_Africa.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214258/CGTN_Africa_fbe4za.png",
 		alt: "CGTN_Africa",
 	},
 	{
-		src: "/images/metro-fm.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214261/metro-fm_tmg7jp.png",
 		alt: "Metro FM",
 	},
 	{
-		src: "/images/newzroom-afrika.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214261/newzroom-afrika_b0mgic.png",
 		alt: "Newzroom Afrika",
 	},
 	{
-		src: "/images/radio-2000.gif",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214262/radio-2000_ja4nku.gif",
 		alt: "Radio 2000",
 	},
 	{
-		src: "/images/radio-atlatis.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214262/radio-atlatis_vfgbhx.png",
 		alt: "Radio Atlatis",
 	},
 	{
-		src: "/images/sunday-sun.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214262/sunday-sun_mqt9ow.png",
 		alt: "Sunday Sun",
 	},
 ];
 
 export const affiliates = [
 	{
-		src: "/images/alrd.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214269/alrd_dh2qs5.png",
 		alt: "alrd",
 	},
 	{
-		src: "/images/fnb-logo.webp",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214270/fnb-logo_uonjlo.webp",
 		alt: "fnb",
 	},
 	{
-		src: "/images/arm.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214265/arm_vcbxrq.png",
 		alt: "arm",
 	},
 	{
-		src: "/images/cbrta.jpg",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214271/cbrta_mrxfmm.jpg",
 		alt: "cbrta",
 	},
 	{
-		src: "/images/deedsoffice.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214269/deedsoffice_a9wagi.png",
 		alt: "deedsoffice",
 	},
 	{
-		src: "/images/erwat.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214270/erwat_ll4pih.png",
 		alt: "erwat",
 	},
 	{
-		src: "/images/ewsc.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214270/ewsc_jzgvtw.png",
 		alt: "ewsc",
 	},
 	{
-		src: "/images/gp.gif",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214260/gp_ciy1qx.gif",
 		alt: "gp",
 	},
 	{
-		src: "/images/icas.webp",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214273/icas_idvhgr.webp",
 		alt: "icas",
 	},
 	{
-		src: "/images/igt.gif",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214261/igt_iwg1po.gif",
 		alt: "igt",
 	},
 	{
-		src: "/images/inseta-logo.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214276/inseta-logo_krzkhp.png",
 		alt: "inseta",
 	},
 	{
-		src: "/images/erwat.png",
-		alt: "erwat",
-	},
-	{
-		src: "/images/momentum.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214261/momentum_gyizbp.png",
 		alt: "momentum",
 	},
 	{
-		src: "/images/nifthass.png",
-		alt: "nifthass",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214277/nifthass_yhl0xj.png",
+		alt: "National Institute for the Humanities and Social Sciences",
 	},
 	{
-		src: "/images/prsa.png",
-		alt: "prsa",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214278/prsa_txt2lm.png",
+		alt: "Parliament of the Republic of South Africa",
 	},
 	{
-		src: "/images/raf.jpg",
-		alt: "raf",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214278/raf_plnhft.jpg",
+		alt: "Road Accident Fund",
 	},
 	{
-		src: "/images/sanbi.png",
-		alt: "sanbi",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214279/sanbi_aehaoe.png",
+		alt: "Sanbi Biodiversity Advisor",
 	},
 	{
-		src: "/images/tax-ombud.png",
-		alt: "tax-ombud",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214280/tax-ombud_thsatx.png",
+		alt: "Tax Ombud",
 	},
 	{
 		src: "/images/transnet.png",
-		alt: "transnet",
+		alt: "Transnet",
 	},
 	{
-		src: "/images/trsa.jpg",
-		alt: "trsa",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214263/trsa_pj9ml6.jpg",
+		alt: "Tourism Republic of South Africa",
 	},
 	{
-		src: "/images/wcg.png",
-		alt: "wcg",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214280/wcg_gt5mff.png",
+		alt: "Western Cape Government",
 	},
 ];
 
 export const approach = [
 	{
 		id: 1,
-		img: "/images/mental-clarity.jpg",
+		img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751218997/mental-clarity_1_jekuo0.jpg",
 		title: "Mental clarity techniques",
 		subheading: "Focus sessions & Limiting belief reprogramming",
 	},
@@ -170,7 +166,7 @@ export const approach = [
 	},
 	{
 		id: 4,
-		img: "/images/subconscious-healing.jpg",
+		img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214294/subconscious-healing_g3bymp.jpg",
 		title: "Subconscious mind coaching",
 		subheading: "Undersding patterns and triggers",
 	},
@@ -185,6 +181,29 @@ export const approach = [
 export const experiences = [
 	{
 		id: 1,
+		icon: "/images/life-coaching01.png",
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214294/subconscious-healing_g3bymp.jpg",
+
+		label: "One on One Life Coaching",
+		value: [
+			"Personalized sessions to support your growth, clarity, and emotional well-being, guided by compassionate listening and transformative tools.",
+		],
+		takeaways:
+			"Stress reduction, clarity, physical wellness, emotional grounding",
+	},
+	{
+		id: 2,
+		icon: "/images/couple-session01.png",
+		label: "Couples session",
+		value: [
+			"Strengthen connection, communication, and emotional harmony in your relationship through mindful, heart-centered guidance.",
+		],
+		takeaways:
+			"Stress reduction, clarity, physical wellness, emotional grounding",
+	},
+	{
+		id: 3,
 		icon: "/images/hikes.png",
 		label: "Hikes & Outdoor Mindfulness Experiences",
 		value: [
@@ -195,7 +214,7 @@ export const experiences = [
 			"Stress reduction, clarity, physical wellness, emotional grounding",
 	},
 	{
-		id: 2,
+		id: 4,
 		icon: "/images/workshop.png",
 		label: "1-Day Workshop",
 		value: [
@@ -336,7 +355,8 @@ export const shopData: Shop[] = [
 	},
 	{
 		id: "oneOnone",
-		image: "/images/subconscious-healing.jpg",
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214294/subconscious-healing_g3bymp.jpg",
 		name: "One on One Life Coaching",
 		description:
 			"Personalized sessions to support your growth, clarity, and emotional well-being — guided by compassionate listening and transformative tools.",
@@ -412,5 +432,137 @@ export const qualifications = [
 	{
 		degree: "Prince2 and PMBOK",
 		school: "",
+	},
+];
+
+export const galleryItems: GalleryItem[] = [
+	{
+		id: 1,
+		title: "Freedom 27 Book Launch",
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939353/IMG_5103_sfs7ui.jpg",
+		category: "Book Launch",
+	},
+	{
+		id: 2,
+		title: "Women's Month Celebration",
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939333/FullSizeRender_om7ffu.heic",
+		category: "Talks",
+	},
+	{
+		id: 3,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939315/3370545b-1a54-449e-b0c0-657e63cc1294_cueo1l.jpg",
+		category: "Talks",
+	},
+	{
+		id: 4,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939391/IMG_6891_mrqnpc.jpg",
+		category: "Talks",
+	},
+	{
+		id: 5,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939383/IMG_7318_hzq7tq.heic",
+		category: "Talks",
+	},
+	{
+		id: 6,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939388/IMG_7365_bic4kw.heic",
+		category: "Talks",
+	},
+	{
+		id: 7,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939359/IMG_2261_hmflif.heic",
+		category: "Workshops",
+	},
+	{
+		id: 8,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939358/IMG_6520_o002pg.heic",
+		category: "Book",
+	},
+	{
+		id: 9,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939357/IMG_5878_t66qxw.heic",
+		category: "Radio",
+	},
+	{
+		id: 10,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939355/IMG_5874_ci3ntu.heic",
+		category: "Radio",
+	},
+	{
+		id: 11,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939355/IMG_4693_isvthe.heic",
+		category: "Talks",
+	},
+	{
+		id: 10,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939318/FB_IMG_1507614248584_guatmq.jpg",
+		category: "Workshops",
+	},
+	{
+		id: 10,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939337/IMG_1830_gwlrcv.jpg",
+		category: "Workshops",
+	},
+	{
+		id: 10,
+
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939334/IMG_1828_z4fskt.jpg",
+		category: "Workshops",
+	},
+	{
+		id: 11,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939315/FB_IMG_1507614241875_qwyhni.jpg",
+		category: "Workshops",
+	},
+	{
+		id: 12,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939314/87cad0b3-10d4-44a1-8f1b-186eb2ce48e4_mp1ikh.jpg",
+		category: "Workshops",
+	},
+	{
+		id: 13,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939314/5b968995-4b26-48c4-98d3-cc1ddb2c8773_ossjfw.jpg",
+		category: "Workshops",
+	},
+	{
+		id: 14,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939417/SAM_0800_beu8z3.jpg",
+		category: "Talks",
+	},
+	{
+		id: 15,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939314/431fd537-60db-48db-9e4d-540fce555418_waljfs.jpg",
+		category: "Talks",
+	},
+	{
+		id: 16,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939389/IMG_7342_d8yea5.jpg",
+		category: "Hiking",
+	},
+	{
+		id: 17,
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939363/IMG_6685_f9xh0o.jpg",
+		category: "Workshops",
 	},
 ];

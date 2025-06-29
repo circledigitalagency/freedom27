@@ -16,79 +16,113 @@ export default function Shop({
 	return (
 		<section
 			className={cn(
-				"flex flex-col w-full justify-between items-center px-5 sm:px-24",
+				"flex flex-col justify-center items-center w-full py-16 lg:py-24 bg-gray-50",
 				containerStyle
 			)}
 		>
-			{!showAll && (
-				<div className="w-full flex flex-col justify-center items-center">
-					<h1 className={cn("text-3xl font-medium")}>Shop</h1>
-					<p className="font-light text-base">
-						Holistic Offerings for Healing and Clarity
-					</p>
-				</div>
-			)}
-			<div className="flex flex-col space-y-5">
-				{showAll && (
-					<div className="flex flex-col space-y-2">
-						<p className="font-medium text-2xl text-primary">All Offerings</p>
-						<p className="font-light text-sm">
-							Shop books, and sessions to support your path
+			<div className="container mx-auto px-5 lg:px-24">
+				{!showAll && (
+					<div className="text-center mb-16">
+						<h1 className="text-2xl lg:text-3xl font-semibold text-primary mb-4">
+							Shop
+						</h1>
+						<p className="text-lg text-gray-600 max-w-2xl mx-auto">
+							Holistic Offerings for Healing and Clarity
 						</p>
+						<div className="w-24 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
 					</div>
 				)}
 
-				<div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-					{itemsToShow.map((prod, index) => (
-						<div
-							className="flex flex-col justify-center items-start space-y-4 border border-slate-200"
-							key={index}
-						>
-							<div className="flex w-full sm:h-52 h-44 justify-center items-center overflow-hidden">
-								<img
-									src={prod.image}
-									alt={prod.name}
-									className={cn(
-										"object-fill max-h-full max-w-full",
-										prod.id === "book" ? "sm:w-52 sm:h-52 w-44 h-44" : "w-full"
-									)}
-								/>
-							</div>
-							<div className="flex flex-col space-y-3 p-5">
-								<p className="font-medium text-accent">{prod.name}</p>
-								<p className="text-xs text-gray-400">{prod.description}</p>
-
-								{prod.id === "book" ? (
-									<ButtonLink
-										to={`/checkout/${prod.id}`}
-										title={
-											<div className="flex flex-row items-center space-x-2 group-hover:text-white text-primary ">
-												<p className="text-sm">Buy</p>
-												<div className="w-px h-4 bg-primary group-hover:bg-white" />
-												<p className="text-sm">R 350.00</p>
-											</div>
-										}
-										linkStyle="w-28 h-8 p-1 border-primary"
-									/>
-								) : (
-									<ButtonLink
-										to={`/checkout/${prod.id}`}
-										title="Explore Packages"
-										linkStyle="w-fit h-8 p-1 border-primary"
-									/>
-								)}
-							</div>
+				<div className="space-y-12">
+					{showAll && (
+						<div className="text-center lg:text-left">
+							<h2 className="text-3xl lg:text-4xl font-bold text-primary mb-3">
+								All Offerings
+							</h2>
+							<p className="text-gray-600 text-lg">
+								Shop books, and sessions to support your path
+							</p>
+							<div className="w-16 h-1 bg-primary mt-4 rounded-full mx-auto lg:mx-0"></div>
 						</div>
-					))}
+					)}
+
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+						{itemsToShow.map((prod, index) => (
+							<div
+								key={prod.id || index}
+								className="group bg-white transition-all duration-300 overflow-hidden border border-primary/20 hover:border-primary/20"
+							>
+								<div className="relative h-64 bg-white overflow-hidden">
+									<img
+										src={prod.image || "/placeholder.svg"}
+										alt={`${prod.name} - Holistic offering for healing and clarity`}
+										className={cn(
+											"transition-transform duration-500 group-hover:scale-105",
+											prod.id === "book"
+												? "w-40 h-40 lg:w-48 lg:h-48 object-contain mx-auto mt-4"
+												: "w-full h-full object-cover"
+										)}
+										loading="lazy"
+									/>
+
+									{prod.id !== "book" && (
+										<div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+									)}
+								</div>
+
+								<div className="p-6 space-y-4">
+									<h3 className="font-semibold text-xl text-accent group-hover:text-primary transition-colors duration-200">
+										{prod.name}
+									</h3>
+
+									<p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+										{prod.description}
+									</p>
+
+									<div className="pt-2">
+										{prod.id === "book" ? (
+											<ButtonLink
+												to={`/checkout/${prod.id}`}
+												title={
+													<div className="flex items-center justify-center space-x-3 group/btn">
+														<span className="text-sm font-medium">Buy Now</span>
+														<div className="w-px h-4 bg-current opacity-50"></div>
+														<span className="text-sm font-bold">R 350.00</span>
+													</div>
+												}
+												linkStyle="w-full h-12 border-primary hover:bg-primary hover:text-white transition-all duration-200"
+											/>
+										) : (
+											<ButtonLink
+												to={`/checkout/${prod.id}`}
+												title={
+													<div className="flex items-center justify-center space-x-2">
+														<span>Explore Packages</span>
+														<svg
+															className="w-4 h-4 transition-transform group-hover:translate-x-1"
+															fill="none"
+															stroke="currentColor"
+															viewBox="0 0 24 24"
+														>
+															<path
+																strokeLinecap="round"
+																strokeLinejoin="round"
+																strokeWidth={2}
+																d="M9 5l7 7-7 7"
+															/>
+														</svg>
+													</div>
+												}
+												linkStyle="w-full h-12 border-primary hover:bg-primary hover:text-white transition-all duration-200"
+											/>
+										)}
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
-			{!showAll && (
-				<ButtonLink
-					to="/shop"
-					linkStyle="text-primary border-primary"
-					title="Shop All"
-				/>
-			)}
 		</section>
 	);
 }

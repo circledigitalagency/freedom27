@@ -82,33 +82,35 @@ export function Hero1() {
 
 export function Hero2() {
 	return (
-		<div className="">
-			<div className="flex flex-row items-center justify-start">
-				<div className="w-[45vh] flex flex-col sm:p-8 p-6">
-					<img src="/images/book.svg" alt="book" className="object-contain" />
+		<div className="grid grid-cols-2 gap-10">
+			<div className="flex flex-col sm:p-8 p-6">
+				<img
+					src="https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214266/book_e1vw94.svg"
+					alt="book"
+					className="object-contain"
+				/>
+			</div>
+			<div className="flex flex-col justify-center sm:space-y-12 space-y-5 sm:p-8">
+				<div className="flex flex-col space-y-5">
+					<p className="text-xl sm:text-5xl w-full text-left font-medium text-white">
+						Freedom - Pursuit of Liberty
+					</p>
+					<p className="text-xs sm:text-base text-left font-light text-white w-full line-clamp-5 sm:line-clamp-0">
+						Discover the strength in surrender. This book guides you through
+						healing old wounds, embracing change, and finding peace through
+						mindfulness and self-awareness.
+					</p>
 				</div>
-				<div className="w-1/2 flex flex-col sm:space-y-12 space-y-5 sm:p-8">
-					<div className="space-y-5">
-						<p className="text-xl sm:text-5xl sm:w-[80%] font-medium text-white">
-							Freedom - Pursuit of Liberty
-						</p>
-						<p className="text-xs sm:text-base font-light text-white w-[80%] line-clamp-5">
-							Discover the strength in surrender. This book guides you through
-							healing old wounds, embracing change, and finding peace through
-							mindfulness and self-awareness.
-						</p>
-					</div>
 
-					<div className="flex flex-row justify-between items-center">
-						<Link
-							to={`/checkout/book`}
-							className="flex flex-row items-center space-x-2 justify-center border border-white sm:w-36 w-28 h-10 sm:p-1"
-						>
-							<p className="text-xs sm:text-base text-white">Buy</p>
-							<div className="w-px h-4 bg-white" />
-							<p className="text-xs sm:text-base text-white">R 350.00</p>
-						</Link>
-					</div>
+				<div className="flex flex-row justify-between items-center">
+					<Link
+						to={`/checkout/book`}
+						className="flex flex-row items-center space-x-2 justify-center border border-white sm:w-36 w-28 h-10 sm:p-1"
+					>
+						<p className="text-xs sm:text-base text-white">Buy</p>
+						<div className="w-px h-4 bg-white" />
+						<p className="text-xs sm:text-base text-white">R 350.00</p>
+					</Link>
 				</div>
 			</div>
 		</div>

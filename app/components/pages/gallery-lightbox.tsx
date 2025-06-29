@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { X, ChevronLeft, ChevronRight, Download, Share2 } from "lucide-react";
@@ -108,52 +106,46 @@ export default function GalleryLightbox({
 							<h3 className="text-xl font-semibold mb-2">
 								{currentItem.title}
 							</h3>
-							<p className="text-gray-300 mb-2">{currentItem.description}</p>
-							<div className="flex items-center gap-4 text-sm text-gray-400">
-								{currentItem.photographer && (
-									<span>By {currentItem.photographer}</span>
-								)}
-								{currentItem.date && <span>{currentItem.date}</span>}
-								<span className="bg-white/20 px-2 py-1 ">
-									{currentItem.category}
-								</span>
-							</div>
-						</div>
 
-						<div className="flex items-center gap-2">
-							<button className="text-white hover:bg-white/20">
-								<Share2 className="h-5 w-5" />
-							</button>
-							<button className="text-white hover:bg-white/20">
-								<Download className="h-5 w-5" />
-							</button>
+							<span className="bg-white/20 px-2 py-1 ">
+								{currentItem.category}
+							</span>
 						</div>
 					</div>
-				</div>
 
-				<div className="bg-black/30 p-4">
-					<div className="container mx-auto">
-						<div className="flex gap-2 justify-center overflow-x-auto">
-							{items.map((item, index) => (
-								<button
-									key={item.id}
-									className={`flex-shrink-0 w-16 h-16  overflow-hidden border-2 transition-all ${
-										index === selectedIndex
-											? "border-white"
-											: "border-transparent opacity-60 hover:opacity-100"
-									}`}
-									onClick={() => emblaApi?.scrollTo(index)}
-								>
-									<img
-										src={item.image || "/placeholder.svg"}
-										alt={item.title}
-										width={64}
-										height={64}
-										className="w-full h-full object-cover"
-									/>
-								</button>
-							))}
-						</div>
+					<div className="flex items-center gap-2">
+						<button className="text-white hover:bg-white/20">
+							<Share2 className="h-5 w-5" />
+						</button>
+						<button className="text-white hover:bg-white/20">
+							<Download className="h-5 w-5" />
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div className="bg-black/30 p-4">
+				<div className="container mx-auto">
+					<div className="flex gap-2 justify-center overflow-x-auto">
+						{items.map((item, index) => (
+							<button
+								key={item.id}
+								className={`flex-shrink-0 w-16 h-16  overflow-hidden border-2 transition-all ${
+									index === selectedIndex
+										? "border-white"
+										: "border-transparent opacity-60 hover:opacity-100"
+								}`}
+								onClick={() => emblaApi?.scrollTo(index)}
+							>
+								<img
+									src={item.image || "/placeholder.svg"}
+									alt={item.title}
+									width={64}
+									height={64}
+									className="w-full h-full object-cover"
+								/>
+							</button>
+						))}
 					</div>
 				</div>
 			</div>

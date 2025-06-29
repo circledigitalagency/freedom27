@@ -6,6 +6,7 @@ import MainLayout from "~/components/layout/main";
 import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { AnimatedPrice } from "~/components/animated/price";
+import Header from "~/components/text/header";
 
 export async function loader({ params }: { params: { id: string } }) {
 	const product = shopData.find((p) => p.id === params.id);
@@ -51,14 +52,12 @@ export default function Checkout() {
 	return (
 		<MainLayout>
 			<div className="sm:px-24 px-5 py-10 space-y-16 bg-gray-50">
-				<div className="flex flex-col space-y-2">
-					<p className="font-medium text-2xl text-primary">*Checkout</p>
-					<p className="font-light text-sm">
-						This is a secure checkout. Your information is protected with SSL
-						encryption and trusted payment processing.
-					</p>
-				</div>
-				<div className="flex sm:flex-row flex-col items-center sm:space-x-10 sm:px-48">
+				<Header
+					title="Checkout"
+					subTitile="This is a secure checkout. Your information is protected with SSL
+						encryption and trusted payment processing."
+				/>
+				{/* <div className="flex sm:flex-row flex-col items-center sm:space-x-10 sm:px-48">
 					<div className="h-[50vh] w-full">
 						<img
 							src={product.image}
@@ -116,7 +115,7 @@ export default function Checkout() {
 							</>
 						)}
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</MainLayout>
 	);

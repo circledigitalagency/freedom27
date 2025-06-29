@@ -3,6 +3,7 @@ import { Link } from "@remix-run/react";
 import ButtonLink from "~/components/link/button-link";
 import { approach, experiences } from "~/lib/data";
 import HorizontalImageBackground from "~/components/layout/horizontal-image-bg";
+import Header from "~/components/text/header";
 
 export default function Page() {
 	return (
@@ -28,9 +29,7 @@ export default function Page() {
 
 			<div className="flex flex-col w-full sm:px-32 px-5 py-20">
 				<section className="flex flex-col w-full justify-center items-start space-y-6 py-10">
-					<h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary">
-						What Is Mindfulness?
-					</h1>
+					<Header title="What Is Mindfulness?" />
 
 					<p>
 						Mindfulness is a conscious practice of being fully present in mind,
@@ -38,7 +37,7 @@ export default function Page() {
 						without judgment, release inner noise, and return to their breath as
 						an anchor.
 					</p>
-					<p className="font-medium">The Gifts of Mindfulness:</p>
+					<p className="font-medium text-accent">The Gifts of Mindfulness:</p>
 					<ul className="list-disc flex flex-col gap-4 px-5 text-sm">
 						<li>Cultivates emotional balance</li>
 						<li>Improves clarity and decision-making</li>
@@ -79,19 +78,10 @@ export default function Page() {
 						))}
 					</div>
 				</section>
-
-				<div className="flex sm:flex-row flex-col items-center sm:space-x-2 space-y-2 py-10">
-					<p>Want personal guidance in mindfulness?</p>
-					<Link to="" className="text-primary underline">
-						Book a session
-					</Link>
-				</div>
 			</section>
 			<div className="flex flex-col w-full sm:px-32 px-5 py-20">
 				<section className="flex flex-col w-full justify-center items-center space-y-10 py-20">
-					<h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary">
-						Experiences We Integrate
-					</h1>
+					<Header title="Experiences We Integrate" lineStyle="mx-auto" />
 
 					<div className="grid grid-cols-1 sm:grid-cols-3 gap-20">
 						{experiences.map((exp, index) => (
@@ -105,7 +95,7 @@ export default function Page() {
 										alt={exp.icon}
 										className="sm:w-16 sm:h-16 w-12 h-12"
 									/>
-									<p className="text-accent text-sm sm:text-base">
+									<p className="text-primary text-sm sm:text-base">
 										{exp.label}
 									</p>
 								</div>
@@ -120,7 +110,7 @@ export default function Page() {
 									))}
 								</div>
 								<div className="flex flex-col space-y-2">
-									<p className="text-secondary sm:text-sm text-xs">Takeaways</p>
+									<p className="text-accent sm:text-sm text-xs">Takeaways</p>
 									<p className="sm:text-sm text-xs">{exp.takeaways}</p>
 								</div>
 							</div>
@@ -132,7 +122,7 @@ export default function Page() {
 				<h1 className="text-2xl font-medium text-primary">
 					Create Space for Yourself
 				</h1>
-				<p className="sm:w-[50%] w-[90%] text-center text-accent">
+				<p className="sm:w-[50%] w-[90%] text-center text-primary">
 					If you’re seeking calm, clarity, or healing, one-on-one mindfulness
 					coaching offers a nurturing space to reconnect with yourself and grow
 					at your own pace.

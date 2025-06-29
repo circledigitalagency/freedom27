@@ -2,12 +2,13 @@ import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
 import { BlogCard } from "~/components/card/blog";
 import MainLayout from "~/components/layout/main";
+import Header from "~/components/text/header";
 import { blogPosts } from "~/lib/data";
 
 export default function Page() {
 	return (
 		<MainLayout>
-			<div className="flex flex-col ">
+			<div className="flex flex-col">
 				<div className="py-10 bg-gray-50">
 					{blogPosts.slice(0, 1).map((post, index) => (
 						<div
@@ -18,7 +19,7 @@ export default function Page() {
 								<img src={post.image} alt="image" />
 							</div>
 							<div className="flex flex-col space-y-4 py-8 sm:w-[50%]">
-								<div className="bg-accent/80 flex justify-center items-center p-2 sm:w-[15%] w-[25%]">
+								<div className="bg-primary/80 flex justify-center items-center p-2 sm:w-[15%] w-[25%]">
 									<p className="text-white text-sm">Latest Article</p>
 								</div>
 								<div className="flex items-center space-x-1">
@@ -28,7 +29,7 @@ export default function Page() {
 									</span>
 								</div>
 								<motion.h3
-									className="text-3xl font-normal text-accent mb-3 transition-colors sm:w-[70%]"
+									className="text-4xl font-normal text-primary mb-3 transition-colors sm:w-[70%]"
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									transition={{ delay: index * 0.1 + 0.2 }}
@@ -58,16 +59,12 @@ export default function Page() {
 						</div>
 					))}
 				</div>
-				<div className="flex flex-col py-5 sm:px-32 px-5">
-					<div className="flex flex-col space-y-5">
-						<div className="flex flex-col space-y-2">
-							<p className="font-medium text-2xl text-primary">
-								Our Recent Articles
-							</p>
-							<p className="font-light text-sm">
-								Stay informed with our latest insights
-							</p>
-						</div>
+				<div className="flex flex-col sm:px-32 px-5 py-16">
+					<div className="flex flex-col">
+						<Header
+							title="Our Recent Articles"
+							subTitile="Stay informed with our latest insights"
+						/>
 						<section className="flex flex-row w-full justify-between items-start space-x-10 py-10 ">
 							<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 								{blogPosts.slice(1).map((post, index) => (

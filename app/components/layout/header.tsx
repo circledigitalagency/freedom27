@@ -19,7 +19,7 @@ export default function Header() {
 	return (
 		<motion.header
 			className={cn(
-				"sticky top-0 w-full h-fit bg-white/90 backdrop-blur-sm border-b border-gray-200 z-50 transition-all duration-300 ease-out",
+				"fixed top-0 w-full h-fit bg-white/90 backdrop-blur-sm z-50 transition-all duration-300 ease-out",
 				isScrolled ? "shadow-lg shadow-black/5" : "shadow-none"
 			)}
 			initial={{ y: -100 }}
@@ -37,18 +37,18 @@ export default function Header() {
 							083 784 8001
 						</p>
 					</div>
-					<div className="flex flex-row items-center space-x-2">
+					<a
+						href="mailto:info@csresources.co.za"
+						className="flex flex-row items-center space-x-2 cursor-pointer"
+					>
 						<MailIcon size={15} color="white" />
-						<a
-							href="mailto:info@csresources.co.za"
-							className="font-light hidden md:block text-sm text-white cursor-pointer"
-						>
+						<p className="font-light hidden md:block text-sm text-white ">
 							tshepo@freedom27.co.za
-						</a>
-					</div>
+						</p>
+					</a>
 				</div>
 			</div>
-			<nav className="sm:px-24 py-6 px-4 flex justify-between items-center">
+			<nav className="sm:px-24 py-2 px-4 flex justify-between items-center">
 				<Link to="/">
 					<div className="h-20 w-56">
 						<img

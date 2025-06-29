@@ -10,7 +10,7 @@ export default function Page() {
 	return (
 		<MainLayout>
 			<HorizontalImageBackground
-				image="/images/about-us.jpg"
+				image="https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214257/about-us_ghz1kw.jpg"
 				alt="freedom"
 				children={
 					<div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
@@ -30,12 +30,15 @@ export default function Page() {
 				<section className="flex flex-row w-full justify-between items-start space-x-10 sm:px-24 px-5">
 					<div className="flex flex-col space-y-5">
 						<p>
-							<span className="text-primary font-medium">Freedom 27</span> is a
-							wellness and personal development movement rooted in mindfulness,
-							emotional healing, and holistic growth. We offer transformative
-							experiences from nature-based hikes and intimate workshops to
-							one-on-one coaching and immersive retreats each designed to
-							nurture mental well-being, self-awareness, and resilience.
+							<span className="text-primary font-medium text-lg">
+								Freedom 27
+							</span>{" "}
+							is a wellness and personal development movement rooted in
+							mindfulness, emotional healing, and holistic growth. We offer
+							transformative experiences from nature-based hikes and intimate
+							workshops to one-on-one coaching and immersive retreats each
+							designed to nurture mental well-being, self-awareness, and
+							resilience.
 						</p>
 						<p>
 							Our programs guide individuals, couples, and groups through life’s
@@ -60,7 +63,12 @@ export default function Page() {
 						</p>
 					</div>
 					<div className="flex flex-col space-y-5 sm:w-1/2 items-end">
-						<Header title="Our Aim" subTitile="" titleStyle="text-primary" />
+						<Header
+							title="Our Aim"
+							subTitile=""
+							titleStyle="text-primary"
+							lineStyle="mx-auto"
+						/>
 						<p className="text-right">
 							We aim to develop and support individuals and leaders, discover
 							their core values, passions and set goals. Improving the quality
@@ -74,7 +82,7 @@ export default function Page() {
 					<div className="grid grid-cols-2 sm:grid-cols-5 gap-10">
 						{values.map((val, index) => (
 							<div className="flex flex-row space-x-2 items-center" key={index}>
-								<div className="h-4 w-4  bg-secondary" />
+								<div className="h-4 w-4 rounded-full bg-secondary" />
 								<p className="font-normal text-accent">{val}</p>
 							</div>
 						))}
@@ -83,7 +91,7 @@ export default function Page() {
 				<section className="flex sm:flex-row flex-col w-full justify-between items-start sm:space-x-10 space-y-5 sm:px-24 px-5">
 					<div className="h-full w-full">
 						<img
-							src="/images/tshepo01.JPG"
+							src="https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214264/tshepo-matlou_d4hpnq.jpg"
 							alt="Tshepo Matlou"
 							className="w-full h-full object-fill"
 						/>
@@ -138,16 +146,13 @@ export default function Page() {
 							titleStyle="text-primary"
 						/>
 					</div>
-					<div className="grid grid-cols-2 sm:grid-cols-3 gap-10">
+					<div className="grid grid-cols-4 gap-8">
 						{qualifications.map((quali, index) => (
-							<div className="flex flex-col items-start space-x-2" key={index}>
-								<img src="/images/badge.png" className="w-20 h-24" />
-								<div className="flex-col space-y-2">
-									<p className="text-gray-400 text-base">{quali.degree}</p>
-									<p className="text-gray-400 text-sm font-light">
-										{quali.school}
-									</p>
-								</div>
+							<div className="flex-col space-y-2" key={index}>
+								<p className="text-gray-400 text-sm">{quali.degree}</p>
+								<p className="text-gray-400 text-xs font-light">
+									{quali.school}
+								</p>
 							</div>
 						))}
 					</div>
@@ -178,7 +183,7 @@ export default function Page() {
 							<p className="font-medium text-accent">
 								Freedom - Pursuit of Liberty
 							</p>
-							<p className="text-xs text-gray-400">
+							<p className="text-xs text-gray-800">
 								A gentle guide to letting go, healing past wounds, and finding
 								inner balance — through self-awareness, mindset shifts, and
 								mindful living.

@@ -24,7 +24,7 @@ export function SquigglyLine({
 	isVisible,
 	width = 60,
 	strokeStyle = "solid",
-	color = "#001a60",
+	color = "#5e7e9d",
 	thickness = 2,
 }: SquigglyLineProps) {
 	const getStrokeDashArray = () => {

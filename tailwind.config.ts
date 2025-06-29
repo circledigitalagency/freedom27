@@ -23,7 +23,7 @@ export default {
 				sm: "calc(var(--radius) - 4px)",
 			},
 			colors: {
-				primary: "#001a60",
+				primary: "#496da1",
 				background: "#F9FAFB",
 				foreground: "hsl(var(--foreground))",
 				card: {
@@ -34,13 +34,12 @@ export default {
 					DEFAULT: "hsl(var(--popover))",
 					foreground: "hsl(var(--popover-foreground))",
 				},
-
-				secondary: "#f69e21",
+				secondary: "#c85154",
 				muted: {
 					DEFAULT: "hsl(var(--muted))",
 					foreground: "hsl(var(--muted-foreground))",
 				},
-				accent: "#051849",
+				accent: "#5e7e9d",
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",
 					foreground: "hsl(var(--destructive-foreground))",

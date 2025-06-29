@@ -19,7 +19,7 @@ const MainLayout = ({
 	return (
 		<div className="flex flex-col overflow-y-auto">
 			<Header />
-			<main>
+			<main className="mt-32">
 				{children}
 				<footer className="flex flex-col gap-12 sm:px-24 px-4 py-16">
 					<Separator />
@@ -54,7 +54,7 @@ const MainLayout = ({
 							<a href="">
 								<FacebookIcon className="text-primary" size={22} />
 							</a>
-							<a href="">
+							<a href="https://www.linkedin.com/in/tshepo-matlou-b5357969/">
 								<LucideLinkedin className="text-primary" size={22} />
 							</a>
 						</div>

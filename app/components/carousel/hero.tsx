@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useCallback, ReactNode } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -15,17 +13,20 @@ interface HeroSlide {
 const heroSlides: HeroSlide[] = [
 	{
 		id: 1,
-		image: "/images/sunrise.jpg",
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751216704/pexels-gareth-davies-230510-910411_sr8uek.jpg",
 		content: <Hero1 />,
 	},
 	{
 		id: 2,
-		image: "/images/book-bg.jpg",
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751218478/view-flock-birds-flying-into-beautiful-sky-sunset_e30gnw.jpg",
 		content: <Hero2 />,
 	},
 	{
 		id: 2,
-		image: "/images/want-coach.jpg",
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214265/want-coach_okimft.jpg",
 		content: <Hero3 />,
 	},
 ];
@@ -107,7 +108,7 @@ export default function HeroCarousel() {
 				<div className="flex">
 					{heroSlides.map((slide, index) => (
 						<div key={slide.id} className="flex-[0_0_100%] min-w-0">
-							<div className="relative h-[60vh] min-h-[300px]  sm:min-h-[400px] md:h-[60vh] md:min-h-[500px] w-full overflow-hidden">
+							<div className="relative h-[60vh] min-h-[300px] sm:min-h-[400px] md:h-[60vh] md:min-h-[500px] w-full overflow-hidden">
 								<img
 									src={slide.image || "/placeholder.svg"}
 									alt=""
