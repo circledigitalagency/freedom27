@@ -50,9 +50,9 @@ export default function Header() {
 			</div>
 			<nav className="sm:px-24 py-2 px-4 flex justify-between items-center">
 				<Link to="/">
-					<div className="h-20 w-56">
+					<div className="h-20 w-32">
 						<img
-							src="/images/freedom-logo.png"
+							src="/images/freedom-logo.svg"
 							alt="logo"
 							className="object-fill"
 						/>

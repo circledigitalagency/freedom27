@@ -89,7 +89,7 @@ export default function Index() {
 			<div className="flex flex-col space-y-24 lg:space-y-32">
 				<HeroCarousel />
 				<section className="px-5 lg:px-24">
-					<div className="grid grid-cols-2 gap-16">
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 						<div className="flex-col space-y-14">
 							<Header
 								title="What is Freedom 27?"
@@ -185,7 +185,7 @@ export default function Index() {
 						</div>
 					</div>
 				</section>
-				<section className="grid grid-cols-2 w-full justify-center items-center px-5 sm:px-24 bg-gray-50 py-20 space-y-16">
+				<section className="flex flex-col w-full justify-center items-center px-5 sm:px-24 bg-gray-50 py-20 space-y-16">
 					<Header
 						title="Offerings & Programs"
 						titleStyle=""
@@ -197,7 +197,7 @@ export default function Index() {
 						<div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
 							{programs.map((prog, index) => (
 								<div
-									className="w-[15rem] h-[15rem] relative group cursor-pointer"
+									className="w-[20rem] h-[20rem] relative group cursor-pointer"
 									key={index}
 								>
 									<div className="absolute w-full h-full overflow-hidden">
@@ -288,7 +288,7 @@ export default function Index() {
 						children={
 							<div className="flex flex-col space-y-5 justify-center items-center">
 								<div className={"text-white"}>
-									<h1 className="text-2xl lg:text-3xl font-semibold mb-2">
+									<h1 className="text-2xl lg:text-3xl font-semibold mb-2 text-center">
 										Start your wellness journey today.
 									</h1>
 									<p className="text-base text-center max-w-2xl">

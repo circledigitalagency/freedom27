@@ -1,4 +1,5 @@
-import { json } from "@remix-run/react";
+import { json, Outlet, useLoaderData } from "@remix-run/react";
+import { Clock } from "lucide-react";
 import MainLayout from "~/components/layout/main";
 import { blogPosts } from "~/lib/data";
 
@@ -8,9 +9,20 @@ export async function loader({ params }: { params: { id: string } }) {
 	return json(blog);
 }
 export default function Page() {
+	const blog = useLoaderData<typeof loader>();
 	return (
-		<MainLayout>
-			<div className="flex flex-col"></div>
-		</MainLayout>
+		<div className="flex flex-col space-y-32 py-10 sm:px-32 px-5">
+			<div className="flex flex-col items-center space-y-5 justify-center w-full">
+				<img src={blog.image} alt={blog.title} className="h-full w-1/2" />
+				<h2 className="text-accent font-semibold text-3xl text-center">
+					{blog.title}
+				</h2>
+				<div className="flex items-center space-x-1">
+					<Clock size={14} className="text-secondary" />
+					<span className="text-sm text-secondary">{blog.readTime}</span>
+				</div>
+				<div className="flex flex-col space-y-5 py-5">{blog.excerpt}</div>
+			</div>
+		</div>
 	);
 }

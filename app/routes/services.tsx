@@ -48,9 +48,7 @@ export default function Page() {
 			</div>
 			<section className="flex flex-col sm:justify-center justify-start items-center bg-gray-50 w-full sm:h-[60vh] h-fit">
 				<section className="flex flex-col w-full justify-center items-center space-y-8 py-10">
-					<h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary">
-						Our Approach
-					</h1>
+					<Header title="Our Approach" lineStyle="mx-auto" />
 
 					<div className="grid grid-cols-1 sm:grid-cols-5 gap-10">
 						{approach.map((ap, index) => (
