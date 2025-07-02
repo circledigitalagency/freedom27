@@ -50,13 +50,12 @@ export default function Header() {
 			</div>
 			<nav className="sm:px-24 py-2 px-4 flex justify-between items-center">
 				<Link to="/">
-					<div className="h-20 w-32">
-						<img
-							src="/images/freedom-logo.svg"
-							alt="logo"
-							className="object-fill"
-						/>
-					</div>
+					<p className="font-semibold text-accent text-3xl">FREEDOM 27</p>
+					{/* <img
+						src="/images/freedom-logo.svg"
+						alt="logo"
+						className="object-fill"
+					/> */}
 				</Link>
 				<div className="hidden md:block">
 					<div className="flex flex-row gap-6 items-center justify-end">

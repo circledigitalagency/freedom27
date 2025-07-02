@@ -132,7 +132,7 @@ export const affiliates = [
 		alt: "Tax Ombud",
 	},
 	{
-		src: "/images/transnet.png",
+		src: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214262/transnet_kj5gcl.png",
 		alt: "Transnet",
 	},
 	{
@@ -154,7 +154,7 @@ export const approach = [
 	},
 	{
 		id: 2,
-		img: "/images/trauma-healing.jpg",
+		img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751359903/trauma-healing_1_ak823a.jpg",
 		title: "Stress and trauma healing",
 		subheading: "Forgiveness & Emotional release",
 	},
@@ -182,9 +182,6 @@ export const experiences = [
 	{
 		id: 1,
 		icon: "/images/life-coaching01.png",
-		image:
-			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214294/subconscious-healing_g3bymp.jpg",
-
 		label: "One on One Life Coaching",
 		value: [
 			"Personalized sessions to support your growth, clarity, and emotional well-being, guided by compassionate listening and transformative tools.",
