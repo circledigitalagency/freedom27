@@ -14,6 +14,8 @@ export async function registerYocoWebhook() {
 		}),
 	});
 
+	console.log("response: ", response);
+
 	if (!response.ok) {
 		const error = await response.json();
 		throw new Error(`Failed to register webhook: ${error.message}`);
