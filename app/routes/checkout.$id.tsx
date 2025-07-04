@@ -55,7 +55,7 @@ export async function action({ request }: { request: Request }) {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			amountInCents,
+			amount: amountInCents,
 			currency: "ZAR",
 			successUrl: `${web_url}thank-you`,
 			failureUrl: `${web_url}checkout/book`,
@@ -72,8 +72,7 @@ export async function action({ request }: { request: Request }) {
 	}
 
 	const data = await response.json();
-
-	return redirect(response.url);
+	return redirect(data.redirectUrl);
 }
 
 const formSchema = z.object({
@@ -207,7 +206,7 @@ export default function Checkout() {
 																/>
 															</motion.span>
 															<motion.input
-																value={product.price * quantity}
+																value={(product.price * quantity).toFixed(2)}
 																name="amount"
 																type="hidden"
 															/>
