@@ -1,6 +1,6 @@
 export async function registerYocoWebhook() {
 	const secretKey = process.env.YOCO_SECRET_API_KEY;
-	const webhookUrl = process.env.WEB_URL + "/webhooks/yoco";
+	const webhookUrl = process.env.WEB_URL + "webhooks/yoco";
 
 	const response = await fetch("https://payments.yoco.com/api/webhooks", {
 		method: "POST",
