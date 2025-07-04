@@ -286,7 +286,8 @@ export const blogPosts = [
 		author: "Tshepo Matlou",
 		date: "Dec 18, 2024",
 		readTime: "5 min read",
-		image: "/images/breathing-techniques.jpg",
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214272/breathing-techniques_m6lbik.jpg",
 		category: "Mindfulness",
 	},
 	{
@@ -344,41 +345,42 @@ export const blogPosts = [
 export const shopData: Shop[] = [
 	{
 		id: "book",
-		image: "/images/book.svg",
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751621135/book_hexyzz.svg",
 		name: "Freedom - Pursuit of Liberty",
 		description:
 			"Discover the strength in surrender. This book guides you through healing old wounds, embracing change, and finding peace through mindfulness and self-awareness.",
 		price: 350,
 	},
-	{
-		id: "oneOnone",
-		image:
-			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214294/subconscious-healing_g3bymp.jpg",
-		name: "One on One Life Coaching",
-		description:
-			"Personalized sessions to support your growth, clarity, and emotional well-being — guided by compassionate listening and transformative tools.",
-		packages: [
-			{
-				id: "4sessions",
-				name: "4 Sessions",
-				price: 1200,
-			},
-		],
-	},
-	{
-		id: "couple",
-		image: "/images/coaching02.jpg",
-		name: "Couples session",
-		description:
-			"Strengthen connection, communication, and emotional harmony in your relationship through mindful, heart-centered guidance.",
-		packages: [
-			{
-				id: "4sessions",
-				name: "4 Sessions",
-				price: 1800,
-			},
-		],
-	},
+	// {
+	// 	id: "oneOnone",
+	// 	image:
+	// 		"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214294/subconscious-healing_g3bymp.jpg",
+	// 	name: "One on One Life Coaching",
+	// 	description:
+	// 		"Personalized sessions to support your growth, clarity, and emotional well-being — guided by compassionate listening and transformative tools.",
+	// 	packages: [
+	// 		{
+	// 			id: "4sessions",
+	// 			name: "4 Sessions",
+	// 			price: 1200,
+	// 		},
+	// 	],
+	// },
+	// {
+	// 	id: "couple",
+	// 	image: "/images/coaching02.jpg",
+	// 	name: "Couples session",
+	// 	description:
+	// 		"Strengthen connection, communication, and emotional harmony in your relationship through mindful, heart-centered guidance.",
+	// 	packages: [
+	// 		{
+	// 			id: "4sessions",
+	// 			name: "4 Sessions",
+	// 			price: 1800,
+	// 		},
+	// 	],
+	// },
 ];
 
 export const values = [
@@ -442,92 +444,99 @@ export const galleryItems: GalleryItem[] = [
 	},
 	{
 		id: 2,
+		title: "Freedom 27 Book Launch",
+		image:
+			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939424/IMG_8630_sgcagi.jpg",
+		category: "Book Launch",
+	},
+	{
+		id: 3,
 		title: "Women's Month Celebration",
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939333/FullSizeRender_om7ffu.heic",
 		category: "Talks",
 	},
 	{
-		id: 3,
+		id: 4,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939315/3370545b-1a54-449e-b0c0-657e63cc1294_cueo1l.jpg",
 		category: "Talks",
 	},
 	{
-		id: 4,
+		id: 5,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939391/IMG_6891_mrqnpc.jpg",
 		category: "Talks",
 	},
 	{
-		id: 5,
+		id: 6,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939383/IMG_7318_hzq7tq.heic",
 		category: "Talks",
 	},
 	{
-		id: 6,
+		id: 7,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939388/IMG_7365_bic4kw.heic",
 		category: "Talks",
 	},
 	{
-		id: 7,
+		id: 8,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939359/IMG_2261_hmflif.heic",
 		category: "Workshops",
 	},
 	{
-		id: 8,
+		id: 9,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939358/IMG_6520_o002pg.heic",
 		category: "Book",
 	},
 	{
-		id: 9,
+		id: 10,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939357/IMG_5878_t66qxw.heic",
 		category: "Radio",
 	},
 	{
-		id: 10,
+		id: 11,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939355/IMG_5874_ci3ntu.heic",
 		category: "Radio",
 	},
 	{
-		id: 11,
+		id: 12,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/f_jpg/v1750939355/IMG_4693_isvthe.heic",
 		category: "Talks",
 	},
 	{
-		id: 10,
+		id: 13,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939318/FB_IMG_1507614248584_guatmq.jpg",
 		category: "Workshops",
 	},
 	{
-		id: 10,
+		id: 14,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939337/IMG_1830_gwlrcv.jpg",
 		category: "Workshops",
 	},
 	{
-		id: 10,
+		id: 15,
 
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939334/IMG_1828_z4fskt.jpg",
 		category: "Workshops",
 	},
 	{
-		id: 11,
+		id: 16,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939315/FB_IMG_1507614241875_qwyhni.jpg",
 		category: "Workshops",
 	},
 	{
-		id: 12,
+		id: 17,
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1750939314/87cad0b3-10d4-44a1-8f1b-186eb2ce48e4_mp1ikh.jpg",
 		category: "Workshops",

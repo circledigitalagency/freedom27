@@ -7,6 +7,7 @@ import { SquigglyLine } from "../shapes/squiggly-line";
 import { useScroll } from "~/hooks/use-scroll";
 import { MailIcon, PhoneCall } from "lucide-react";
 import BurgerMenu from "./burger-menu";
+import Logo from "./logo";
 
 export default function Header() {
 	const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -31,32 +32,19 @@ export default function Header() {
 					“You are not alone, let us help you break free and achieve greatness”
 				</p>
 				<div className="flex flex-row space-x-5 items-center">
-					<div className="flex flex-row items-center space-x-2">
-						<PhoneCall size={15} color="white" />
-						<p className="font-light hidden md:block text-sm text-white">
-							083 784 8001
-						</p>
-					</div>
 					<a
 						href="mailto:info@csresources.co.za"
 						className="flex flex-row items-center space-x-2 cursor-pointer"
 					>
 						<MailIcon size={15} color="white" />
 						<p className="font-light hidden md:block text-sm text-white ">
-							tshepo@freedom27.co.za
+							breakfree@freedom27.co.za
 						</p>
 					</a>
 				</div>
 			</div>
 			<nav className="sm:px-24 py-2 px-4 flex justify-between items-center">
-				<Link to="/">
-					<p className="font-semibold text-accent text-3xl">FREEDOM 27</p>
-					{/* <img
-						src="/images/freedom-logo.svg"
-						alt="logo"
-						className="object-fill"
-					/> */}
-				</Link>
+				<Logo style="h-20 w-44" />
 				<div className="hidden md:block">
 					<div className="flex flex-row gap-6 items-center justify-end">
 						{menu.map((men, index) => (

@@ -24,7 +24,7 @@ const MainLayout = ({
 				<footer className="flex flex-col gap-12 sm:px-24 px-4 py-16">
 					<Separator />
 					<div className="flex sm:flex-row flex-col w-full justify-between sm:items-center">
-						<Logo />
+						<Logo style="h-20 w-48" />
 						<div className="flex flex-row sm:space-x-10 space-x-5 mt-2 sm:mt-0">
 							<NavLink path="/about-us" title="About us" />
 							<NavLink path="/services" title="Services" />
@@ -39,22 +39,21 @@ const MainLayout = ({
 							<p className="font-medium text-sm text-primary">
 								FREEDOM 27 PTY LTD
 							</p>
-							<p className="font-light text-sm">083 784 8001</p>
 							<a
 								href="mailto:info@csresources.co.za"
 								className="font-medium text-sm text-primary cursor-pointer"
 							>
-								tshepo@freedom27.co.za
+								breakfree@freedom27.co.za
 							</a>
 						</div>
 						<div className="flex flex-row items-center space-x-5">
-							<a href="">
+							<a href="https://www.instagram.com/freedom27tm?igsh=MWUzYW1yZWJhbXp1Ng==">
 								<InstagramIcon className="text-primary" size={22} />
 							</a>
-							<a href="">
+							<a href="https://www.facebook.com/SobonaZA">
 								<FacebookIcon className="text-primary" size={22} />
 							</a>
-							<a href="https://www.linkedin.com/in/tshepo-matlou-b5357969/">
+							<a href="https://www.linkedin.com/company/freedom27/">
 								<LucideLinkedin className="text-primary" size={22} />
 							</a>
 						</div>

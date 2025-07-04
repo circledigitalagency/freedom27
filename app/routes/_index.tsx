@@ -19,12 +19,29 @@ import Carousel from "~/components/carousel/home";
 
 export const meta: MetaFunction = () => {
 	return [
-		{ title: "Freedom27" },
+		{ title: "Freedom27 – Wellness & Mindfulness" },
 		{
 			name: "description",
 			content:
 				"Freedom 27 is a mindfulness and personal development company founded by Tshepo Matlou, offering integrated experiences designed to foster mental well-being, self-improvement, life coaching and trauma healing. Through hikes, workshops, coaching sessions, and retreats. Individuals, couples and groups engage in tailored programs to cultivate clarity, emotional balance, and resilience.",
 		},
+		{
+			name: "keywords",
+			content: "mindfulness, trauma healing, wellness coaching, breathwork",
+		},
+		{ name: "author", content: "Freedom 27" },
+		{ property: "og:title", content: "Freedom 27 – Mindfulness & Healing" },
+		{
+			property: "og:description",
+			content:
+				"Explore coaching, retreats, and breathwork to restore emotional balance and clarity.",
+		},
+		{
+			property: "og:image",
+			content:
+				"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751621471/freedom-logo_g1idsk.png",
+		},
+		{ property: "og:type", content: "website" },
 	];
 };
 
@@ -179,7 +196,7 @@ export default function Index() {
 								<img
 									className="w-full h-full rounded-full object-cover"
 									alt="A Sanctuary for Mind, Body & Spirit"
-									src="https://res.cloudinary.com/dg1g6ctku/image/upload/v1751213881/sanctuary01_z55wec.jpg"
+									src="https://res.cloudinary.com/dg1g6ctku/image/upload/v1751532273/pexels-jacint-bofill-1745787-17225405_aqxpk5.jpg"
 								/>
 							</div>
 						</div>
@@ -225,7 +242,7 @@ export default function Index() {
 							<div className="relative order-first">
 								<div className="aspect-[4/5] lg:aspect-[3/3] overflow-hidden">
 									<img
-										src="/images/tshepo-matlou.jpg"
+										src="https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214264/tshepo-matlou_d4hpnq.jpg"
 										alt="Tshepo Matlou - Mindfulness coach and leadership mentor"
 										className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
 										loading="lazy"
@@ -235,7 +252,7 @@ export default function Index() {
 							<div className="flex flex-col space-y-6 lg:pr-8">
 								<Header
 									title="Meet the Guide Behind Freedom 27"
-									subTitile="Meet Tshepo Matlou"
+									subTitile="Tshepo Matlou"
 									titleStyle="text-primary"
 								/>
 

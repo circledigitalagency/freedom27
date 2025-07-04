@@ -5,6 +5,55 @@ import MainLayout from "~/components/layout/main";
 import ButtonLink from "~/components/link/button-link";
 import Header from "~/components/text/header";
 import { media, qualifications, values } from "~/lib/data";
+import type { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+	return [
+		{ title: "About Freedom 27 | Wellness, Mindfulness & Personal Growth" },
+		{
+			name: "description",
+			content:
+				"Discover the story behind Freedom 27 — a wellness and personal development movement led by Tshepo Matlou, offering mindfulness coaching, trauma healing, and holistic retreats for transformation and clarity.",
+		},
+		{
+			name: "keywords",
+			content:
+				"Freedom 27, Tshepo Matlou, mindfulness, personal development, emotional healing, retreats, life coaching, trauma recovery, breathwork, holistic wellness",
+		},
+		{ name: "author", content: "Freedom 27" },
+		{
+			property: "og:title",
+			content: "About Freedom 27 – Wellness & Mindfulness",
+		},
+		{
+			property: "og:description",
+			content:
+				"Learn more about Freedom 27 and its founder, Tshepo Matlou. Explore our vision, mission, and the personal transformation tools we offer through coaching, workshops, and retreats.",
+		},
+		{
+			property: "og:image",
+			content:
+				"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214257/about-us_ghz1kw.jpg",
+		},
+		{ property: "og:type", content: "website" },
+		{ property: "og:url", content: "https://freedom27.co.za/about-us" },
+		{ name: "twitter:card", content: "summary_large_image" },
+		{
+			name: "twitter:title",
+			content: "About Freedom 27 – Wellness & Personal Growth",
+		},
+		{
+			name: "twitter:description",
+			content:
+				"Freedom 27 helps individuals find balance and clarity through coaching, breathwork, and mindfulness practices.",
+		},
+		{
+			name: "twitter:image",
+			content:
+				"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214257/about-us_ghz1kw.jpg",
+		},
+	];
+};
 
 export default function Page() {
 	return (
@@ -175,7 +224,7 @@ export default function Page() {
 					/>
 					<div className="flex flex-col justify-center items-center space-y-4 border border-slate-200 py-4">
 						<img
-							src="/images/book.svg"
+							src="https://res.cloudinary.com/dg1g6ctku/image/upload/v1751621135/book_hexyzz.svg"
 							alt="book"
 							className="w-72 h-72 object-fill"
 						/>

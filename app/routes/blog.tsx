@@ -66,7 +66,7 @@ export default function Page() {
 							</div>
 						))}
 					</div>
-					<div className="flex flex-col sm:px-32 px-5 py-16">
+					{/* <div className="flex flex-col sm:px-32 px-5 py-16">
 						<div className="flex flex-col">
 							<Header
 								title="Our Recent Articles"
@@ -80,7 +80,7 @@ export default function Page() {
 								</div>
 							</section>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			)}
 			<Outlet />

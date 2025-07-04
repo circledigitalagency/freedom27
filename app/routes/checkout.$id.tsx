@@ -1,7 +1,7 @@
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { json, redirect } from "@remix-run/node";
 import { shopData } from "~/lib/data";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MainLayout from "~/components/layout/main";
 import {
 	LockIcon,
@@ -13,6 +13,8 @@ import { motion } from "framer-motion";
 import { AnimatedPrice } from "~/components/animated/price";
 import Header from "~/components/text/header";
 import { Card, CardContent } from "~/components/ui/card";
+import { Input } from "~/components/ui/input";
+import { z } from "zod";
 
 export async function loader({ params }: { params: { id: string } }) {
 	const product = shopData.find((p) => p.id === params.id);
@@ -20,10 +22,29 @@ export async function loader({ params }: { params: { id: string } }) {
 	return json(product);
 }
 
+type ActionData = {
+	success: boolean;
+	errors?: Record<string, string[]>;
+	formErrors?: string;
+};
+
 export async function action({ request }: { request: Request }) {
 	const formData = await request.formData();
+	const entriesData = Object.fromEntries(formData);
+	const result = formSchema.safeParse(entriesData);
 
-	const amount = 900; // R9.00
+	if (!result.success) {
+		return json<ActionData>({
+			success: false,
+			errors: result.error.flatten().fieldErrors,
+		});
+	}
+
+	const email = formData.get("email")?.toString();
+	const amount = formData.get("amount")?.toString();
+
+	const amountInCents = Math.round(Number(amount) * 100);
+
 	const secretKey = process.env.YOCO_SECRET_API_KEY;
 	const web_url = process.env.WEB_URL;
 
@@ -34,11 +55,14 @@ export async function action({ request }: { request: Request }) {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			amount,
+			amountInCents,
 			currency: "ZAR",
 			successUrl: `${web_url}thank-you`,
-			failureUrl: `${web_url}`,
-			cancelUrl: `${web_url}`,
+			failureUrl: `${web_url}checkout/book`,
+			cancelUrl: `${web_url}checkout/book`,
+			customer: {
+				email,
+			},
 		}),
 	});
 
@@ -49,14 +73,20 @@ export async function action({ request }: { request: Request }) {
 
 	const data = await response.json();
 
-	return redirect(data.redirectUrl);
+	return redirect(response.url);
 }
+
+const formSchema = z.object({
+	email: z.string().email(),
+	amount: z.string(),
+});
 
 export default function Checkout() {
 	const product = useLoaderData<typeof loader>();
 	const [quantity, setQuantity] = useState<number>(1);
+	const $form = useRef<HTMLFormElement>(null);
+	const actionData = useActionData<ActionData>();
 
-	//for yoco
 	useEffect(() => {
 		const script = document.createElement("script");
 		script.src = "https://js.yoco.com/sdk/v1/yoco-sdk-web.js";
@@ -99,74 +129,92 @@ export default function Checkout() {
 
 									{product.id === "book" && product.price && (
 										<>
-											<div className="space-y-3">
-												<label className="text-sm font-medium text-gray-700">
-													Quantity
-												</label>
-												<div className="flex items-center space-x-4">
-													<motion.button
-														onClick={() =>
-															setQuantity((prev) => Math.max(1, prev - 1))
-														}
-														whileTap={{ scale: 0.95 }}
-														whileHover={{ scale: 1.05 }}
-														className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-														disabled={quantity <= 1}
-													>
-														<MinusCircleIcon className="w-5 h-5 text-gray-600" />
-													</motion.button>
-
-													<div className="flex items-center justify-center w-16 h-10 border-2 border-gray-200 rounded-lg bg-white">
-														<motion.span
-															key={quantity}
-															initial={{ scale: 0.8, opacity: 0 }}
-															animate={{ scale: 1, opacity: 1 }}
-															className="text-lg font-semibold text-gray-900"
+											<Form method="post" className="space-y-8" ref={$form}>
+												<div className="space-y-3">
+													<label className="text-sm font-medium text-gray-700">
+														Quantity
+													</label>
+													<div className="flex items-center space-x-4">
+														<motion.button
+															onClick={() =>
+																setQuantity((prev) => Math.max(1, prev - 1))
+															}
+															whileTap={{ scale: 0.95 }}
+															whileHover={{ scale: 1.05 }}
+															className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+															disabled={quantity <= 1}
 														>
-															{quantity}
-														</motion.span>
+															<MinusCircleIcon className="w-5 h-5 text-gray-600" />
+														</motion.button>
+
+														<div className="flex items-center justify-center w-16 h-10 border-2 border-gray-200 rounded-lg bg-white">
+															<motion.span
+																key={quantity}
+																initial={{ scale: 0.8, opacity: 0 }}
+																animate={{ scale: 1, opacity: 1 }}
+																className="text-lg font-semibold text-gray-900"
+															>
+																{quantity}
+															</motion.span>
+														</div>
+
+														<motion.button
+															onClick={() => setQuantity((prev) => prev + 1)}
+															whileTap={{ scale: 0.95 }}
+															whileHover={{ scale: 1.05 }}
+															className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+														>
+															<PlusCircleIcon className="w-5 h-5 text-gray-600" />
+														</motion.button>
 													</div>
+												</div>
 
-													<motion.button
-														onClick={() => setQuantity((prev) => prev + 1)}
-														whileTap={{ scale: 0.95 }}
-														whileHover={{ scale: 1.05 }}
-														className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-													>
-														<PlusCircleIcon className="w-5 h-5 text-gray-600" />
-													</motion.button>
-												</div>
-											</div>
+												<div className="space-y-3">
+													<label className="text-sm font-medium text-gray-700">
+														Your Details
+													</label>
 
-											<div className="bg-gray-50 rounded-xl p-6 space-y-3">
-												<div className="flex justify-between items-center text-sm text-gray-600">
-													<span>Unit Price</span>
-													<span>R{product.price.toFixed(2)}</span>
+													<Input
+														className="w-1/2"
+														name="email"
+														placeholder="Enter your email address"
+														error={actionData?.errors?.email}
+													/>
 												</div>
-												<div className="flex justify-between items-center text-sm text-gray-600">
-													<span>Quantity</span>
-													<span>{quantity}</span>
-												</div>
-												<div className="border-t border-gray-200 pt-3">
-													<div className="flex justify-between items-center">
-														<span className="text-lg font-semibold text-gray-900">
-															Total
-														</span>
-														<motion.span
-															key={quantity}
-															initial={{ opacity: 0, y: -10 }}
-															animate={{ opacity: 1, y: 0 }}
-															className="text-2xl font-bold text-primary"
-														>
-															<AnimatedPrice
-																amount={product.price * quantity}
+
+												<div className="bg-gray-50 rounded-xl p-6 space-y-3">
+													<div className="flex justify-between items-center text-sm text-gray-600">
+														<span>Unit Price</span>
+														<span>R{product.price.toFixed(2)}</span>
+													</div>
+													<div className="flex justify-between items-center text-sm text-gray-600">
+														<span>Quantity</span>
+														<span>{quantity}</span>
+													</div>
+													<div className="border-t border-gray-200 pt-3">
+														<div className="flex justify-between items-center">
+															<span className="text-lg font-semibold text-gray-900">
+																Total
+															</span>
+															<motion.span
+																key={quantity}
+																initial={{ opacity: 0, y: -10 }}
+																animate={{ opacity: 1, y: 0 }}
+																className="text-2xl font-bold text-primary"
+															>
+																<AnimatedPrice
+																	amount={product.price * quantity}
+																/>
+															</motion.span>
+															<motion.input
+																value={product.price * quantity}
+																name="amount"
+																type="hidden"
 															/>
-														</motion.span>
+														</div>
 													</div>
 												</div>
-											</div>
 
-											<Form method="post">
 												<motion.div
 													whileHover={{ scale: 1.02 }}
 													whileTap={{ scale: 0.98 }}

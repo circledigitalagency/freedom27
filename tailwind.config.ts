@@ -16,6 +16,7 @@ export default {
 					"Segoe UI Symbol",
 					"Noto Color Emoji",
 				],
+				poppins: ["Poppins"],
 			},
 			borderRadius: {
 				lg: "var(--radius)",
@@ -23,8 +24,8 @@ export default {
 				sm: "calc(var(--radius) - 4px)",
 			},
 			colors: {
-				primary: "#496da1",
-				background: "#F9FAFB",
+				primary: "#496DA1",
+				background: "#E8E9EC",
 				foreground: "hsl(var(--foreground))",
 				card: {
 					DEFAULT: "hsl(var(--card))",
@@ -34,12 +35,12 @@ export default {
 					DEFAULT: "hsl(var(--popover))",
 					foreground: "hsl(var(--popover-foreground))",
 				},
-				secondary: "#c85154",
+				secondary: "#FFB612",
 				muted: {
 					DEFAULT: "hsl(var(--muted))",
 					foreground: "hsl(var(--muted-foreground))",
 				},
-				accent: "#5e7e9d",
+				accent: "#5E7E9D",
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",
 					foreground: "hsl(var(--destructive-foreground))",
@@ -54,9 +55,6 @@ export default {
 					"4": "hsl(var(--chart-4))",
 					"5": "hsl(var(--chart-5))",
 				},
-			},
-			backgroundImage: {
-				hero: "url('/images/hero-2.jpg')",
 			},
 		},
 	},
