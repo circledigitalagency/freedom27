@@ -55,7 +55,7 @@ export async function action({ request }: { request: Request }) {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			amount: amountInCents,
+			amount: 5 * 100,
 			currency: "ZAR",
 			successUrl: `${web_url}thank-you`,
 			failureUrl: `${web_url}checkout/book`,
