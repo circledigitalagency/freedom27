@@ -11,9 +11,15 @@ export default function ThankYou() {
 
 				<h1 className="text-2xl font-bold">Thank You 🌿</h1>
 				<p>Your payment was successful. We’ll be in touch soon.</p>
-				<div className="w-full flex justify-center">
-					<ButtonLink to="/" title="Back to Home" linkStyle="border-primary" />
-				</div>
+				<form method="post" action="/webhooks/yoco-payment">
+					<div className="w-full flex justify-center">
+						<ButtonLink
+							to="/"
+							title="Back to Home"
+							linkStyle="border-primary"
+						/>
+					</div>
+				</form>
 			</div>
 		</div>
 	);
