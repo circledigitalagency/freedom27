@@ -4,8 +4,10 @@ import { sendEmail } from "~/utils/email.server";
 export async function action({ request }: { request: Request }) {
 	const body = await request.json();
 
-	if (body.event === "checkout.successful") {
-		const { email, amount, reference } = body.data;
+	console.log("body: ", body);
+
+	if (body.type === "payment.succeeded") {
+		const { email, amount, reference } = body.payload;
 
 		if (email) {
 			await sendEmail({
