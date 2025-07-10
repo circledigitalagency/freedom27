@@ -1,6 +1,7 @@
 import { json, Outlet, useLoaderData } from "@remix-run/react";
 import { Clock } from "lucide-react";
 import MainLayout from "~/components/layout/main";
+import { BlogText } from "~/components/text/blog-text";
 import { blogPosts } from "~/lib/data";
 
 export async function loader({ params }: { params: { id: string } }) {
@@ -21,7 +22,8 @@ export default function Page() {
 					<Clock size={14} className="text-secondary" />
 					<span className="text-sm text-secondary">{blog.readTime}</span>
 				</div>
-				<div className="flex flex-col space-y-5 py-5">{blog.excerpt}</div>
+				<BlogText children={blog.blogText} />
+				{/* <div className="flex flex-col space-y-5 py-5"><Blog</div> */}
 			</div>
 		</div>
 	);

@@ -36,7 +36,7 @@ export function BlogCard({
 					<motion.img
 						src={image}
 						alt={title}
-						className="w-full h-36 object-cover"
+						className="w-full h-48 object-cover"
 						whileHover={{ scale: 1.05 }}
 						transition={{ duration: 0.6, ease: "easeOut" }}
 					/>
