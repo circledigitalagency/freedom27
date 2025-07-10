@@ -1,3 +1,4 @@
+import { Form } from "@remix-run/react";
 import { CheckCircleIcon } from "lucide-react";
 import ButtonLink from "~/components/link/button-link";
 
@@ -11,15 +12,16 @@ export default function ThankYou() {
 
 				<h1 className="text-2xl font-bold">Thank You 🌿</h1>
 				<p>Your payment was successful. We’ll be in touch soon.</p>
-				<form method="post" action="/webhooks/yoco-payment">
-					<div className="w-full flex justify-center">
+				<Form method="post" action="/webhooks/yoco-payment">
+					{/* <div className="w-full flex justify-center">
 						<ButtonLink
 							to="/"
 							title="Back to Home"
 							linkStyle="border-primary"
 						/>
-					</div>
-				</form>
+					</div> */}
+					<button type="submit">Back to Home</button>
+				</Form>
 			</div>
 		</div>
 	);
