@@ -174,7 +174,7 @@ export default function Checkout() {
 													</label>
 
 													<Input
-														className="w-1/2"
+														className="w-full sm:w-1/2"
 														name="email"
 														placeholder="Enter your email address"
 														error={actionData?.errors?.email}
