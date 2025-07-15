@@ -4,6 +4,7 @@ import { sendEmail } from "~/utils/email.server";
 import { json, redirect } from "@remix-run/node";
 import type { ActionFunctionArgs } from "@remix-run/node";
 import Loader from "~/components/animated/loader";
+import ButtonLink from "~/components/link/button-link";
 
 export async function action({ request }: ActionFunctionArgs) {
 	try {
@@ -101,16 +102,14 @@ export default function ThankYou() {
 				<h1 className="text-2xl font-bold">Thank You 🌿</h1>
 				<p>Your payment was successful. We'll be in touch soon.</p>
 
-				{/* Show email/reference info for debugging */}
-				{process.env.NODE_ENV === "development" && (
-					<div className="text-sm text-gray-500">
-						<p>Email: {email}</p>
-						<p>Reference: {reference}</p>
-					</div>
-				)}
+				<div className="text-sm text-gray-500">
+					<p>Email: {email}</p>
+					<p>Reference: {reference}</p>
+				</div>
 
 				<div className="w-full flex justify-center">
-					<Form method="post" className="space-y-8">
+					<ButtonLink to="/" title="Return Home" linkStyle="border-primary" />
+					{/* <Form method="post" className="space-y-8">
 						<input type="hidden" name="email" value={email} />
 						<input type="hidden" name="ref" value={reference} />
 						<button
@@ -124,7 +123,7 @@ export default function ThankYou() {
 								"Send Confirmation & Return Home"
 							)}
 						</button>
-					</Form>
+					</Form> */}
 				</div>
 			</div>
 		</div>
