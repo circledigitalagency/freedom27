@@ -21,6 +21,7 @@ import Header from "~/components/text/header";
 import { Card, CardContent } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { z } from "zod";
+import { generateRef } from "~/lib/utils";
 
 export async function loader({ params }: { params: { id: string } }) {
 	const product = shopData.find((p) => p.id === params.id);
@@ -50,6 +51,7 @@ export async function action({ request }: { request: Request }) {
 	const amount = formData.get("amount")?.toString();
 
 	const amountInCents = Math.round(Number(amount) * 100);
+	const reference = generateRef();
 
 	const secretKey = process.env.YOCO_SECRET_API_KEY;
 	const web_url = process.env.WEB_URL;
@@ -63,11 +65,16 @@ export async function action({ request }: { request: Request }) {
 		body: JSON.stringify({
 			amount: 5 * 100,
 			currency: "ZAR",
-			successUrl: `${web_url}thank-you`,
+			successUrl: `${web_url}/thank-you?email=${encodeURIComponent(
+				email ?? ""
+			)}&ref=${reference}`,
 			failureUrl: `${web_url}checkout/book`,
 			cancelUrl: `${web_url}checkout/book`,
 			customer: {
 				email,
+			},
+			metadata: {
+				reference,
 			},
 		}),
 	});
