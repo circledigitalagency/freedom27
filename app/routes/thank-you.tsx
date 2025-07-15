@@ -1,17 +1,10 @@
-import {
-	Form,
-	useNavigation,
-	useSearchParams,
-	useSubmit,
-} from "@remix-run/react";
-import { CheckCircleIcon, Loader2 } from "lucide-react";
-import { useEffect } from "react";
-import ButtonLink from "~/components/link/button-link";
+import { Form, useNavigation, useSearchParams } from "@remix-run/react";
+import { CheckCircleIcon } from "lucide-react";
 import { sendEmail } from "~/utils/email.server";
-import type { ActionFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
+import Loader from "~/components/animated/loader";
 
-export const action: ActionFunction = async ({ request }) => {
+export async function action({ request }: { request: Request }) {
 	const formData = await request.formData();
 	const email = formData.get("email");
 	const reference = formData.get("ref");
@@ -50,10 +43,14 @@ export const action: ActionFunction = async ({ request }) => {
 	});
 
 	return json({ success: true });
-};
+}
 
 export default function ThankYou() {
 	const navigation = useNavigation();
+	const [searchParams] = useSearchParams();
+	const email = searchParams.get("email") || "";
+	const reference = searchParams.get("ref") || "";
+
 	return (
 		<div className="w-full h-screen flex justify-center items-center">
 			<div className="text-center p-8 space-y-5 border border-primary">
@@ -65,12 +62,10 @@ export default function ThankYou() {
 				<p>Your payment was successful. We’ll be in touch soon.</p>
 				<div className="w-full flex justify-center">
 					<Form method="post" className="space-y-8">
+						<input type="hidden" name="email" value={email} />
+						<input type="hidden" name="ref" value={reference} />
 						<button type="submit">
-							{navigation.state === "submitting" ? (
-								<Loader2 className="animate-spin" />
-							) : (
-								"Back to Home"
-							)}
+							{navigation.state === "submitting" ? <Loader /> : "Back to Home"}
 						</button>
 					</Form>
 					{/* <ButtonLink to="/" title="Back to Home" linkStyle="border-primary" /> */}

@@ -8,13 +8,7 @@ import { json, redirect } from "@remix-run/node";
 import { shopData } from "~/lib/data";
 import { useEffect, useRef, useState } from "react";
 import MainLayout from "~/components/layout/main";
-import {
-	Loader2,
-	LockIcon,
-	MinusCircleIcon,
-	PlusCircleIcon,
-	ShieldCheckIcon,
-} from "lucide-react";
+import { MinusCircleIcon, PlusCircleIcon, ShieldCheckIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { AnimatedPrice } from "~/components/animated/price";
 import Header from "~/components/text/header";
@@ -22,6 +16,7 @@ import { Card, CardContent } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { z } from "zod";
 import { generateRef } from "~/lib/utils";
+import Loader from "~/components/animated/loader";
 
 export async function loader({ params }: { params: { id: string } }) {
 	const product = shopData.find((p) => p.id === params.id);
@@ -238,7 +233,7 @@ export default function Checkout() {
 														className="w-full h-14 text-lg text-white font-semibold bg-primary shadow-lg hover:shadow-xl transition-all duration-200"
 													>
 														{navigation.state === "submitting" ? (
-															<Loader2 className="animate-spin" />
+															<Loader />
 														) : (
 															"Complete Purchase"
 														)}
