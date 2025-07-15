@@ -1,6 +1,15 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+	//service: "gmail",
+	host: "mail.freedom27.co.za",
+	port: 465,
+	secure: true,
+	auth: {
+		user: process.env.EMAIL_USER,
+		pass: process.env.EMAIL_PASS,
+	},
+});
 
 export async function sendEmail({
 	to,
@@ -12,13 +21,19 @@ export async function sendEmail({
 	html: string;
 }) {
 	try {
-		await resend.emails.send({
-			from: "Freedom27 <payments@freedom27.co.za>",
+		await transporter.verify();
+		console.log("SMTP connection verified");
+
+		const info = await transporter.sendMail({
+			from: `"Freedom 27" <${process.env.EMAIL_USER}>`,
 			to,
 			subject,
 			html,
 		});
+
+		console.log("Email sent successfully:", info.messageId);
+		return { success: true, messageId: info.messageId };
 	} catch (error) {
-		console.error("Failed to send email:", error);
+		console.error("Email sending failed:", error);
 	}
 }

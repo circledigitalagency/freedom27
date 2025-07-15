@@ -32,30 +32,42 @@ export async function action({ request }: ActionFunctionArgs) {
 		console.log("Sending emails for:", { email, reference });
 
 		// Send customer email
-		await sendEmail({
-			to: email,
-			subject: "Your Payment Confirmation",
-			html: `
-				<p>Hi there,</p>
-				<p>Thank you for your payment of R350.00</p>
-				<p>Your payment reference is <strong>${reference}</strong>.</p>
-				<p>Regards,<br/>Freedom 27</p>
-			`,
-		});
+		try {
+			await sendEmail({
+				to: email,
+				subject: "Your Payment Confirmation",
+				html: `
+					<p>Hi there,</p>
+					<p>Thank you for your payment of R350.00</p>
+					<p>Your payment reference is <strong>${reference}</strong>.</p>
+					<p>Regards,<br/>Freedom 27</p>
+				`,
+			});
+			console.log("Customer email sent successfully");
+		} catch (error) {
+			console.error("Failed to send customer email:", error);
+			// Don't throw here - try to send the notification email anyway
+		}
 
 		// Send notification email
-		await sendEmail({
-			to: "payments@freedom27.co.za",
-			subject: "📘 Book Purchase Notification",
-			html: `
-				<p>A new payment has been received.</p>
-				<p><strong>Customer Email:</strong> ${email}</p>
-				<p><strong>Amount:</strong> R350.00</p>
-				<p><strong>Reference:</strong> ${reference}</p>
-				<hr />
-				<p>Please follow up with the customer to deliver the book.</p>
-			`,
-		});
+		try {
+			await sendEmail({
+				to: "payments@freedom27.co.za",
+				subject: "📘 Book Purchase Notification",
+				html: `
+					<p>A new payment has been received.</p>
+					<p><strong>Customer Email:</strong> ${email}</p>
+					<p><strong>Amount:</strong> R350.00</p>
+					<p><strong>Reference:</strong> ${reference}</p>
+					<hr />
+					<p>Please follow up with the customer to deliver the book.</p>
+				`,
+			});
+			console.log("Notification email sent successfully");
+		} catch (error) {
+			console.error("Failed to send notification email:", error);
+			// This is more critical - you might want to throw here
+		}
 
 		console.log("Emails sent successfully");
 
@@ -89,10 +101,13 @@ export default function ThankYou() {
 				<h1 className="text-2xl font-bold">Thank You 🌿</h1>
 				<p>Your payment was successful. We'll be in touch soon.</p>
 
-				<div className="text-sm text-gray-500">
-					<p>Email: {email}</p>
-					<p>Reference: {reference}</p>
-				</div>
+				{/* Show email/reference info for debugging */}
+				{process.env.NODE_ENV === "development" && (
+					<div className="text-sm text-gray-500">
+						<p>Email: {email}</p>
+						<p>Reference: {reference}</p>
+					</div>
+				)}
 
 				<div className="w-full flex justify-center">
 					<Form method="post" className="space-y-8">
