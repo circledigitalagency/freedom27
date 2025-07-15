@@ -65,7 +65,7 @@ export async function action({ request }: { request: Request }) {
 		body: JSON.stringify({
 			amount: 5 * 100,
 			currency: "ZAR",
-			successUrl: `${web_url}/thank-you?email=${encodeURIComponent(
+			successUrl: `${web_url}thank-you?email=${encodeURIComponent(
 				email ?? ""
 			)}&ref=${reference}`,
 			failureUrl: `${web_url}checkout/book`,

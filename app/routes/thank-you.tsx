@@ -11,9 +11,14 @@ export const action: ActionFunction = async ({ request }) => {
 	const email = formData.get("email");
 	const reference = formData.get("ref");
 
+	console.log("new action");
+
 	if (typeof email !== "string" || typeof reference !== "string") {
 		return json({ success: false, error: "Invalid form data" });
 	}
+
+	console.log("email: ", email);
+	console.log("reference: ", reference);
 
 	await sendEmail({
 		to: email,
