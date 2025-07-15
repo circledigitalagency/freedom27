@@ -13,7 +13,7 @@ import Header from "~/components/text/header";
 import Shop from "~/components/pages/shop";
 import ButtonLink from "~/components/link/button-link";
 import LogoCarousel from "~/components/carousel/partners";
-import { affiliates } from "~/lib/data";
+import { affiliates, programs } from "~/lib/data";
 import HeroCarousel from "~/components/carousel/hero";
 import Carousel from "~/components/carousel/home";
 
@@ -46,61 +46,6 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-	const arrowVariants = {
-		hidden: {
-			opacity: 0,
-			y: 20,
-		},
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				duration: 0.5,
-				ease: "easeOut",
-				delay: 3.2, // After subtitle appears
-			},
-		},
-	};
-
-	const programs = [
-		{
-			label: "Mindfulness Hikes & Outdoor Experiences",
-			img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1752151638/hike01_qtzy6m.jpg",
-			description:
-				"Reconnect with nature and yourself through guided hikes with intentional breathing, focus, and emotional clarity exercises.",
-		},
-		{
-			label: "1-Day & 2-Day Group Workshops",
-			img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1752151924/workhops_1_rdoahz.jpg",
-			description:
-				"Immersive sessions focused on mindset, healing, emotional intelligence, and mental clarity.",
-		},
-		{
-			label: "Coaching for Individuals & Couples",
-			img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1752151834/coaching_1_nevall.jpg",
-			description:
-				"One-on-one or couples coaching focused on emotional healing, life alignment, and practical wellness tools.",
-		},
-		{
-			label: "Retreats",
-			img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214287/retreats_ls7v7u.jpg",
-			description:
-				"3-day intensive healing and mindfulness retreats that offer space for deep transformation.",
-		},
-		{
-			label: "Breakfast & Networking Sessions",
-			img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1752151912/breakfast_netowrking_1_jzvdod.jpg",
-			description:
-				"A casual space to learn mindfulness tools, build community, and align your purpose.",
-		},
-		{
-			label: "Masterclass & Specialized Trainings",
-			img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1752151853/masterclass_1_rre68m.jpg",
-			description:
-				"Focused on mindset reprogramming, trauma healing, leadership coaching, and behavioural training.",
-		},
-	];
-
 	return (
 		<MainLayout>
 			<div className="flex flex-col space-y-24 lg:space-y-32">
@@ -192,7 +137,7 @@ export default function Index() {
 							</div>
 						</div>
 						<div className="flex justify-center items-center w-full h-full">
-							<div className="w-[30rem] h-[30rem]">
+							<div className="w-[20rem] h-[20rem] sm:w-[30rem] sm:h-[30rem]">
 								<img
 									className="w-full h-full rounded-full object-cover"
 									alt="A Sanctuary for Mind, Body & Spirit"
@@ -290,7 +235,7 @@ export default function Index() {
 						</div>
 					</div>
 				</section>
-				{/* <Carousel /> */}
+
 				<Shop showAll={false} containerStyle="space-y-10" />
 				<section className="flex flex-col w-full justify-center items-center px-5 sm:px-24 space-y-10 py-16 lg:py-24">
 					<Header title="Our Trusted Partners" lineStyle="mx-auto" />

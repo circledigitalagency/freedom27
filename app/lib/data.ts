@@ -550,3 +550,42 @@ export const galleryItems: GalleryItem[] = [
 		category: "Workshops",
 	},
 ];
+
+export const programs = [
+	{
+		label: "Mindfulness Hikes & Outdoor Experiences",
+		img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1752151638/hike01_qtzy6m.jpg",
+		description:
+			"Reconnect with nature and yourself through guided hikes with intentional breathing, focus, and emotional clarity exercises.",
+	},
+	{
+		label: "1-Day & 2-Day Group Workshops",
+		img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1752151924/workhops_1_rdoahz.jpg",
+		description:
+			"Immersive sessions focused on mindset, healing, emotional intelligence, and mental clarity.",
+	},
+	{
+		label: "Coaching for Individuals & Couples",
+		img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1752151834/coaching_1_nevall.jpg",
+		description:
+			"One-on-one or couples coaching focused on emotional healing, life alignment, and practical wellness tools.",
+	},
+	{
+		label: "Retreats",
+		img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214287/retreats_ls7v7u.jpg",
+		description:
+			"3-day intensive healing and mindfulness retreats that offer space for deep transformation.",
+	},
+	{
+		label: "Breakfast & Networking Sessions",
+		img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1752151912/breakfast_netowrking_1_jzvdod.jpg",
+		description:
+			"A casual space to learn mindfulness tools, build community, and align your purpose.",
+	},
+	{
+		label: "Masterclass & Specialized Trainings",
+		img: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1752151853/masterclass_1_rre68m.jpg",
+		description:
+			"Focused on mindset reprogramming, trauma healing, leadership coaching, and behavioural training.",
+	},
+];

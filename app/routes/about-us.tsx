@@ -195,7 +195,7 @@ export default function Page() {
 							titleStyle="text-primary"
 						/>
 					</div>
-					<div className="grid grid-cols-4 gap-8">
+					<div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
 						{qualifications.map((quali, index) => (
 							<div className="flex-col space-y-2" key={index}>
 								<p className="text-gray-400 text-sm">{quali.degree}</p>

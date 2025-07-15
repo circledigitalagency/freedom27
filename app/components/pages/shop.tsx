@@ -25,7 +25,7 @@ export default function Shop({
 					"container mx-auto px-5 lg:px-24",
 					showAll
 						? "flex flex-col space-y-16"
-						: "flex flex-row w-full justify-between"
+						: "flex sm:flex-row flex-col w-full justify-between"
 				)}
 			>
 				{!showAll && (
@@ -52,7 +52,7 @@ export default function Shop({
 					</div>
 				)}
 
-				<div className="flex w-2/5">
+				<div className="flex w-full sm:w-2/5">
 					{itemsToShow.map((prod, index) => (
 						<div
 							key={prod.id || index}
