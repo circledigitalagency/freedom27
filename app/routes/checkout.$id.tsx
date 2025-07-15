@@ -1,9 +1,15 @@
-import { Form, useActionData, useLoaderData } from "@remix-run/react";
+import {
+	Form,
+	useActionData,
+	useLoaderData,
+	useNavigation,
+} from "@remix-run/react";
 import { json, redirect } from "@remix-run/node";
 import { shopData } from "~/lib/data";
 import { useEffect, useRef, useState } from "react";
 import MainLayout from "~/components/layout/main";
 import {
+	Loader2,
 	LockIcon,
 	MinusCircleIcon,
 	PlusCircleIcon,
@@ -85,6 +91,8 @@ export default function Checkout() {
 	const [quantity, setQuantity] = useState<number>(1);
 	const $form = useRef<HTMLFormElement>(null);
 	const actionData = useActionData<ActionData>();
+
+	const navigation = useNavigation();
 
 	useEffect(() => {
 		const script = document.createElement("script");
@@ -222,7 +230,11 @@ export default function Checkout() {
 														type="submit"
 														className="w-full h-14 text-lg text-white font-semibold bg-primary shadow-lg hover:shadow-xl transition-all duration-200"
 													>
-														Complete Purchase
+														{navigation.state === "submitting" ? (
+															<Loader2 className="animate-spin" />
+														) : (
+															"Complete Purchase"
+														)}
 													</button>
 												</motion.div>
 											</Form>
