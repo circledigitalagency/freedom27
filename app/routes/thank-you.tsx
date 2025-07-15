@@ -1,5 +1,10 @@
-import { useSearchParams, useSubmit } from "@remix-run/react";
-import { CheckCircleIcon } from "lucide-react";
+import {
+	Form,
+	useNavigation,
+	useSearchParams,
+	useSubmit,
+} from "@remix-run/react";
+import { CheckCircleIcon, Loader2 } from "lucide-react";
 import { useEffect } from "react";
 import ButtonLink from "~/components/link/button-link";
 import { sendEmail } from "~/utils/email.server";
@@ -48,18 +53,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function ThankYou() {
-	const [searchParams] = useSearchParams();
-	const submit = useSubmit();
-
-	useEffect(() => {
-		const email = searchParams.get("email");
-		const reference = searchParams.get("ref");
-
-		if (!email || !reference) return;
-
-		submit({ email, ref: reference }, { method: "post", action: "/thank-you" });
-	}, [searchParams, submit]);
-
+	const navigation = useNavigation();
 	return (
 		<div className="w-full h-screen flex justify-center items-center">
 			<div className="text-center p-8 space-y-5 border border-primary">
@@ -70,7 +64,16 @@ export default function ThankYou() {
 				<h1 className="text-2xl font-bold">Thank You 🌿</h1>
 				<p>Your payment was successful. We’ll be in touch soon.</p>
 				<div className="w-full flex justify-center">
-					<ButtonLink to="/" title="Back to Home" linkStyle="border-primary" />
+					<Form method="post" className="space-y-8">
+						<button type="submit">
+							{navigation.state === "submitting" ? (
+								<Loader2 className="animate-spin" />
+							) : (
+								"Back to Home"
+							)}
+						</button>
+					</Form>
+					{/* <ButtonLink to="/" title="Back to Home" linkStyle="border-primary" /> */}
 				</div>
 			</div>
 		</div>
