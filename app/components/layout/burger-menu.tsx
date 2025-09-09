@@ -29,7 +29,7 @@ const BurgerMenu = () => {
 			<SheetContent side="left" className="bg-white">
 				<SheetHeader>
 					<SheetTitle>
-						<Logo style="h-20 w-40" />
+						<Logo style="h-20 w-20" />
 					</SheetTitle>
 					<SheetDescription className="flex flex-col space-y-2 p-2 w-full items-start h-[12rem] justify-between">
 						<div className="flex flex-col space-y-2 p-2 w-full items-start">

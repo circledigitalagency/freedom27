@@ -44,7 +44,7 @@ export default function Header() {
 				</div>
 			</div>
 			<nav className="sm:px-24 py-2 px-4 flex justify-between items-center">
-				<Logo style="h-20 w-40" />
+				<Logo style="h-20 w-20" />
 				<div className="hidden md:block">
 					<div className="flex flex-row gap-6 items-center justify-end">
 						{menu.map((men, index) => (

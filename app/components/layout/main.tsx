@@ -24,7 +24,7 @@ const MainLayout = ({
 				<footer className="flex flex-col gap-12 sm:px-24 px-4 py-16">
 					<Separator />
 					<div className="flex sm:flex-row flex-col w-full justify-between sm:items-center">
-						<Logo style="h-20 w-48" />
+						<Logo style="h-20 w-28" />
 						<div className="flex flex-row sm:space-x-10 space-x-5 mt-10 sm:mt-0">
 							<NavLink path="/about-us" title="About us" />
 							<NavLink path="/services" title="Services" />
