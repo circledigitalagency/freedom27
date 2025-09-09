@@ -33,7 +33,7 @@ export default function Header() {
 				</p>
 				<div className="flex flex-row space-x-5 items-center">
 					<a
-						href="mailto:info@csresources.co.za"
+						href="mailto:breakfree@freedom27.co.za"
 						className="flex flex-row items-center space-x-2 cursor-pointer"
 					>
 						<MailIcon size={15} color="white" />

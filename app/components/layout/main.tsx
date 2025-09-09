@@ -40,7 +40,7 @@ const MainLayout = ({
 								FREEDOM 27 PTY LTD
 							</p>
 							<a
-								href="mailto:info@csresources.co.za"
+								href="mailto:breakfree@freedom27.co.za"
 								className="font-medium text-sm text-primary cursor-pointer"
 							>
 								breakfree@freedom27.co.za
