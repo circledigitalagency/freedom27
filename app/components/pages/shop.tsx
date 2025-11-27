@@ -16,13 +16,13 @@ export default function Shop({
 	return (
 		<section
 			className={cn(
-				"flex flex-col justify-center items-center w-full py-16 lg:py-24 bg-gray-50",
+				"flex flex-col justify-center items-center w-full py-16 lg:py-16 bg-gray-50",
 				containerStyle
 			)}
 		>
 			<div
 				className={cn(
-					"container mx-auto px-5 lg:px-24",
+					"container mx-auto px-5 lg:px-10",
 					showAll
 						? "flex flex-col space-y-16"
 						: "flex sm:flex-row flex-col w-full justify-between"
@@ -58,7 +58,7 @@ export default function Shop({
 							key={prod.id || index}
 							className="group bg-white transition-all duration-300 overflow-hidden border border-primary/20 hover:border-primary/20"
 						>
-							<div className="relative h-64 bg-white overflow-hidden">
+							<div className="relative h-50 bg-white overflow-hidden">
 								<img
 									src={prod.image || "/placeholder.svg"}
 									alt={`${prod.name} - Holistic offering for healing and clarity`}

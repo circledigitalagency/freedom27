@@ -258,7 +258,7 @@ export default function Index() {
 									</p>
 								</div>
 								<Link
-									to="/shop"
+									to="mailto:breakfree@freedom27.co.za"
 									className="border border-white px-3 py-3 text-white"
 								>
 									Book a Session

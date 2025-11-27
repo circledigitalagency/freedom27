@@ -46,11 +46,11 @@ export default function Page() {
 					</ul>
 				</section>
 			</div>
-			<section className="flex flex-col sm:justify-center justify-start items-center bg-gray-50 w-full sm:h-[60vh] h-fit">
-				<section className="flex flex-col w-full justify-center items-center space-y-8 py-10">
+			<section className="flex flex-col sm:justify-center justify-start items-center bg-gray-50 w-full  h-fit">
+				<section className="flex flex-col w-full justify-center items-center space-y-4 py-10">
 					<Header title="Our Approach" lineStyle="mx-auto" />
 
-					<div className="grid grid-cols-1 sm:grid-cols-5 gap-10">
+					<div className="grid lg:grid-cols-3 gap-10">
 						{approach.map((ap, index) => (
 							<div
 								className="w-[17rem] h-[17rem] relative group cursor-pointer"
@@ -84,7 +84,7 @@ export default function Page() {
 					<div className="grid grid-cols-1 sm:grid-cols-3 gap-20">
 						{experiences.map((exp, index) => (
 							<div
-								className="flex flex-col justify-center items-start sm:space-y-5 space-y-3 sm:p-6 p-4 sm:w-[25rem] sm:h-[25rem] w-[20rem] h-[20rem] border border-accent"
+								className="flex flex-col justify-center items-start sm:space-y-5 space-y-3 sm:p-6 p-4 sm:w-[25rem] sm:h-[25rem] w-[20rem] h-[20rem] border border-accent hover:shadow-lg hover:-translate-y-1  group-hover:scale-110 transition-transform duration-300"
 								key={index}
 							>
 								<div className="flex gap-2 items-center">
@@ -116,19 +116,32 @@ export default function Page() {
 					</div>
 				</section>
 			</div>
-			<section className="flex flex-col space-y-8 justify-center items-center bg-gray-50 w-full sm:h-72 h-96">
-				<h1 className="text-2xl font-medium text-primary">
-					Create Space for Yourself
-				</h1>
-				<p className="sm:w-[50%] w-[90%] text-center text-primary">
-					If you’re seeking calm, clarity, or healing, one-on-one mindfulness
-					coaching offers a nurturing space to reconnect with yourself and grow
-					at your own pace.
-				</p>
-				<ButtonLink
-					to="/shop"
-					title="Book One-on-One Life Coaching"
-					linkStyle="border-primary text-primary"
+			<section className="py-16 lg:py-16">
+				<HorizontalImageBackground
+					image="https://res.cloudinary.com/dfxorvtuc/image/upload/v1759909304/pexels-chechil-orifa-224183752-15382269_ovcnjj.jpg"
+					alt="peace"
+					containerStyle="sm:h-[30vh] h-[50vh]"
+					children={
+						<div className="flex flex-col space-y-5 justify-center items-center">
+							<div className={"text-white"}>
+								<h1 className="text-2xl lg:text-3xl font-semibold mb-2 text-center">
+									Create Space for Yourself
+								</h1>
+								<p className="text-base text-center max-w-2xl">
+									If you’re seeking calm, clarity, or healing, one-on-one
+									mindfulness coaching offers a nurturing space to reconnect
+									with yourself and grow at your own pace.
+								</p>
+							</div>
+
+							<Link
+								to="mailto:breakfree@freedom27.co.za"
+								className="border border-white px-3 py-3 text-white"
+							>
+								Book One-on-One Life Coaching
+							</Link>
+						</div>
+					}
 				/>
 			</section>
 		</MainLayout>

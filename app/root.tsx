@@ -39,7 +39,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<Meta />
 				<Links />
+
 				<script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=G-YX2KB4JPSS"
+				></script>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							window.dataLayer = window.dataLayer || [];
+							function gtag(){dataLayer.push(arguments);}
+							gtag('js', new Date());
+							gtag('config', 'G-YX2KB4JPSS');
+							`,
+					}}
+				/>
+				{/* <script
 					async
 					src={`https://www.googletagmanager.com/gtag/js?id=GTM-53SNQ447`}
 				></script>
@@ -65,7 +80,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       })(window,document,'script','dataLayer','G-CKD1836J2R');
     `,
 					}}
-				/>
+				/> */}
 
 				<script
 					type="application/ld+json"
@@ -122,14 +137,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				/>
 			</head>
 			<body>
-				<noscript>
-					<iframe
-						src={`https://www.googletagmanager.com/ns.html?id=G-CKD1836J2R`}
-						height="0"
-						width="0"
-						style={{ display: "none", visibility: "hidden" }}
-					/>
-				</noscript>
 				<WhatsAppButton
 					phoneNumber="+689205251"
 					message="Hi there! I found your website and want to know more about your services."
