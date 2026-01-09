@@ -126,7 +126,7 @@ export function Hero3() {
 				Work 1-on-1 with a coach to heal, grow, and move forward with intention.
 			</p>
 			<Link
-				to="/shop"
+				to="mailto:breakfree@freedom27.co.za"
 				className="flex items-center justify-center border border-white w-48 h-10 p-2"
 			>
 				<p className="text-white text-sm">Book a Session</p>

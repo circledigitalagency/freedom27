@@ -42,7 +42,7 @@ const BurgerMenu = () => {
 							))}
 						</div>
 						<Link
-							to="/shop"
+							to="mailto:breakfree@freedom27.co.za"
 							className="sm:hidden p-2 border border-1 border-primary text-primary text-sm w-32 items-center justify-center flex"
 						>
 							Book a session
