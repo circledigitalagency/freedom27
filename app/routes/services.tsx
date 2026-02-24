@@ -215,7 +215,7 @@ export default function Page() {
 							)
 						})}
 					</div> */}
-					<div className="grid grid-cols-4 gap-4 mb-12">
+					<div className="grid md:grid-cols-4 gap-4 mb-12">
 						{servicesData.map((service, i) => {
 							const Icon = service.icon
 							return (
@@ -334,7 +334,7 @@ transform: translateY(0);
 				<div className="grid lg:grid-cols-5 gap-10">
 					{approach.map((ap, index) => (
 						<div
-							className="w-[17rem] h-[17rem] relative group cursor-pointer"
+							className="md:w-[17rem] w-full h-[17rem] relative group cursor-pointer"
 							key={index}
 						>
 							<div className="absolute w-full h-full overflow-hidden">
@@ -365,7 +365,7 @@ transform: translateY(0);
 				/>
 				{/* Active step detail */}
 				<div className="items-start">
-					<div className="grid grid-cols-3 gap-12">
+					<div className="grid md:grid-cols-3 gap-12">
 						{steps.map((step, index) => (
 							<div className="space-y-8" key={index}>
 								<div
@@ -423,7 +423,7 @@ transform: translateY(0);
 						</p>
 					</div>
 
-					<div className="flex flex-row space-x-8 items-center">
+					<div className="flex flex-col md:flex-row md:space-x-8 space-y-8 items-center">
 						<Link
 							to="mailto:breakfree@freedom27.co.za"
 							className="border bg-primary border-primary px-3 py-3 text-white"
