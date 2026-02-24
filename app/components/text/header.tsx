@@ -20,7 +20,10 @@ export default function Header({
 			<h1 className="text-2xl lg:text-3xl font-semibold text-primary mb-2">
 				{title}
 			</h1>
-			<p className="text-lg text-gray-600">{subTitile}</p>
+			<p className={cn(
+				"text-lg text-gray-600",
+				subTitileStyle
+			)}>{subTitile}</p>
 			<div
 				className={cn("w-24 h-1 bg-primary mt-6 rounded-full", lineStyle)}
 			></div>

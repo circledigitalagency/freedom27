@@ -364,7 +364,7 @@ export const shopData: Shop[] = [
 export const values = [
 	"Empowerment",
 	"Authenticity",
-	"Courage",
+	"Wellness",
 	"Resilience",
 	"Freedom",
 ];

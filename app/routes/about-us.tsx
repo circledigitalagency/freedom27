@@ -99,31 +99,37 @@ export default function Page() {
 						<p>
 							At the heart of our approach is the belief that healing is not a
 							destination — it’s a return. A return to presence, to purpose, to
-							inner peace
+							inner peace.
 						</p>
 					</div>
 				</section>
-				<section className="flex sm:flex-row flex-col space-y-10 w-full justify-between items-start sm:px-24 px-5">
-					<div className="flex flex-col space-y-5 sm:w-1/2">
-						<Header title="Our Vision" subTitile="" titleStyle="text-primary" />
-						<p className="w-[80%]">
-							Our vision is to become one of the leading personal and leadership
-							development company in Africa
-						</p>
-					</div>
-					<div className="flex flex-col space-y-5 sm:w-1/2 items-end">
-						<Header
-							title="Our Aim"
-							subTitile=""
-							titleStyle="text-primary"
-							lineStyle="mx-auto"
-						/>
-						<p className="text-right">
-							We aim to develop and support individuals and leaders, discover
-							their core values, passions and set goals. Improving the quality
-							of life and helping to reach their potentials and live a
-							purposeful life
-						</p>
+				<section className="sm:px-24 px-5 py-20">
+					<div className="grid md:grid-cols-3 gap-8">
+
+						{/* Vision */}
+						<div className="bg-white/60 backdrop-blur p-8 rounded-2xl shadow-sm border border-neutral-100">
+							<Header title="Our Vision" subTitile="" titleStyle="text-primary" />
+							<p className="mt-4 text-neutral-600 leading-relaxed">
+								To build a generation of healed, grounded, and purpose-driven individuals and leaders who transform their lives, organisations, and communities across Africa.
+							</p>
+						</div>
+
+						{/* Mission (highlighted) */}
+						<div className="bg-primary/5 p-8 rounded-2xl shadow-md border border-primary/10 scale-[1.02]">
+							<Header title="Our Mission" subTitile="" titleStyle="text-primary" />
+							<p className="mt-4 text-neutral-700 leading-relaxed">
+								To develop and support individuals, leaders, and organisations through holistic personal growth, wellness and conscious leadership development, equipping them to thrive in an ever-changing world.
+							</p>
+						</div>
+
+						{/* Value */}
+						<div className="bg-white/60 backdrop-blur p-8 rounded-2xl shadow-sm border border-neutral-100">
+							<Header title="Value Proposition" subTitile="" titleStyle="text-primary" />
+							<p className="mt-4 text-neutral-600 leading-relaxed">
+								We align people, performance, and purpose to create sustainable organisational impact.
+							</p>
+						</div>
+
 					</div>
 				</section>
 				<section className="flex flex-col space-y-8 justify-center items-center bg-gray-50 w-full h-72">

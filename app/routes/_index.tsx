@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import {
+	Check,
 	ChevronDown,
 	HeartHandshakeIcon,
 	SproutIcon,
@@ -16,6 +17,8 @@ import LogoCarousel from "~/components/carousel/partners";
 import { affiliates, programs } from "~/lib/data";
 import HeroCarousel from "~/components/carousel/hero";
 import Carousel from "~/components/carousel/home";
+import { servicesData } from "./services";
+import { cn } from "~/lib/utils";
 
 export const meta: MetaFunction = () => {
 	return [
@@ -66,19 +69,7 @@ export default function Index() {
 									</div>
 									<div className="flex-1">
 										<p className="text-gray-700 leading-relaxed">
-											Freedom 27 is a mindfulness and personal development
-											company founded by{" "}
-											<Link
-												to="https://www.linkedin.com/in/tshepo-matlou-b5357969/"
-												className="text-accent font-medium hover:text-accent/80 underline decoration-accent/30 hover:decoration-accent/60 transition-all duration-200"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												Tshepo Matlou
-											</Link>
-											, offering integrated experiences designed to foster
-											mental well-being, self-improvement, life coaching and
-											trauma healing.
+											Freedom27 is a holistic coaching and wellness company that empowers individuals, leaders, and organisations through integrated personal and professional development.
 										</p>
 									</div>
 								</div>
@@ -89,10 +80,9 @@ export default function Index() {
 									</div>
 									<div className="flex-1">
 										<p className="text-gray-700 leading-relaxed">
-											Through hikes, workshops, coaching sessions, and retreats,
-											individuals, couples and groups engage in tailored
-											programs to cultivate clarity, emotional balance, and
-											resilience.
+											We combine emotional intelligence, coaching, mindfulness, self-care, and intentional goal setting to support collaboration, alignment, and sustainable high performance in an ever-changing world.
+
+											We aim to empower people to live, lead and work from a place of wholeness, clarity and intention.
 										</p>
 									</div>
 								</div>
@@ -103,12 +93,15 @@ export default function Index() {
 									</div>
 									<div className="flex-1">
 										<p className="text-gray-700 leading-relaxed">
-											Whether you're navigating a life transition, looking to
-											deepen your self-awareness, or seeking tools to manage
-											stress, we provide the support and guidance you need.
+											We work with individuals, executives, businesses, and teams, supporting them to collaborate more effectively, align around shared values and goals, and maximise performance without sacrificing wellbeing. Overcome challenges and conflicts.
+
 										</p>
 									</div>
 								</div>
+								<p className="text-gray-700 leading-relaxed">
+									Our company has independent therapist, coaches and speakers affiliates across the country.
+
+								</p>
 							</div>
 
 							<div className="pt-4">
@@ -145,6 +138,91 @@ export default function Index() {
 								/>
 							</div>
 						</div>
+					</div>
+				</section>
+				<section className="sm:px-24 px-5 py-24 space-y-16">
+
+					<Header
+						title="Our Services"
+						subTitile="We work with individuals, leaders and organisations to strengthen clarity, regulation and capacity for meaningful change."
+						titleStyle="text-primary"
+						subTitileStyle="max-w-2xl"
+					/>
+
+					{/* Service preview grid */}
+					<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+						{servicesData.slice(0, 4).map((service, i) => {
+							const Icon = service.icon
+
+							return (
+								<div
+									key={i}
+									className="group rounded-xl border border-border p-6 space-y-4 hover:shadow-sm transition"
+								>
+									<div style={{ backgroundColor: `${service.color}33` }} className="flex h-10 w-10 items-center justify-center rounded-lg">
+										<Icon className={cn(
+											"h-5 w-5",
+											`text-[${service.color}]`
+										)} />
+									</div>
+
+									<h4 className="font-semibold text-lg">{service.title}</h4>
+
+									<ul className="space-y-2">
+										{service.items.map((item, j) => (
+											<li
+												key={j}
+												className="flex items-start gap-3 text-foreground"
+												style={{
+													animationDelay: `${j * 60}ms`,
+													animation: "fadeInUp 0.4s ease-out both",
+												}}
+											>
+												<span style={{ backgroundColor: `${service.color}33` }} className={cn(
+													"mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full"
+												)}>
+													<Check className={cn(
+														"h-2 w-2",
+														`text-[${service.color}]`
+													)} />
+												</span>
+												<span className="text-xs leading-relaxed lg:text-base">
+													{item}
+												</span>
+											</li>
+										))}
+									</ul>
+								</div>
+							)
+						})}
+
+					</div>
+
+					{/* CTA */}
+					<div className="flex gap-6">
+						<ButtonLink
+							to={`/services`}
+							title={
+								<div className="flex items-center justify-center space-x-3 group/btn">
+									<span className="text-sm font-medium">Learn How We Work</span>
+									<svg
+										className="w-4 h-4 transition-transform group-hover:translate-x-1"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M9 5l7 7-7 7"
+										/>
+									</svg>
+								</div>
+							}
+							linkStyle="w-full h-12 border-primary hover:bg-primary hover:text-white transition-all duration-200"
+						/>
 					</div>
 				</section>
 				<section className="flex flex-col w-full justify-center items-center px-5 sm:px-24 bg-gray-50 py-20 space-y-16">
@@ -251,17 +329,17 @@ export default function Index() {
 							<div className="flex flex-col space-y-5 justify-center items-center">
 								<div className={"text-white"}>
 									<h1 className="text-2xl lg:text-3xl font-semibold mb-2 text-center">
-										Start your wellness journey today.
+										Ready to Begin Meaningful Change ?
 									</h1>
 									<p className="text-base text-center max-w-2xl">
-										Take the first step toward clarity, balance, and freedom.
+										Our work creates space for clarity, regulation and intentional progress.
 									</p>
 								</div>
 								<Link
 									to="mailto:breakfree@freedom27.co.za"
 									className="border border-white px-3 py-3 text-white"
 								>
-									Book a Session
+									Book a Discovery Conversation
 								</Link>
 							</div>
 						}
