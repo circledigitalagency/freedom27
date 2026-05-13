@@ -4,7 +4,7 @@ import { MinusCircleIcon, PlusCircleIcon } from "lucide-react";
 import ButtonLink from "../link/button-link";
 
 export function Hero1() {
-	const words = ["Heal.", "Grow.", "Thrive."];
+	const words = ["Freedom", "27"];
 
 	const containerVariants = {
 		hidden: { opacity: 0 },
@@ -73,8 +73,7 @@ export function Hero1() {
 				initial="hidden"
 				animate="visible"
 			>
-				A wellness journey rooted in mindfulness, self-awareness, coaching and
-				inner freedom.
+				Transforming Organisations Through Coaching, Culture Change & ESD
 			</motion.p>
 		</div>
 	);

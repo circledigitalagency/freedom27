@@ -10,23 +10,38 @@ import {
 } from "../ui/sheet";
 import Logo from "./logo";
 import { menu } from "~/lib/data";
-import { Link } from "@remix-run/react";
+import { Link, useNavigate } from "@remix-run/react";
 
 const BurgerMenu = () => {
+	const navigation = useNavigate()
 	const [openOptions, setOpenOptions] = useState<boolean>();
 	const [openDrawer, setOpenDrawer] = useState<boolean>();
 
 	const closeDrawer = () => {
-		setOpenDrawer(false);
-		setOpenOptions(false);
+
+	};
+
+	const menuItemClick = (id: string) => {
+		setOpenDrawer(!openDrawer);
+
+		setTimeout(() => {
+			const element = document.querySelector(id);
+
+			if (element) {
+				element.scrollIntoView({
+					behavior: "smooth",
+					block: "start",
+				});
+			}
+		}, 100);
 	};
 
 	return (
-		<Sheet onOpenChange={closeDrawer}>
+		<Sheet open={openDrawer} onOpenChange={() => setOpenDrawer(!openDrawer)}>
 			<SheetTrigger className="sm:hidden block">
 				<MenuIcon size={30} />
 			</SheetTrigger>
-			<SheetContent side="left" className="bg-white">
+			<SheetContent side="left" className="bg-[#060F1A]">
 				<SheetHeader>
 					<SheetTitle>
 						<Logo style="h-20 w-20" />
@@ -35,18 +50,12 @@ const BurgerMenu = () => {
 						<div className="flex flex-col space-y-2 p-2 w-full items-start">
 							{menu.map((item, index) => (
 								<div key={index}>
-									<Link className="text-accent" to={item.path}>
+									<button className="text-accent" onClick={() => menuItemClick(item.path)}>
 										{item.label}
-									</Link>
+									</button>
 								</div>
 							))}
 						</div>
-						<Link
-							to="mailto:breakfree@freedom27.co.za"
-							className="sm:hidden p-2 border border-1 border-primary text-primary text-sm w-32 items-center justify-center flex"
-						>
-							Book a session
-						</Link>
 					</SheetDescription>
 				</SheetHeader>
 			</SheetContent>

@@ -3,23 +3,19 @@ import { GalleryItem, NavItem, Shop } from "./types";
 export const menu: NavItem[] = [
 	{
 		label: "About us",
-		path: "/about-us",
+		path: "#about",
 	},
 	{
-		label: "Our Services",
-		path: "/services",
+		label: "Services",
+		path: "#services",
 	},
 	{
-		label: "Gallery",
-		path: "/gallery",
+		label: "ESD",
+		path: "#esd",
 	},
 	{
-		label: "Blogs",
-		path: "/blog",
-	},
-	{
-		label: "Shop",
-		path: "/shop",
+		label: "Clients",
+		path: "#clients",
 	},
 ];
 
@@ -588,4 +584,92 @@ export const programs = [
 		description:
 			"Focused on mindset reprogramming, trauma healing, leadership coaching, and behavioural training.",
 	},
+];
+
+export const services = [
+	{
+		number: "01",
+		title: "Strategy Facilitation & Performance",
+		description: "Aligning strategy, teams, and KPIs for measurable outcomes.",
+		items: [
+			"Strategy development & facilitation",
+			"Strategic planning sessions",
+			"KPI alignment and cascading",
+			"Performance management frameworks",
+			"Team alignment workshops",
+		],
+	},
+	{
+		number: "02",
+		title: "Leadership Development & Coaching",
+		description:
+			"Building leaders who inspire, decide, and deliver with clarity.",
+		items: [
+			"Improve decision-making clarity",
+			"Build executive presence",
+			"Lead with emotional intelligence",
+			"Manage conflict constructively",
+			"Strengthen accountability",
+		],
+	},
+	{
+		number: "03",
+		title: "Change Management & Transition",
+		description:
+			"Guiding organisations and people through transformation with confidence.",
+		items: [
+			"Change readiness & resilience",
+			"Emotional response to change",
+			"Leadership alignment during restructuring",
+			"Communication clarity during transitions",
+			"Managing uncertainty and morale",
+		],
+	},
+	{
+		number: "04",
+		title: "Team Cohesion & Alignment",
+		description:
+			"Creating teams that trust, collaborate, and perform at their highest.",
+		items: [
+			"Role clarity and expectations",
+			"Cross-functional alignment",
+			"Psychological safety",
+			"Trust cohesion & rebuilding",
+			"Culture assessment and surveys",
+		],
+	},
+	{
+		number: "05",
+		title: "Wellness & Human Sustainability",
+		description: "Sustainable performance starts with people who are well.",
+		items: [
+			"Burnout prevention & resilience",
+			"Mindfulness for leaders",
+			"Emotional regulation tools",
+			"Workplace wellbeing programmes",
+		],
+	},
+];
+
+export const clients = [
+	"Momentum",
+	"Sasol",
+	"De Beers Group",
+	"African Rainbow Minerals",
+	"Transnet",
+	"FNB",
+	"Gauteng Province",
+	"SANBI",
+	"National Arts Council",
+	"INSETA",
+	"Parliament of SA",
+	"Western Cape Government",
+	"Road Accident Fund",
+	"Tax Ombud",
+	"ERWAT",
+	"Eastern Cape Parks & Tourism",
+	"Allan & Gill Gray Foundation",
+	"IGT",
+	"ICAS",
+	"Cross-Border Road Transport Agency",
 ];

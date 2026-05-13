@@ -16,19 +16,7 @@ const heroSlides: HeroSlide[] = [
 		image:
 			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751216704/pexels-gareth-davies-230510-910411_sr8uek.jpg",
 		content: <Hero1 />,
-	},
-	{
-		id: 2,
-		image:
-			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751218478/view-flock-birds-flying-into-beautiful-sky-sunset_e30gnw.jpg",
-		content: <Hero2 />,
-	},
-	{
-		id: 2,
-		image:
-			"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214265/want-coach_okimft.jpg",
-		content: <Hero3 />,
-	},
+	}
 ];
 
 export default function HeroCarousel() {
@@ -127,7 +115,7 @@ export default function HeroCarousel() {
 				</div>
 			</div>
 
-			<button
+			{/* <button
 				className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex sm:h-12 sm:w-12 h-8 w-8 items-center justify-center rounded-full bg-white/20 border border-white/30 text-white transition-colors hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
 				onClick={scrollPrev}
 				aria-label="Previous slide"
@@ -141,22 +129,21 @@ export default function HeroCarousel() {
 				aria-label="Next slide"
 			>
 				<ChevronRight className="sm:h-6 sm:w-6 h-4 w-4" />
-			</button>
+			</button> */}
 
-			<div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+			{/* <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
 				{heroSlides.map((_, index) => (
 					<button
 						key={index}
-						className={`h-1 lg:h-2 w-8 rounded-full transition-all duration-300 ${
-							index === selectedIndex
-								? "bg-white"
-								: "bg-white/50 hover:bg-white/70"
-						}`}
+						className={`h-1 lg:h-2 w-8 rounded-full transition-all duration-300 ${index === selectedIndex
+							? "bg-white"
+							: "bg-white/50 hover:bg-white/70"
+							}`}
 						onClick={() => scrollTo(index)}
 						aria-label={`Go to slide ${index + 1}`}
 					/>
 				))}
-			</div>
+			</div> */}
 		</div>
 	);
 }

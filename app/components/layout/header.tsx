@@ -8,6 +8,7 @@ import { useScroll } from "~/hooks/use-scroll";
 import { MailIcon, PhoneCall } from "lucide-react";
 import BurgerMenu from "./burger-menu";
 import Logo from "./logo";
+import ButtonLink from "../link/button-link";
 
 export default function Header() {
 	const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -20,30 +21,14 @@ export default function Header() {
 	return (
 		<motion.header
 			className={cn(
-				"fixed top-0 w-full h-fit bg-white/90 backdrop-blur-sm z-50 transition-all duration-300 ease-out",
+				"fixed top-0 w-full h-fit bg-background/90 backdrop-blur-sm z-50 transition-all duration-300 ease-out",
 				isScrolled ? "shadow-lg shadow-black/5" : "shadow-none"
 			)}
 			initial={{ y: -100 }}
 			animate={{ y: 0 }}
 			transition={{ duration: 0.5, ease: "easeOut" }}
 		>
-			<div className="flex flex-row justify-between items-center h-8 bg-primary px-2 lg:px-24">
-				<p className="text-white italic text-[10px] lg:text-xs line-clamp-1">
-					“You are not alone, let us help you break free and achieve greatness”
-				</p>
-				<div className="flex flex-row space-x-5 items-center">
-					<a
-						href="mailto:breakfree@freedom27.co.za"
-						className="flex flex-row items-center space-x-2 cursor-pointer"
-					>
-						<MailIcon size={15} color="white" />
-						<p className="font-light hidden md:block text-sm text-white ">
-							breakfree@freedom27.co.za
-						</p>
-					</a>
-				</div>
-			</div>
-			<nav className="sm:px-24 py-2 px-4 flex justify-between items-center">
+			<nav className="sm:px-16 py-2 px-4 flex justify-between items-center">
 				<Logo style="h-20 w-20" />
 				<div className="hidden md:block">
 					<div className="flex flex-row gap-6 items-center justify-end">
@@ -59,22 +44,22 @@ export default function Header() {
 										damping: 10,
 									}}
 									className={cn(
-										"transition-colors duration-300 ease-in-out relative py-2 px-1",
+										"transition-colors duration-300 ease-in-out relative py-2 px-1 uppercase tracking-[0.14em] text-sm",
 										isActive(men.path)
 											? "text-accent font-medium"
-											: "text-accent hover:text-accent"
+											: "text-gray hover:text-accent"
 									)}
 								>
 									{men.label}
 								</motion.p>
-								<SquigglyLine
-									isVisible={isActive(men.path) || hoveredItem === men.label}
-									strokeStyle="wavy"
-									width={men.label.length * 8 + 20}
-									thickness={1}
-								/>
 							</Link>
 						))}
+						<a
+							href="#contact"
+							className="rounded-sm bg-cyan-400 px-5 py-2 text-sm font-medium uppercase tracking-[0.14em] text-slate-900 transition hover:bg-cyan-100"
+						>
+							Get in Touch
+						</a>
 					</div>
 				</div>
 				<BurgerMenu />

@@ -30,7 +30,7 @@
 
 html,
 body {
-	@apply bg-white text-black;
+	@apply bg-background text-offWhite;
 	font-family: "Poppins";
 }
 

@@ -24,8 +24,36 @@ export default {
 				sm: "calc(var(--radius) - 4px)",
 			},
 			colors: {
-				primary: "#496DA1",
-				background: "#E8E9EC",
+				background: "#0B1929",
+				navy: {
+					DEFAULT: "#0B1929",
+					mid: "#132338",
+					light: "#1E3A5A",
+				},
+
+				blue: {
+					DEFAULT: "#1B6CA8",
+					light: "#2E8BC0",
+				},
+
+				accent: {
+					DEFAULT: "#3DB8C5",
+					pale: "#E8F8FA",
+				},
+
+				gold: {
+					DEFAULT: "#C8943A",
+					light: "#F0C87A",
+				},
+
+				white: "#FFFFFF",
+
+				offWhite: "#F7F9FC",
+
+				gray: {
+					DEFAULT: "#8599AA",
+					light: "#E4ECF2",
+				},
 				foreground: "hsl(var(--foreground))",
 				card: {
 					DEFAULT: "hsl(var(--card))",
@@ -40,7 +68,6 @@ export default {
 					DEFAULT: "hsl(var(--muted))",
 					foreground: "hsl(var(--muted-foreground))",
 				},
-				accent: "#5E7E9D",
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",
 					foreground: "hsl(var(--destructive-foreground))",
