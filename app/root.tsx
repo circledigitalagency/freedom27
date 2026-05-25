@@ -39,7 +39,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<Meta />
 				<Links />
+				<title>
+					Freedom27 – Organisational Transformation & Leadership Consulting
+				</title>
 
+				<meta
+					name="description"
+					content="Freedom 27 is a South African organisational transformation consultancy specialising in leadership development, culture transformation, enterprise supplier development, and B-BBEE aligned programmes."
+				/>
+
+				<meta
+					name="keywords"
+					content="organisational transformation South Africa, leadership development consultancy, enterprise supplier development, B-BBEE consulting, culture transformation, change management, executive coaching"
+				/>
+
+				<meta
+					property="og:title"
+					content="Freedom27 – Organisational Transformation Partner"
+				/>
+
+				<meta
+					property="og:description"
+					content="Helping organisations transform through leadership development, culture change, ESD, and strategic transformation programmes."
+				/>
 				<script
 					async
 					src="https://www.googletagmanager.com/gtag/js?id=G-YX2KB4JPSS"
@@ -90,13 +112,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 							"@type": "Organization",
 							name: "Freedom 27",
 							url: "https://freedom27.co.za",
-							logo: "https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214257/about-us_ghz1kw.jpg",
+							logo: "https://res.cloudinary.com/dfxorvtuc/image/upload/v1779734674/favicon_ajjem2.ico",
 							description:
-								"Freedom 27 is a holistic wellness and mindfulness initiative offering coaching, retreats, and trauma healing to support mental well-being and personal growth.",
+								"Freedom 27 is a South African organisational transformation consultancy specialising in leadership development, culture transformation, enterprise and supplier development, and B-BBEE aligned programmes.",
 							founder: {
 								"@type": "Person",
 								name: "Tshepo Matlou",
-								jobTitle: "Mindfulness Facilitator, Life Coach, Author",
+								jobTitle:
+									"Organisational Transformation Consultant and Leadership Development Strategist",
 								image:
 									"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751214264/tshepo-matlou_d4hpnq.jpg",
 								sameAs: [
@@ -109,29 +132,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 								"https://www.instagram.com/freedom27",
 								"https://www.facebook.com/freedom27",
 							],
-						}),
-					}}
-				/>
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify({
-							"@context": "https://schema.org",
-							"@type": "Book",
-							name: "Freedom – In Pursuit of Liberty",
-							author: {
-								"@type": "Person",
-								name: "Tshepo Matlou",
-							},
-							description:
-								"A gentle guide to letting go, healing past wounds, and finding inner balance — through self-awareness, mindset shifts, and mindful living.",
-							publisher: {
-								"@type": "Organization",
-								name: "Freedom 27",
-							},
-							image:
-								"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751621135/book_hexyzz.svg",
-							url: "https://freedom27.co.za/shop/book",
 						}),
 					}}
 				/>
