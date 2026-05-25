@@ -13,34 +13,102 @@ import { json } from "@remix-run/node";
 import { Form, useActionData, useNavigation } from "@remix-run/react";
 import nodemailer from "nodemailer";
 
-
 export const meta: MetaFunction = () => {
+	const title =
+		"Freedom 27 | Organisational Transformation & Leadership Development";
+
+	const description =
+		"Freedom 27 partners with corporates, government, and development institutions to drive organisational transformation through leadership development, culture change, enterprise development, and strategic facilitation.";
+
+	const image =
+		"https://res.cloudinary.com/dfxorvtuc/image/upload/v1778693829/Freedom27_Business_Profile_1_wflyx2.png";
+
+	const url = "https://www.freedom27.co.za";
+
 	return [
-		{ title: "Freedom27 – Beyond Traditional Consulting" },
+		{ title },
+
 		{
 			name: "description",
-			content:
-				"Transforming Organisations Through Coaching, Culture Change & ESD",
+			content: description,
 		},
+
 		{
 			name: "keywords",
-			content: "mindfulness, trauma healing, wellness coaching, breathwork",
+			content:
+				"organisational transformation South Africa, leadership development, enterprise supplier development, ESD consulting, culture transformation, strategy facilitation, B-BBEE consulting, executive coaching, change management, Freedom 27",
 		},
-		{ name: "author", content: "Freedom 27" },
-		{ property: "og:title", content: "Freedom 27 – Mindfulness & Healing" },
+
+		{
+			name: "robots",
+			content: "index, follow",
+		},
+
+		{
+			tagName: "link",
+			rel: "canonical",
+			href: url,
+		},
+
+		// Open Graph
+		{
+			property: "og:type",
+			content: "website",
+		},
+
+		{
+			property: "og:title",
+			content: title,
+		},
+
 		{
 			property: "og:description",
-			content:
-				"Explore coaching, retreats, and breathwork to restore emotional balance and clarity.",
+			content: description,
 		},
+
 		{
 			property: "og:image",
-			content:
-				"https://res.cloudinary.com/dg1g6ctku/image/upload/v1751621471/freedom-logo_g1idsk.png",
+			content: image,
 		},
-		{ property: "og:type", content: "website" },
+
+		{
+			property: "og:url",
+			content: url,
+		},
+
+		{
+			property: "og:site_name",
+			content: "Freedom 27",
+		},
+
+		{
+			property: "og:locale",
+			content: "en_ZA",
+		},
+
+		// Twitter
+		{
+			name: "twitter:card",
+			content: "summary_large_image",
+		},
+
+		{
+			name: "twitter:title",
+			content: title,
+		},
+
+		{
+			name: "twitter:description",
+			content: description,
+		},
+
+		{
+			name: "twitter:image",
+			content: image,
+		},
 	];
 };
+
 
 export async function action({ request }: ActionFunctionArgs) {
 	const formData = await request.formData();
