@@ -139,7 +139,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			<body>
 				<WhatsAppButton
 					phoneNumber="+689205251"
-					message="Hi there! I found your website and want to know more about your services."
+					message="Hi, I found your website and want to know more about your services."
 				/>
 				{children}
 				<ScrollRestoration />
