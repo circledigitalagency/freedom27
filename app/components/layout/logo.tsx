@@ -6,7 +6,7 @@ export default function Logo({ style }: { style: string }) {
 		<Link to="/">
 			<div className={style}>
 				<img
-					src="https://res.cloudinary.com/dfxorvtuc/image/upload/v1778691360/freedom-final-logo-white_pzi24z.svg"
+					src="https://res.cloudinary.com/dfxorvtuc/image/upload/v1794994470/Business_Profile_Freedom_27_Presentation_dsnnof.png"
 					alt="logo"
 					className="object-fill"
 				/>

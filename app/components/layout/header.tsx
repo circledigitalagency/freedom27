@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { menu } from "~/lib/data";
 import { cn } from "~/lib/utils";
-import { SquigglyLine } from "../shapes/squiggly-line";
 import { useScroll } from "~/hooks/use-scroll";
 import { MailIcon, PhoneCall } from "lucide-react";
 import BurgerMenu from "./burger-menu";
@@ -22,7 +21,7 @@ export default function Header() {
 		<motion.header
 			className={cn(
 				"fixed top-0 w-full h-fit bg-background/90 backdrop-blur-sm z-50 transition-all duration-300 ease-out",
-				isScrolled ? "shadow-lg shadow-black/5" : "shadow-none"
+				isScrolled ? "shadow-lg shadow-black/5" : "shadow-none",
 			)}
 			initial={{ y: -100 }}
 			animate={{ y: 0 }}
@@ -47,7 +46,7 @@ export default function Header() {
 										"transition-colors duration-300 ease-in-out relative py-2 px-1 uppercase tracking-[0.14em] text-sm",
 										isActive(men.path)
 											? "text-accent font-medium"
-											: "text-gray hover:text-accent"
+											: "text-gray hover:text-accent",
 									)}
 								>
 									{men.label}

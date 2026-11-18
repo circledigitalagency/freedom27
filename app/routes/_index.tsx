@@ -1,809 +1,1080 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import { useEffect, useState, type ReactNode } from "react";
 import {
+	ArrowRight,
+	ChevronDown,
+	Download,
+	Eye,
 	Mail,
 	MapPin,
-	Phone
+	Menu,
+	MessageCircle,
+	Phone,
+	Plus,
+	Star,
+	Target,
+	X,
+	Briefcase,
+	Building2,
+	Landmark,
+	Microscope,
+	MessageCircleQuestion,
 } from "lucide-react";
-import MainLayout from "~/components/layout/main";
-
 import LogoCarousel from "~/components/carousel/partners";
-import { affiliates, services } from "~/lib/data";
-import type { ActionFunctionArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { Form, useActionData, useNavigation } from "@remix-run/react";
-import nodemailer from "nodemailer";
+import { affiliates } from "~/lib/data";
+import Logo from "~/components/layout/logo";
+
+/* ------------------------------------------------------------------ */
+/* CONFIG — no form, no server action, nothing for bots to submit to   */
+/* ------------------------------------------------------------------ */
+
+// Assembled in the browser so the address isn't in the server HTML for scrapers
+const EMAIL_USER = "tshepo";
+const EMAIL_DOMAIN = "freedom27.co.za";
+const PHONE_DISPLAY = "083 784 8001";
+const PHONE_TEL = "+27837848001";
+// Confirm this number is on WhatsApp before going live
+const WHATSAPP_NUMBER = "27837848001";
+// Put the PDF in /public with this name
+const COMPANY_PROFILE_URL = "/freedom27-company-profile.pdf";
+const HERO_IMAGE =
+	"https://res.cloudinary.com/dfxorvtuc/image/upload/v1794995393/Workplace_Leaders_Photo_imrd5z.jpg";
+
+const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+	"Hi Freedom 27, I'd like to request a discovery call.",
+)}`;
+
+function useEmail() {
+	const [email, setEmail] = useState<string | null>(null);
+	useEffect(() => setEmail(`${EMAIL_USER}@${EMAIL_DOMAIN}`), []);
+
+	const mailto = (area?: string) => {
+		if (!email) return "#contact";
+		if (!area) return `mailto:${email}`;
+		const subject = `Discovery Call Request – ${area}`;
+		const body = [
+			"Full name:",
+			"Organisation:",
+			"Phone number (optional):",
+			`Area of interest: ${area}`,
+			"",
+			"Brief description of your needs:",
+			"",
+			"",
+		].join("\n");
+		return `mailto:${email}?subject=${encodeURIComponent(
+			subject,
+		)}&body=${encodeURIComponent(body)}`;
+	};
+
+	return { email, mailto };
+}
+
+/* ------------------------------------------------------------------ */
+/* CONTENT                                                             */
+/* ------------------------------------------------------------------ */
+
+const coreServices = [
+	{
+		number: "01",
+		title: "Workplace Wellbeing",
+		description:
+			"Support employees and managers with practical learning and conversations about wellbeing, pressure and healthier working habits.",
+	},
+	{
+		number: "02",
+		title: "Leadership Coaching",
+		description:
+			"Help leaders understand themselves, navigate demanding situations and lead with greater clarity and accountability.",
+	},
+	{
+		number: "03",
+		title: "Team Effectiveness",
+		description:
+			"Help teams address tension, strengthen trust and agree more effective ways of working together.",
+	},
+];
+
+const orgServices = [
+	{
+		number: "04",
+		title: "Change Management & Transition",
+		description:
+			"Guiding organisations and people through transformation with confidence.",
+	},
+	{
+		number: "05",
+		title: "Strategy Facilitation & Performance",
+		description: "Aligning strategy, teams, and KPIs for measurable outcomes.",
+	},
+];
+
+const programmes = [
+	{
+		title: "Workplace Wellbeing Programme",
+		description:
+			"A planned series of workshops, facilitated conversations and practical activities for employees and managers. Content can align with your existing employee support arrangements.",
+		cta: "Plan a Wellbeing Programme",
+		area: "Workplace Wellbeing",
+		image:
+			"https://res.cloudinary.com/dfxorvtuc/image/upload/v1794995453/Workplace_Wellbeing_Photo_2_n1r0uw.jpg", // add image URL
+		tint: "bg-[#CDE6F1]",
+	},
+	{
+		title: "Leadership Coaching Programme",
+		description:
+			"Individual coaching for executives and managers, with agreed goals, practical action between sessions and progress reviews. The duration and frequency are shaped around the leader's needs.",
+		cta: "Discuss Leadership Coaching",
+		area: "Leadership Coaching",
+		image:
+			"https://res.cloudinary.com/dfxorvtuc/image/upload/v1778693829/Freedom27_Business_Profile_1_wflyx2.png",
+		tint: "bg-[#DDE4EA]",
+	},
+	{
+		title: "Team Trust and Effectiveness Programme",
+		description:
+			"A structured engagement that can combine individual listening conversations, facilitated team sessions, working agreements and follow-up reviews. We clarify how information will be used before the work begins.",
+		cta: "Discuss Team Support",
+		area: "Team Effectiveness",
+		image:
+			"https://res.cloudinary.com/dfxorvtuc/image/upload/v1788862954/Zee_Personnel_Company_Profile_2_qddakm.png",
+		tint: "bg-[#D9E6EE]",
+	},
+];
+
+const approach = [
+	{
+		number: "01",
+		title: "Diagnose",
+		desc: "Understand the organisational need through structured conversations, reflection and relevant assessment.",
+	},
+	{
+		number: "02",
+		title: "Align",
+		desc: "Agree priorities, expectations, roles and the outcomes to work towards.",
+	},
+	{
+		number: "03",
+		title: "Facilitate",
+		desc: "Deliver coaching, team conversations and learning experiences that address the agreed needs.",
+	},
+	{
+		number: "04",
+		title: "Embed",
+		desc: "Turn insights into practical actions, working agreements and individual commitments.",
+	},
+	{
+		number: "05",
+		title: "Sustain",
+		desc: "Review progress and agree further support where needed, within the scope of the engagement.",
+	},
+];
+
+const team = [
+	{
+		name: "Tshepo Matlou",
+		role: "Chief Executive Officer",
+		tagline:
+			"Executive and Leadership Coach | Facilitator | Author and Speaker",
+		bio: "Tshepo Matlou is an executive and leadership coach, author, speaker and wellness facilitator with more than 20 years of management and leadership experience across the public and private sectors. He combines leadership insight, emotional intelligence and mindfulness to help people reflect on how they lead, relate and respond to pressure.",
+		initials: "TM",
+		image:
+			"https://res.cloudinary.com/dfxorvtuc/image/upload/v1794996223/Freedom27_Business_Profile_ezwizn.png", // add portrait URL
+	},
+	{
+		name: "Dr Sean Zimunya",
+		role: "Chief Transformation Officer",
+		tagline:
+			"Leadership Coach | Executive Consultant | Organisational Development Specialist",
+		bio: "Dr Sean Zimunya is a leadership coach, executive consultant and social worker with experience across therapeutic, corporate and learning environments. His work brings together an understanding of human behaviour, organisational development and wellbeing to support leaders and teams.",
+		initials: "SZ",
+		image:
+			"https://res.cloudinary.com/dfxorvtuc/image/upload/v1794996223/Freedom27_Business_Profile_1_vjcsf9.png",
+	},
+];
+
+const sectors = [
+	{
+		icon: Landmark,
+		title: "Government & legislature",
+		names:
+			"Parliament of the Republic of South Africa · Western Cape Government · Deeds Office · Tax Ombud",
+	},
+	{
+		icon: Building2,
+		title: "Public entities & agencies",
+		names: "Transnet · Road Accident Fund · CBRTA · ERWAT · INSETA",
+	},
+	{
+		icon: Briefcase,
+		title: "Financial services & corporate",
+		names: "FNB · Momentum · ARM · ICAS",
+	},
+	{
+		icon: Microscope,
+		title: "Research & development institutions",
+		names: "NIHSS · SANBI · ALRD · EWSC",
+	},
+];
+
+const faqs = [
+	{
+		q: "Can we begin with a single session?",
+		a: "Yes. We can start with a focused talk, workshop or coaching engagement and discuss further support where it would be useful.",
+	},
+	{
+		q: "Can you work alongside our existing EAP?",
+		a: "Yes. Our coaching, team and wellbeing programmes can complement your existing employee assistance arrangements. We agree the scope and respective roles with your organisation.",
+	},
+	{
+		q: "What does your wellbeing support include?",
+		a: "Our current offering focuses on coaching, wellbeing education, mindfulness and facilitated workplace programmes. Clinical treatment, emergency assistance and a comprehensive EAP are outside this offering.",
+	},
+];
+
+const interestAreas = [
+	"Leadership Coaching",
+	"Team Effectiveness",
+	"Workplace Wellbeing",
+	"Other organisational support",
+	"Not sure yet",
+];
+
+const navGroups = [
+	{
+		label: "What We Do",
+		links: [
+			["Workplace Wellbeing", "#services"],
+			["Leadership Coaching", "#services"],
+			["Team Effectiveness", "#services"],
+			["Change Management & Transition", "#services"],
+			["Strategy Facilitation & Performance", "#services"],
+		],
+	},
+	{
+		label: "Ways to Work With Us",
+		links: [
+			["Workplace Wellbeing Programme", "#programmes"],
+			["Leadership Coaching Programme", "#programmes"],
+			["Team Trust and Effectiveness Programme", "#programmes"],
+			["Our Approach", "#approach"],
+		],
+	},
+	{
+		label: "Company",
+		links: [
+			["About Freedom 27", "#about"],
+			["Our Leadership Team", "#team"],
+			["Experience", "#experience"],
+			["FAQs", "#faq"],
+		],
+	},
+];
+
+/* ------------------------------------------------------------------ */
+/* META + FONTS                                                        */
+/* ------------------------------------------------------------------ */
+
+export const links: LinksFunction = () => [
+	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
+	{
+		rel: "preconnect",
+		href: "https://fonts.gstatic.com",
+		crossOrigin: "anonymous",
+	},
+	{
+		rel: "stylesheet",
+		href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap",
+	},
+];
 
 export const meta: MetaFunction = () => {
 	const title =
-		"Freedom 27 | Organisational Transformation & Leadership Development";
-
+		"Freedom 27 | Leadership Coaching, Team Effectiveness & Workplace Wellbeing";
 	const description =
-		"Freedom 27 partners with corporates, government, and development institutions to drive organisational transformation through leadership development, culture change, enterprise development, and strategic facilitation.";
-
-	const image =
-		"https://res.cloudinary.com/dfxorvtuc/image/upload/v1778693829/Freedom27_Business_Profile_1_wflyx2.png";
-
+		"Freedom 27 helps corporates, government and development institutions develop effective leaders, strengthen working relationships and support employee wellbeing through coaching and facilitated programmes.";
 	const url = "https://www.freedom27.co.za";
 
 	return [
 		{ title },
-
-		{
-			name: "description",
-			content: description,
-		},
-
+		{ name: "description", content: description },
 		{
 			name: "keywords",
 			content:
-				"organisational transformation South Africa, leadership development, enterprise supplier development, ESD consulting, culture transformation, strategy facilitation, B-BBEE consulting, executive coaching, change management, Freedom 27",
+				"leadership coaching South Africa, executive coaching Centurion, workplace wellbeing programmes, team effectiveness, psychological safety, change management, strategy facilitation, Freedom 27",
 		},
-
-		{
-			name: "robots",
-			content: "index, follow",
-		},
-
-		{
-			tagName: "link",
-			rel: "canonical",
-			href: url,
-		},
-
-		// Open Graph
-		{
-			property: "og:type",
-			content: "website",
-		},
-
-		{
-			property: "og:title",
-			content: title,
-		},
-
-		{
-			property: "og:description",
-			content: description,
-		},
-
-		{
-			property: "og:image",
-			content: image,
-		},
-
-		{
-			property: "og:url",
-			content: url,
-		},
-
-		{
-			property: "og:site_name",
-			content: "Freedom 27",
-		},
-
-		{
-			property: "og:locale",
-			content: "en_ZA",
-		},
-
-		// Twitter
-		{
-			name: "twitter:card",
-			content: "summary_large_image",
-		},
-
-		{
-			name: "twitter:title",
-			content: title,
-		},
-
-		{
-			name: "twitter:description",
-			content: description,
-		},
-
-		{
-			name: "twitter:image",
-			content: image,
-		},
+		{ name: "robots", content: "index, follow" },
+		{ tagName: "link", rel: "canonical", href: url },
+		{ property: "og:type", content: "website" },
+		{ property: "og:title", content: title },
+		{ property: "og:description", content: description },
+		{ property: "og:image", content: HERO_IMAGE },
+		{ property: "og:url", content: url },
+		{ property: "og:site_name", content: "Freedom 27" },
+		{ property: "og:locale", content: "en_ZA" },
+		{ name: "twitter:card", content: "summary_large_image" },
+		{ name: "twitter:title", content: title },
+		{ name: "twitter:description", content: description },
+		{ name: "twitter:image", content: HERO_IMAGE },
 	];
 };
 
+/* ------------------------------------------------------------------ */
+/* SMALL PIECES                                                        */
+/* ------------------------------------------------------------------ */
 
-export async function action({ request }: ActionFunctionArgs) {
-	const formData = await request.formData();
+const heading = "font-['Plus_Jakarta_Sans',Inter,sans-serif]";
+const wrap = "mx-auto max-w-[1200px] px-6";
 
-	const fullName = formData.get("fullName");
-	const organisation = formData.get("organisation");
-	const email = formData.get("email");
-	const phone = formData.get("phone");
-	const service = formData.get("service");
-	const message = formData.get("message");
+const Eyebrow = ({
+	children,
+	dark = false,
+}: {
+	children: ReactNode;
+	dark?: boolean;
+}) => (
+	<p
+		className={`text-sm font-semibold uppercase tracking-[0.06em] ${
+			dark ? "text-[#22D3EE]" : "text-[#0369A1]"
+		}`}
+	>
+		{children}
+	</p>
+);
 
-	const errors: Record<string, string> = {};
+const H2 = ({
+	children,
+	dark = false,
+}: {
+	children: ReactNode;
+	dark?: boolean;
+}) => (
+	<h2
+		className={`${heading} text-3xl font-extrabold leading-tight tracking-tight md:text-[40px] ${
+			dark ? "text-white" : "text-[#0B1929]"
+		}`}
+	>
+		{children}
+	</h2>
+);
 
-	if (!fullName) errors.fullName = "Full name is required";
-	if (!email) errors.email = "Email is required";
-	if (!message) errors.message = "Message is required";
+/* ------------------------------------------------------------------ */
+/* HEADER                                                              */
+/* ------------------------------------------------------------------ */
 
-	if (Object.keys(errors).length > 0) {
-		return json<ActionData>(
-			{
-				errors: errors,
-			},
-			{
-				status: 400,
-			}
-		);
-	}
+function Header() {
+	const [openGroup, setOpenGroup] = useState<string | null>(null);
+	const [mobileOpen, setMobileOpen] = useState(false);
 
-	try {
-		const transporter = nodemailer.createTransport({
-			host: "mail.freedom27.co.za",
-			port: 465,
-			secure: true,
-			auth: {
-				user: process.env.SMTP_USER,
-				pass: process.env.SMTP_PASS,
-			},
-		});
+	useEffect(() => {
+		const close = (e: MouseEvent) => {
+			if (!(e.target as HTMLElement).closest("[data-dropdown]"))
+				setOpenGroup(null);
+		};
+		const esc = (e: KeyboardEvent) => e.key === "Escape" && setOpenGroup(null);
+		document.addEventListener("click", close);
+		document.addEventListener("keydown", esc);
+		return () => {
+			document.removeEventListener("click", close);
+			document.removeEventListener("keydown", esc);
+		};
+	}, []);
 
-		await transporter.sendMail({
-			from: `"Freedom 27 Website" <${process.env.SMTP_USER}>`,
-			to: "breakfree@freedom27.co.za",
-			replyTo: String(email),
-			subject: `New Enquiry from ${fullName}`,
-			html: `
-		  <h2>New Website Enquiry</h2>
-  
-		  <p><strong>Full Name:</strong> ${fullName}</p>
-		  <p><strong>Organisation:</strong> ${organisation}</p>
-		  <p><strong>Email:</strong> ${email}</p>
-		  <p><strong>Phone:</strong> ${phone}</p>
-		  <p><strong>Service:</strong> ${service}</p>
-  
-		  <hr />
-  
-		  <p>${message}</p>
-		`,
-		});
+	const closeAll = () => {
+		setOpenGroup(null);
+		setMobileOpen(false);
+	};
 
-		return json<ActionData>({
-			success: true,
-		});
-	} catch (error) {
-		console.error(error);
+	return (
+		<header className="sticky top-0 z-50 border-b border-[#E3E8EA] bg-white">
+			<div
+				className={`${wrap} flex flex-wrap items-center justify-between gap-4 py-4`}
+			>
+				<a
+					href="#top"
+					className="flex items-center gap-2.5 text-[#0B1929] no-underline"
+				>
+					<Logo style="h-20 w-20" />
+				</a>
 
-		return json<ActionData>(
-			{
-				errors: {
-					server: "Something went wrong. Please try again.",
-				},
-			},
-			{
-				status: 500,
-			}
-		);
-	}
+				<button
+					type="button"
+					className="p-2 text-[#0B1929] lg:hidden"
+					aria-label={mobileOpen ? "Close menu" : "Open menu"}
+					aria-expanded={mobileOpen}
+					aria-controls="main-nav"
+					onClick={() => setMobileOpen((o) => !o)}
+				>
+					{mobileOpen ? (
+						<X className="h-6 w-6" />
+					) : (
+						<Menu className="h-6 w-6" />
+					)}
+				</button>
+
+				<nav
+					id="main-nav"
+					aria-label="Main"
+					className={`${
+						mobileOpen ? "flex" : "hidden"
+					} w-full flex-col items-stretch gap-1 pb-3 lg:flex lg:w-auto lg:flex-row lg:items-center lg:pb-0`}
+				>
+					{navGroups.map((group) => {
+						const open = openGroup === group.label;
+						return (
+							<div key={group.label} className="group relative" data-dropdown>
+								<button
+									type="button"
+									aria-expanded={open}
+									onClick={() => setOpenGroup(open ? null : group.label)}
+									className="flex items-center gap-1.5 px-3.5 py-3 text-[15px] font-medium text-[#0B1929]"
+								>
+									{group.label}
+									<ChevronDown
+										className={`h-3 w-3 transition ${open ? "rotate-180" : ""}`}
+									/>
+								</button>
+								<div
+									className={`${
+										open ? "flex" : "hidden"
+									} flex-col pb-2 pl-3 lg:absolute lg:left-0 lg:top-12 lg:w-[300px] lg:rounded-xl lg:border lg:border-[#E3E8EA] lg:bg-white lg:p-2.5 lg:shadow-[0_12px_32px_rgba(11,25,41,0.12)] lg:group-hover:flex`}
+								>
+									{group.links.map(([label, href]) => (
+										<a
+											key={label}
+											href={href}
+											onClick={closeAll}
+											className="rounded-lg px-3 py-2.5 text-sm text-[#0B1929] no-underline hover:bg-[#F1F7FA]"
+										>
+											{label}
+										</a>
+									))}
+								</div>
+							</div>
+						);
+					})}
+					<a
+						href="#contact"
+						onClick={closeAll}
+						className="mt-2 rounded-full bg-[#0369A1] px-5 py-3 text-center text-[15px] font-semibold text-white no-underline hover:bg-[#075985] lg:ml-2 lg:mt-0"
+					>
+						Contact us
+					</a>
+				</nav>
+			</div>
+		</header>
+	);
 }
 
-type ActionData = {
-	success?: boolean;
-
-	errors?: {
-		fullName?: string;
-		email?: string;
-		message?: string;
-		server?: string;
-	};
-};
-
+/* ------------------------------------------------------------------ */
+/* PAGE                                                                */
+/* ------------------------------------------------------------------ */
 
 export default function Index() {
-	const actionData = useActionData<typeof action>();
-	const navigation = useNavigation();
+	const { email, mailto } = useEmail();
 
-	const isSubmitting = navigation.state === "submitting";
 	return (
-		<MainLayout>
-			<div className="flex flex-col space-y-14">
+		<div
+			id="top"
+			className="w-full scroll-smooth bg-white font-[Inter,system-ui,sans-serif] leading-relaxed text-[#0B1929] antialiased"
+		>
+			<Header />
+
+			<main>
 				{/* HERO */}
-				<section className="relative flex items-center overflow-hidden bg-[#0B1929]">
-					{/* Grid */}
+				<section className="bg-[#F1F7FA]">
 					<div
-						className="absolute inset-0 opacity-20"
-						style={{
-							backgroundImage: `
-              linear-gradient(rgba(61,184,197,0.15) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(61,184,197,0.15) 1px, transparent 1px)
-            `,
-							backgroundSize: "60px 60px",
-						}}
-					/>
-
-					{/* Glow */}
-					<div className="absolute right-[10%] top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-cyan-500/20 blur-3xl" />
-
-					<div className="relative z-10 mx-auto grid w-full gap-10 px-6 py-18 md:py-20 lg:grid-cols-[1fr_320px] lg:px-16">
-						<div className="max-w-3xl">
-							<div className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 px-4 py-2">
-								<div className="h-2 w-2 rounded-full bg-cyan-400" />
-
-								<span className="text-[11px] font-medium uppercase tracking-[0.18em] text-cyan-400">
-									Organisational Transformation Partner
-								</span>
-							</div>
-
-							<h1 className="font-syne text-5xl font-bold leading-[1.05] tracking-tight text-white md:text-7xl">
-								Transforming
-								<br />
-								Organisations
-								<br />
-								Through{" "}
-								<span className="text-cyan-400">
-									People
-								</span>
+						className={`${wrap} flex flex-col items-center gap-14 py-20 lg:flex-row lg:py-[88px]`}
+					>
+						<div className="flex min-w-0 flex-1 flex-col gap-6">
+							<Eyebrow>
+								Workplace Wellbeing | Leadership Coaching | Team Effectiveness
+							</Eyebrow>
+							<h1
+								className={`${heading} text-[40px] font-extrabold leading-[1.05] tracking-[-0.02em] md:text-6xl`}
+							>
+								Stronger leaders and healthier workplaces
 							</h1>
-
-							<p className="mt-8 max-w-2xl text-lg font-light leading-8 text-white/60">
-								We work with corporates, government, and development
-								institutions to drive sustainable performance through
-								leadership, culture, and enterprise development.
+							<p className="max-w-[560px] text-lg text-[#3E4F5B] md:text-[19px]">
+								We help corporates, government and development institutions
+								develop effective leaders, strengthen working relationships and
+								support employee wellbeing.
 							</p>
-
-							<div className="mt-10 flex flex-wrap items-center gap-4">
+							<div className="flex flex-wrap gap-3 pt-2">
 								<a
 									href="#contact"
-									className="rounded-sm bg-cyan-400 px-8 py-4 font-syne text-sm font-semibold uppercase tracking-[0.12em] text-slate-900 transition hover:-translate-y-0.5 hover:opacity-90"
+									className="rounded-full bg-[#0369A1] px-7 py-4 font-semibold text-white no-underline hover:bg-[#075985]"
 								>
-									Partner With Us
+									Request a Discovery Call
 								</a>
-
 								<a
 									href="#services"
-									className="rounded-sm border border-white/20 px-8 py-4 text-sm uppercase tracking-[0.12em] text-white/70 transition hover:border-cyan-400 hover:text-cyan-400"
+									className="rounded-full border-[1.5px] border-[#0B1929] px-7 py-4 font-semibold text-[#0B1929] no-underline hover:bg-[#0B1929] hover:text-white"
 								>
-									Explore Services
+									Explore Our Services
 								</a>
 							</div>
 						</div>
-
-						{/* STATS */}
-						<div className="flex flex-col gap-6 self-end">
-							{[
-								["20+", "Years Experience"],
-								["50+", "Clients Served"],
-								["3", "Core Pillars"],
-							].map(([value, label]) => (
-								<div
-									key={label}
-									className="border border-cyan-400/20 bg-white/5 p-6 text-right"
-								>
-									<div className="font-syne text-5xl font-bold leading-none text-cyan-400">
-										{value}
-									</div>
-
-									<div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-white/40">
-										{label}
-									</div>
-								</div>
-							))}
-						</div>
+						<img
+							src={HERO_IMAGE}
+							alt="Freedom 27 facilitating a leadership session"
+							className="h-[320px] w-full min-w-0 flex-1 rounded-3xl bg-[#CDE6F1] object-cover md:h-[460px]"
+						/>
 					</div>
 				</section>
-				{/* VALUE STRIP */}
-				<section className="overflow-hidden bg-cyan-400 px-6 py-5 lg:px-12">
-					<div className="grid grid-cols-2 md:grid-cols-6 items-center gap-4 md:gap-10">
-						{[
-							"Leadership Development",
-							"Culture Change",
-							"Enterprise & Supplier Development",
-							"Change Management",
-							"Strategy Facilitation",
-							"B-BBEE Aligned",
-						].map((item) => (
-							<div
-								key={item}
-								className="flex items-center gap-3"
-							>
-								<div className="h-1.5 w-1.5 rounded-full bg-slate-900/40" />
 
-								<span className="font-syne text-xs font-semibold uppercase tracking-[0.18em] text-slate-900">
-									{item}
+				{/* PROOF BAND */}
+				<section aria-label="At a glance" className="bg-[#0B1929] text-white">
+					<div className={`${wrap} grid gap-8 py-10 md:grid-cols-3`}>
+						{[
+							[
+								"20+ years",
+								"of management and leadership experience across the public and private sectors",
+							],
+							[
+								"3 sectors",
+								"Corporates, government and development institutions",
+							],
+							[
+								"One approach",
+								"Leadership, team relationships and wellbeing, connected",
+							],
+						].map(([big, small]) => (
+							<div key={big} className="flex flex-col gap-1">
+								<span className={`${heading} text-4xl font-extrabold`}>
+									{big}
 								</span>
+								<span className="text-[15px] text-[#C9D6DD]">{small}</span>
 							</div>
 						))}
 					</div>
 				</section>
-				<section
-					id="about"
-					className="grid lg:grid-cols-2"
-				>
-					<div className="flex flex-col justify-center bg-[#0B1929] px-6 py-20 lg:px-12">
-						<p className="mb-5 text-xs font-medium uppercase tracking-[0.22em] text-cyan-400">
-							Who We Are
-						</p>
 
-						<h2 className="font-syne text-4xl font-bold leading-tight text-white md:text-5xl">
-							Beyond Traditional{" "}
-							<span className="text-cyan-400">
-								Consulting
-							</span>
-						</h2>
+				{/* ABOUT */}
+				<section id="about" className="scroll-mt-20">
+					<div className={`${wrap} flex flex-col gap-12 py-24`}>
+						<div className="grid gap-12 lg:grid-cols-[1fr_1.35fr]">
+							<div className="flex flex-col gap-4">
+								<Eyebrow>About Freedom 27</Eyebrow>
+								<H2>
+									We are <span className="text-[#0369A1]">human</span> before
+									position, power and titles.
+								</H2>
+							</div>
+							<div className="flex flex-col gap-4 text-[17px] text-[#3E4F5B]">
+								<p>
+									Freedom 27 is a coaching and workplace wellbeing partner based
+									in Centurion, South Africa. We work with leaders, teams and
+									organisations to strengthen leadership practice, improve
+									collaboration and support healthier ways of working.
+								</p>
+								<p>
+									Our work brings together executive coaching, team
+									facilitation, psychological safety and wellbeing programmes.
+									We begin by understanding your context, then agree an approach
+									that helps people reflect, take responsibility and apply what
+									they learn.
+								</p>
+								<p>
+									Whether the need is leadership growth, strained team
+									relationships or support through a demanding period, we
+									connect meaningful conversations with practical workplace
+									action.
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
 
-						<p className="mt-6 text-base font-light leading-8 text-white/60">
-							Freedom 27 is an organisational transformation
-							partner that operates at the intersection of
-							strategy, leadership, and human behaviour.
-						</p>
+				<section className="scroll-mt-20 bg-[#0B1929] text-white">
+					<div className={`${wrap} flex flex-col gap-12 py-24`}>
+						<div className="grid gap-6 md:grid-cols-3">
+							{[
+								{
+									icon: Eye,
+									title: "Vision",
+									text: "To contribute to workplaces across Africa where people are supported, leaders lead responsibly and teams perform sustainably.",
+								},
+								{
+									icon: Target,
+									title: "Mission",
+									text: "To help organisations strengthen leadership, working relationships and wellbeing through coaching, facilitated learning and practical follow-through.",
+								},
+								{
+									icon: Star,
+									title: "Value proposition",
+									text: "We connect leadership behaviour, team relationships and employee wellbeing in one practical approach, shaped around the organisation's needs and supported by agreed actions and reviews.",
+								},
+							].map(({ icon: Icon, title, text }) => (
+								<div
+									key={title}
+									className="flex flex-col gap-3 rounded-[20px] border border-[#0369A1] p-8"
+								>
+									<Icon className="h-8 w-8 text-[#0369A1]" strokeWidth={1.8} />
+									<h3 className={`${heading} text-xl font-bold`}>{title}</h3>
+									<p className="text-[#C9D6DD]">{text}</p>
+								</div>
+							))}
+						</div>
 
-						<p className="mt-4 text-base font-light leading-8 text-white/60">
-							Our work goes beyond traditional consulting —
-							we focus on real behavioural change, enabling
-							leaders and teams to operate with clarity,
-							accountability, and purpose.
-						</p>
-
-						<div className="mt-10 flex flex-wrap gap-3">
+						<div className="flex flex-wrap items-center gap-3">
+							<span className="mr-2 text-[15px] font-semibold">Our values</span>
 							{[
 								"Empowerment",
 								"Authenticity",
 								"Excellence",
 								"Resilience",
 								"Freedom",
-							].map((tag) => (
+							].map((v) => (
 								<span
-									key={tag}
-									className="rounded-full border border-cyan-400/30 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-cyan-400"
+									key={v}
+									className="rounded-full border border-[#0369A1] px-[18px] py-2 text-[15px]"
 								>
-									{tag}
+									{v}
 								</span>
 							))}
 						</div>
 					</div>
-
-					<div className="relative min-h-[500px] overflow-hidden ">
-						<img
-							src="https://res.cloudinary.com/dfxorvtuc/image/upload/v1778693829/Freedom27_Business_Profile_1_wflyx2.png"
-							alt="Organisational transformation"
-							className="h-full w-full object-cover opacity-50"
-						/>
-
-						<div className="absolute inset-0 to-transparent" />
-					</div>
 				</section>
+
 				{/* SERVICES */}
-				<section
-					id="services"
-					className="bg-slate-50 px-6 py-24 lg:px-12"
-				>
-					<div className="mx-auto max-w-3xl text-center">
-						<p className="text-xs font-medium uppercase tracking-[0.22em] text-sky-700">
-							What We Do
-						</p>
+				<section id="services" className="scroll-mt-20 bg-[#F1F7FA]">
+					<div className={`${wrap} flex flex-col gap-10 py-24`}>
+						<div className="flex max-w-[720px] flex-col gap-3">
+							<Eyebrow>What we do</Eyebrow>
+							<H2>Our services</H2>
+							<p className="text-lg text-[#3E4F5B]">
+								We support the people and relationships that shape
+								organisational performance.
+							</p>
+						</div>
 
-						<h2 className="mt-4 font-syne text-4xl font-bold text-slate-900 md:text-5xl">
-							Our <span className="text-sky-700">Services</span>
-						</h2>
-
-						<p className="mt-6 text-lg font-light text-slate-500">
-							We bridge performance and wellbeing across
-							integrated service areas.
-						</p>
-					</div>
-
-					<div className="mx-auto mt-16 grid max-w-7xl gap-px bg-slate-200 lg:grid-cols-3">
-						{services.map((service) => (
-							<div
-								key={service.number}
-								className="group bg-white p-8 transition hover:border-t-cyan-400 hover:bg-slate-50"
-							>
-								<div className="text-xs font-bold tracking-[0.2em] text-slate-400">
-									{service.number}
-								</div>
-
-								<h3 className="mt-6 font-syne text-2xl font-semibold leading-tight text-slate-900">
-									{service.title}
-								</h3>
-
-								<p className="mt-4 text-sm leading-7 text-slate-500">
-									{service.description}
-								</p>
-
-								<ul className="mt-6 space-y-3">
-									{service.items.map((item) => (
-										<li
-											key={item}
-											className="flex items-start gap-3 text-sm text-slate-700/80"
-										>
-											<span className="mt-2 h-1 w-1 rounded-full bg-cyan-400" />
-											{item}
-										</li>
-									))}
-								</ul>
-							</div>
-						))}
-
-						{/* SPECIAL CARD */}
-						<div className="border-t-4 border-cyan-400 bg-[#0B1929] p-8">
-							<div className="text-xs font-bold tracking-[0.2em] text-cyan-400/50">
-								Tools
-							</div>
-
-							<h3 className="mt-6 font-syne text-2xl font-semibold text-white">
-								Assessment & Diagnostic
+						<div className="flex flex-col gap-6">
+							<h3 className="text-[15px] font-bold uppercase tracking-[0.04em] text-[#3E4F5B]">
+								People and teams
 							</h3>
-
-							<p className="mt-4 text-sm leading-7 text-white/50">
-								Science-backed tools to understand
-								individuals, teams, and organisations.
-							</p>
-
-							<ul className="mt-6 space-y-3">
-								{[
-									"Enneagram",
-									"360° Assessment",
-									"Brainprofile",
-									"Psychometric",
-								].map((item) => (
-									<li
-										key={item}
-										className="flex items-start gap-3 text-sm text-cyan-400"
-									>
-										<span className="mt-2 h-1 w-1 rounded-full bg-cyan-400" />
-										{item}
-									</li>
-								))}
-							</ul>
-						</div>
-					</div>
-				</section>
-				{/* APPROACH */}
-				<section className="bg-navy px-6 py-24 lg:px-12">
-					<div className="mx-auto max-w-7xl">
-						<div className="mb-20 text-center">
-							<p className="mb-5 text-xs font-medium uppercase tracking-[0.22em] text-accent">
-								Our Methodology
-							</p>
-
-							<h2 className="font-display text-4xl font-bold text-white md:text-5xl">
-								The Five-Stage{" "}
-								<span className="text-accent">
-									Framework
-								</span>
-							</h2>
-						</div>
-
-						<div className="relative grid gap-px bg-accent/10 lg:grid-cols-5">
-							{/* connector line */}
-							<div className="absolute left-[10%] right-[10%] top-[48px] hidden h-px bg-accent/20 lg:block" />
-
-							{[
-								{
-									number: "01",
-									title: "Diagnose",
-									desc: "Understanding the real challenge, not just the symptoms, through structured conversations and contextual insight.",
-								},
-								{
-									number: "02",
-									title: "Align",
-									desc: "Creating clarity around expectations, behaviours, communication, and outcomes so leaders and teams move as one.",
-								},
-								{
-									number: "03",
-									title: "Facilitate",
-									desc: "Executive coaching, team sessions, and structured interventions that guide meaningful reflection and behavioural development.",
-								},
-								{
-									number: "04",
-									title: "Embed",
-									desc: "Translating insight into practical action, accountability frameworks, and measurable commitments that stick.",
-								},
-								{
-									number: "05",
-									title: "Sustain",
-									desc: "Ongoing support to reinforce change and ensure transformation has long-term, compounding impact on the organisation.",
-								},
-							].map((stage) => (
-								<div
-									key={stage.number}
-									className="relative z-10 bg-navy px-6 py-12 text-center"
-								>
-									<div className="relative z-20 mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-accent bg-navy">
-										<span className="font-display text-sm font-bold text-accent">
-											{stage.number}
-										</span>
-									</div>
-
-									<h3 className="font-display text-xl font-semibold text-white">
-										{stage.title}
-									</h3>
-
-									<p className="mt-4 text-sm font-light leading-7 text-white/40">
-										{stage.desc}
-									</p>
-								</div>
-							))}
-						</div>
-					</div>
-				</section>
-
-				{/* ESD */}
-				<section
-					id="esd"
-					className="bg-offWhite px-6 py-24 lg:px-12"
-				>
-					<div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center">
-						{/* LEFT */}
-						<div>
-							<p className="mb-5 text-xs font-medium uppercase tracking-[0.22em] text-blue">
-								Enterprise & Supplier Development
-							</p>
-
-							<h2 className="font-display text-4xl font-bold text-navy md:text-5xl">
-								ESD as a{" "}
-								<span className="text-blue">
-									Strategic Driver
-								</span>
-							</h2>
-
-							<p className="mt-6 text-base font-light leading-8 text-gray">
-								ESD is no longer a compliance requirement —
-								it is a strategic driver of inclusive growth,
-								sustainable supply chains, and long-term
-								business value.
-							</p>
-
-							<div className="mt-10 space-y-4">
-								{[
-									{
-										title: "Enterprise Development",
-										desc: "Supporting emerging businesses to become viable and sustainable through structured incubation and coaching.",
-									},
-									{
-										title: "Supplier Development",
-										desc: "Strengthening existing suppliers to meet corporate standards, scale their operations, and achieve B-BBEE alignment.",
-									},
-									{
-										title: "Strategic Alignment",
-										desc: "Ensuring ESD initiatives are aligned to business objectives, B-BBEE requirements, and industry demands.",
-									},
-								].map((pillar) => (
+							<div className="grid gap-6 md:grid-cols-3">
+								{coreServices.map((s) => (
 									<div
-										key={pillar.title}
-										className="border-l-4 border-accent bg-white px-6 py-5"
+										key={s.number}
+										className="flex flex-col gap-3 rounded-[20px] border border-[#E3E8EA] bg-white p-8"
 									>
-										<h3 className="font-display text-lg font-semibold text-navy">
-											{pillar.title}
-										</h3>
-
-										<p className="mt-2 text-sm font-light leading-7 text-gray">
-											{pillar.desc}
-										</p>
+										<span
+											className={`${heading} text-[15px] font-extrabold text-[#0369A1]`}
+										>
+											{s.number}
+										</span>
+										<h4 className={`${heading} text-[22px] font-bold`}>
+											{s.title}
+										</h4>
+										<p className="text-[#3E4F5B]">{s.description}</p>
 									</div>
 								))}
 							</div>
 						</div>
 
-						{/* RIGHT */}
-						<div className="grid gap-3 md:grid-cols-2">
-							{[
-								"SMME Incubation & Development Programmes",
-								"Market Access & Sustainability Support",
-								"Business Coaching for Emerging Enterprises",
-								"ESD Programme Evaluation & Impact Measurement",
-								"Monitoring & Evaluation (M&E) and Reporting",
-								"Government & Donor-Funded Programme Delivery",
-							].map((item) => (
-								<div
-									key={item}
-									className="rounded-sm bg-navy px-5 py-5 text-sm font-medium leading-6 text-accent"
+						<div className="flex flex-col gap-6">
+							<h3 className="text-[15px] font-bold uppercase tracking-[0.04em] text-[#3E4F5B]">
+								Organisational support
+							</h3>
+							<div className="grid gap-6 md:grid-cols-2">
+								{orgServices.map((s) => (
+									<div
+										key={s.number}
+										className="flex flex-col gap-3 rounded-[20px] bg-[#0B1929] p-8 text-white"
+									>
+										<span
+											className={`${heading} text-[15px] font-extrabold text-[#22D3EE]`}
+										>
+											{s.number}
+										</span>
+										<h4 className={`${heading} text-[22px] font-bold`}>
+											{s.title}
+										</h4>
+										<p className="text-[#C9D6DD]">{s.description}</p>
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+				</section>
+
+				{/* WAYS TO WORK WITH US */}
+				<section id="programmes" className="scroll-mt-20">
+					<div className={`${wrap} flex flex-col gap-10 py-24`}>
+						<div className="flex max-w-[720px] flex-col gap-3">
+							<Eyebrow>Ways to work with us</Eyebrow>
+							<H2>Start focused, or build a programme</H2>
+							<p className="text-lg text-[#3E4F5B]">
+								Start with a focused session or build a programme with support
+								over time. We agree the format, participants and follow-up
+								around your priorities.
+							</p>
+						</div>
+
+						<div className="grid gap-6 lg:grid-cols-3">
+							{programmes.map((p) => (
+								<article
+									key={p.title}
+									className="flex flex-col overflow-hidden rounded-[20px] border border-[#E3E8EA]"
 								>
-									{item}
+									{p.image ? (
+										<img
+											src={p.image}
+											alt=""
+											className="h-[220px] w-full object-cover"
+										/>
+									) : (
+										<div className={`h-[220px] ${p.tint}`} />
+									)}
+									<div className="flex flex-1 flex-col gap-3 p-7">
+										<h3 className={`${heading} text-[22px] font-bold`}>
+											{p.title}
+										</h3>
+										<p className="flex-1 text-[#3E4F5B]">{p.description}</p>
+										<a
+											href={mailto(p.area)}
+											className="inline-flex items-center gap-2 py-2.5 font-semibold text-[#0369A1] no-underline transition-all hover:gap-3 hover:text-[#075985]"
+										>
+											{p.cta}
+											<ArrowRight className="h-4 w-4" />
+										</a>
+									</div>
+								</article>
+							))}
+						</div>
+					</div>
+				</section>
+
+				{/* APPROACH */}
+				<section id="approach" className="scroll-mt-20 bg-[#0B1929] text-white">
+					<div className={`${wrap} flex flex-col gap-12 py-24`}>
+						<div className="flex max-w-[720px] flex-col gap-3">
+							<Eyebrow dark>Our approach</Eyebrow>
+							<H2 dark>From context to lasting practice</H2>
+							<p className="text-lg text-[#C9D6DD]">
+								We start with your context, agree the work together and help
+								translate insight into practical action.
+							</p>
+						</div>
+
+						<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+							{approach.map((s) => (
+								<div
+									key={s.number}
+									className="flex flex-col gap-2 border-t-2 border-[#22D3EE] pt-5"
+								>
+									<span className={`${heading} font-extrabold text-[#22D3EE]`}>
+										{s.number}
+									</span>
+									<h3 className={`${heading} text-[22px] font-bold`}>
+										{s.title}
+									</h3>
+									<p className="text-[15px] text-[#C9D6DD]">{s.desc}</p>
 								</div>
 							))}
-
-							<div className="rounded-sm bg-navy px-5 py-5 text-sm font-medium leading-6 text-accent md:col-span-2">
-								Supplier Readiness & Onboarding Support
-							</div>
 						</div>
-					</div>
-				</section>
-				{/* CLIENTS */}
-				<section
-					id="clients"
-					className="bg-[#0B1929] px-6 py-20 lg:px-12"
-				>
-					<div className="text-center">
-						<p className="text-xs uppercase tracking-[0.22em] text-cyan-400">
-							Trusted By
-						</p>
 
-						<h2 className="mt-4 font-syne text-4xl font-bold text-offwhite">
-							Our Clients
-						</h2>
-					</div>
-
-					<div className="mx-auto mt-14 flex max-w-6xl flex-wrap justify-center gap-4 bg-offWhite rounded-3xl">
-						{/* {clients.map((client) => (
-							<div
-								key={client}
-								className="rounded-sm border border-white/10 bg-white/5 px-6 py-3 font-syne text-xs font-semibold uppercase tracking-[0.14em] text-white/60 transition hover:bg-cyan-400/10 hover:text-cyan-400"
-							>
-								{client}
+						<div className="flex flex-col gap-6 rounded-[20px] bg-[#12263A] p-8 lg:flex-row lg:items-center">
+							<div className="flex flex-1 flex-col gap-2">
+								<h3 className={`${heading} text-xl font-bold`}>
+									Assessment and reflection tools
+								</h3>
+								<p className="text-[15px] text-[#C9D6DD]">
+									Where appropriate, we use tools such as Enneagram, 360-degree
+									feedback and Brainprofile to support reflection and
+									development. Tools are selected according to the purpose of
+									the engagement and practitioner competence.
+								</p>
 							</div>
-						))} */}
-						<LogoCarousel logos={affiliates} />
-					</div>
-				</section>
-				{/* CONTACT */}
-				<section
-					id="contact"
-					className=" bg-slate-50  px-6 py-24 lg:px-12"
-				>
-					<div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
-						<div>
-							<p className="text-xs font-medium uppercase tracking-[0.22em] text-sky-700">
-								Let&apos;s Talk
-							</p>
-
-							<h2 className="mt-4 font-syne text-4xl font-bold text-[#0B1929] md:text-5xl">
-								Partner <span className="text-sky-700">With Us</span>
-							</h2>
-
-							<p className="mt-6 max-w-md text-lg font-light leading-8 text-slate-500">
-								Ready to transform your organisation?
-								Let&apos;s start with a conversation.
-							</p>
-
-							<div className="mt-10 space-y-6">
-								<div className="flex gap-4">
-									<div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0B1929]">
-										<Phone className="h-4 w-4 text-cyan-400" />
-									</div>
-
-									<div>
-										<div className="text-xs uppercase tracking-[0.14em] text-slate-400">
-											Phone
-										</div>
-
-										<a href="tel:+27837848001" className="mt-1 text-[#0B1929]">
-											083 784 8001
-										</a>
-									</div>
-								</div>
-
-								<div className="flex gap-4">
-									<div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0B1929]">
-										<Mail className="h-4 w-4 text-cyan-400" />
-									</div>
-
-									<div>
-										<div className="text-xs uppercase tracking-[0.14em] text-slate-400">
-											Email
-										</div>
-
-										<a href="mailto:breakfree@freedom27.co.za" className="mt-1 text-[#0B1929]">
-											breakfree@freedom27.co.za
-										</a>
-									</div>
-								</div>
-
-								<div className="flex gap-4">
-									<div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0B1929]">
-										<MapPin className="h-4 w-4 text-cyan-400" />
-									</div>
-
-									<div>
-										<div className="text-xs uppercase tracking-[0.14em] text-slate-400">
-											Address
-										</div>
-
-										<div className="mt-1 text-[#0B1929]">
-											192 Cradock Ave, Lyttlelton Manor
-											<br />
-											Centurion, 0157
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						{/* FORM */}
-						<Form method="post" className="space-y-4 text-black">
-							<div className="grid gap-4 md:grid-cols-2 ">
-								<div>
-									<input
-										name="fullName"
-										type="text"
-										placeholder="Full Name"
-										className="w-full rounded-sm border border-slate-200 bg-white px-4 py-4 outline-none transition focus:border-cyan-400"
-									/>
-
-									{actionData?.errors?.fullName && (
-										<p className="mt-2 text-sm text-red-500">
-											{actionData.errors.fullName}
-										</p>
-									)}
-								</div>
-
-								<input
-									name="organisation"
-									type="text"
-									placeholder="Organisation"
-									className="w-full rounded-sm border border-slate-200 bg-white px-4 py-4 outline-none transition focus:border-cyan-400"
-								/>
-							</div>
-
-							<div className="grid gap-4 md:grid-cols-2">
-								<div>
-									<input
-										name="email"
-										type="email"
-										placeholder="Email Address"
-										className="w-full rounded-sm border border-slate-200 bg-white px-4 py-4 outline-none transition focus:border-cyan-400"
-									/>
-
-									{actionData?.errors?.email && (
-										<p className="mt-2 text-sm text-red-500">
-											{actionData.errors.email}
-										</p>
-									)}
-								</div>
-
-								<input
-									name="phone"
-									type="tel"
-									placeholder="Phone Number"
-									className="w-full rounded-sm border border-slate-200 bg-white px-4 py-4 outline-none transition focus:border-cyan-400"
-								/>
-							</div>
-
-							<input
-								name="service"
-								type="text"
-								placeholder="Service of Interest"
-								className="w-full rounded-sm border border-slate-200 bg-white px-4 py-4 outline-none transition focus:border-cyan-400"
-							/>
-
-							<div>
-								<textarea
-									name="message"
-									placeholder="Tell us about your organisation's needs and transformation goals..."
-									className="min-h-[140px] w-full resize-y rounded-sm border border-slate-200 bg-white px-4 py-4 outline-none transition focus:border-cyan-400"
-								/>
-
-								{actionData?.errors?.message && (
-									<p className="mt-2 text-sm text-red-500">
-										{actionData.errors.message}
-									</p>
+							<div className="flex flex-wrap gap-2.5">
+								{["Enneagram", "360-degree feedback", "Brainprofile"].map(
+									(t) => (
+										<span
+											key={t}
+											className="rounded-full border border-[#3B5A70] bg-[#0B1929] px-4 py-2 text-sm"
+										>
+											{t}
+										</span>
+									),
 								)}
 							</div>
-
-							{actionData?.errors?.server && (
-								<p className="text-sm text-red-500">
-									{actionData.errors.server}
-								</p>
-							)}
-
-							{actionData?.success && (
-								<p className="text-sm text-green-600">
-									Enquiry submitted successfully.
-								</p>
-							)}
-
-							<button
-								type="submit"
-								disabled={isSubmitting}
-								className="rounded-sm bg-cyan-400 px-8 py-4 font-syne text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-cyan-500 disabled:opacity-50"
-							>
-								{isSubmitting
-									? "Submitting..."
-									: "Submit Enquiry →"}
-							</button>
-						</Form>
+						</div>
 					</div>
 				</section>
-			</div>
-		</MainLayout>
+
+				{/* TEAM */}
+				<section id="team" className="scroll-mt-20">
+					<div className={`${wrap} flex flex-col gap-10 py-24`}>
+						<div className="flex flex-col gap-3">
+							<Eyebrow>Company</Eyebrow>
+							<H2>Our Leadership Team</H2>
+						</div>
+						<div className="grid gap-6 lg:grid-cols-2">
+							{team.map((m) => (
+								<article
+									key={m.name}
+									className="flex flex-col gap-6 rounded-[20px] border border-[#E3E8EA] p-7 sm:flex-row"
+								>
+									{m.image ? (
+										<img
+											src={m.image}
+											alt={m.name}
+											className="h-[200px] w-40 shrink-0 rounded-2xl object-cover object-top"
+										/>
+									) : (
+										<div
+											aria-hidden="true"
+											className={`${heading} flex h-[200px] w-40 shrink-0 items-center justify-center rounded-2xl bg-[#DDE4EA] text-[34px] font-extrabold text-[#0369A1]`}
+										>
+											{m.initials}
+										</div>
+									)}
+									<div className="flex min-w-0 flex-col gap-2">
+										<h3 className={`${heading} text-[22px] font-bold`}>
+											{m.name}
+										</h3>
+										<p className="font-semibold text-[#0369A1]">{m.role}</p>
+										<p className="text-sm text-[#3E4F5B]">{m.tagline}</p>
+										<p className="text-[15px] text-[#3E4F5B]">{m.bio}</p>
+									</div>
+								</article>
+							))}
+						</div>
+					</div>
+				</section>
+
+				{/* EXPERIENCE BY SECTOR */}
+				<section id="experience" className="scroll-mt-20 bg-[#F1F7FA]">
+					<div className={`${wrap} flex flex-col gap-10 py-24`}>
+						<div className="flex max-w-[760px] flex-col gap-3">
+							<Eyebrow>Experience</Eyebrow>
+							<H2>Experience across organisations</H2>
+							<p className="text-base text-[#3E4F5B]">
+								Our team&apos;s experience includes direct client engagements
+								and work delivered through consulting and employee wellbeing
+								partners. The role and scope of our involvement vary by
+								engagement.
+							</p>
+						</div>
+
+						<div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+							{sectors.map(({ icon: Icon, title, names }) => (
+								<div
+									key={title}
+									className="flex flex-col gap-3 rounded-2xl bg-white p-6"
+								>
+									<span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#F1F7FA]">
+										<Icon
+											className="h-[22px] w-[22px] text-[#0369A1]"
+											strokeWidth={1.8}
+											aria-hidden="true"
+										/>
+									</span>
+									<h3 className={`${heading} text-[17px] font-bold`}>
+										{title}
+									</h3>
+									<p className="text-[15px] text-[#3E4F5B]">{names}</p>
+								</div>
+							))}
+						</div>
+
+						<div className="overflow-hidden rounded-[20px] bg-white py-6">
+							<LogoCarousel logos={affiliates} />
+						</div>
+					</div>
+				</section>
+
+				{/* FAQ — native <details>, no JS */}
+				<section id="faq" className="scroll-mt-20">
+					<div className="mx-auto flex max-w-[880px] flex-col gap-8 px-6 py-24">
+						<div className="flex items-center gap-4">
+							<span
+								aria-hidden="true"
+								className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F1F7FA] md:h-14 md:w-14"
+							>
+								<MessageCircleQuestion
+									className="h-6 w-6 text-[#0369A1] md:h-7 md:w-7"
+									strokeWidth={1.8}
+								/>
+							</span>
+							<H2>Frequently asked questions</H2>
+						</div>
+						<div className="flex flex-col border-t border-[#E3E8EA]">
+							{faqs.map((f, i) => (
+								<details
+									key={f.q}
+									open={i === 0}
+									className="group border-b border-[#E3E8EA]"
+								>
+									<summary
+										className={`${heading} flex cursor-pointer list-none items-center justify-between gap-4 py-6 text-[19px] font-semibold [&::-webkit-details-marker]:hidden`}
+									>
+										{f.q}
+										<Plus className="h-6 w-6 shrink-0 text-[#0369A1] transition group-open:rotate-45" />
+									</summary>
+									<p className="max-w-[720px] pb-6 text-base text-[#3E4F5B]">
+										{f.a}
+									</p>
+								</details>
+							))}
+						</div>
+					</div>
+				</section>
+
+				{/* CONTACT — direct channels only */}
+				<section id="contact" className="scroll-mt-20 bg-[#0B1929] text-white">
+					<div className={`${wrap} grid gap-14 py-24 lg:grid-cols-2`}>
+						<div className="flex flex-col gap-5">
+							<Eyebrow dark>Contact Freedom 27</Eyebrow>
+							<H2 dark>
+								Let&apos;s discuss what your people and organisation need.
+							</H2>
+							<p className="text-[17px] text-[#C9D6DD]">
+								Whether you need coaching for a leader, support for a team or a
+								workplace wellbeing programme, we would welcome a conversation
+								about your priorities.
+							</p>
+							<div className="flex flex-col gap-3.5 pt-2 text-base">
+								<a
+									href={`tel:${PHONE_TEL}`}
+									className="flex items-center gap-3 text-white no-underline hover:text-[#22D3EE]"
+								>
+									<Phone className="h-5 w-5 text-[#22D3EE]" strokeWidth={1.8} />
+									{PHONE_DISPLAY}
+								</a>
+								<a
+									href={mailto()}
+									className="flex items-center gap-3 text-white no-underline hover:text-[#22D3EE]"
+								>
+									<Mail className="h-5 w-5 text-[#22D3EE]" strokeWidth={1.8} />
+									{email ?? `${EMAIL_USER} [at] ${EMAIL_DOMAIN}`}
+								</a>
+								<span className="flex items-center gap-3">
+									<MapPin
+										className="h-5 w-5 text-[#22D3EE]"
+										strokeWidth={1.8}
+									/>
+									Centurion, South Africa
+								</span>
+							</div>
+							<a
+								href={COMPANY_PROFILE_URL}
+								download
+								className="mt-2 inline-flex items-center gap-2.5 self-start rounded-full border-[1.5px] border-white px-6 py-3.5 font-semibold text-white no-underline hover:bg-white hover:text-[#0B1929]"
+							>
+								<Download className="h-[18px] w-[18px]" />
+								Download Company Profile
+							</a>
+						</div>
+
+						<div className="flex flex-col gap-5 rounded-3xl bg-white p-7 text-[#0B1929] md:p-9">
+							<h3 className={`${heading} text-2xl font-bold`}>
+								Request a Discovery Call
+							</h3>
+							<p className="text-base text-[#3E4F5B]">
+								Pick what you&apos;d like to discuss. We&apos;ll open an email
+								with a short template so you can share your name, organisation
+								and a brief description of your needs.
+							</p>
+							<div className="flex flex-wrap gap-2">
+								{interestAreas.map((area) => (
+									<a
+										key={area}
+										href={mailto(area)}
+										className="rounded-full border-[1.5px] border-[#B8C5CC] bg-white px-4 py-2.5 text-sm font-medium text-[#0B1929] no-underline transition hover:border-[#0369A1] hover:bg-[#0369A1] hover:text-white"
+									>
+										{area}
+									</a>
+								))}
+							</div>
+							<div className="flex flex-wrap gap-3 pt-2">
+								<a
+									href={mailto("Not sure yet")}
+									className="inline-flex items-center gap-2.5 rounded-full bg-[#0369A1] px-7 py-4 font-semibold text-white no-underline hover:bg-[#075985]"
+								>
+									<Mail className="h-[18px] w-[18px]" />
+									Email to request a call
+								</a>
+								<a
+									href={whatsappLink}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-[#0B1929] px-7 py-4 font-semibold text-[#0B1929] no-underline hover:bg-[#0B1929] hover:text-white"
+								>
+									<MessageCircle className="h-[18px] w-[18px]" />
+									WhatsApp
+								</a>
+							</div>
+							<p className="border-t border-[#E3E8EA] pt-4 text-[13px] text-[#4A5A66]">
+								Please share a short overview of your organisational needs.
+								Avoid including sensitive personal information about yourself or
+								another person.
+							</p>
+						</div>
+					</div>
+				</section>
+			</main>
+
+			{/* FOOTER — columns mirror the nav */}
+			<footer className="bg-[#07121E] text-[#C9D6DD]">
+				<div className={`${wrap} flex flex-col gap-10 pb-8 pt-16`}>
+					<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+						<div className="flex flex-col gap-2.5">
+							<span className={`${heading} text-xl font-extrabold text-white`}>
+								Freedom 27
+							</span>
+							<span className="text-sm">
+								Leadership Coaching • Team Effectiveness • Workplace Wellbeing
+							</span>
+						</div>
+						{[
+							navGroups[0],
+							{
+								label: "Ways to Work With Us",
+								links: [
+									["Wellbeing Programme", "#programmes"],
+									["Leadership Coaching Programme", "#programmes"],
+									["Team Trust and Effectiveness", "#programmes"],
+									["Our Approach", "#approach"],
+								],
+							},
+							{
+								label: "Company",
+								links: [
+									["About", "#about"],
+									["Our Team", "#team"],
+									["Experience", "#experience"],
+									["Contact", "#contact"],
+								],
+							},
+						].map((col) => (
+							<div key={col.label} className="flex flex-col gap-2 text-sm">
+								<span className="pb-1 font-bold text-white">{col.label}</span>
+								{col.links.map(([label, href]) => (
+									<a
+										key={label}
+										href={href}
+										className="text-[#C9D6DD] no-underline hover:text-[#22D3EE]"
+									>
+										{label}
+									</a>
+								))}
+							</div>
+						))}
+					</div>
+					<div className="flex flex-wrap justify-between gap-3 border-t border-[#22394A] pt-6 text-[13px]">
+						<span>© {new Date().getFullYear()} Freedom 27 (Pty) Ltd</span>
+						{/* Point this at your privacy notice */}
+						<a
+							href="/privacy-notice"
+							className="text-[#C9D6DD] hover:text-[#22D3EE]"
+						>
+							Privacy Notice
+						</a>
+					</div>
+				</div>
+			</footer>
+		</div>
 	);
 }

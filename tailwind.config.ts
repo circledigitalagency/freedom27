@@ -83,6 +83,15 @@ export default {
 					"5": "hsl(var(--chart-5))",
 				},
 			},
+			keyframes: {
+				wiggle: {
+					"0%, 100%": { transform: "rotate(-12deg)" },
+					"50%": { transform: "rotate(8deg)" },
+				},
+			},
+			animation: {
+				wiggle: "wiggle 2.5s ease-in-out infinite",
+			},
 		},
 	},
 	plugins: [require("tailwindcss-animate")],
