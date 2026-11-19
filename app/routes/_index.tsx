@@ -1,5 +1,5 @@
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
-import { useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import {
 	ArrowRight,
 	ChevronDown,
@@ -36,7 +36,8 @@ const PHONE_TEL = "+27837848001";
 // Confirm this number is on WhatsApp before going live
 const WHATSAPP_NUMBER = "27837848001";
 // Put the PDF in /public with this name
-const COMPANY_PROFILE_URL = "/freedom27-company-profile.pdf";
+const COMPANY_PROFILE_URL =
+	"https://res.cloudinary.com/dfxorvtuc/image/upload/v1795117340/Freedom27_Business_Profile_1_egeq4x.pdf";
 const HERO_IMAGE =
 	"https://res.cloudinary.com/dfxorvtuc/image/upload/v1794995393/Workplace_Leaders_Photo_imrd5z.jpg";
 
@@ -198,22 +199,23 @@ const sectors = [
 		icon: Landmark,
 		title: "Government & legislature",
 		names:
-			"Parliament of the Republic of South Africa · Western Cape Government · Deeds Office · Tax Ombud",
+			"Parliament of the Republic of South Africa · Western Cape Government · Gauteng Provincial Government · Dept of Agriculture, Land Reform & Rural Development · Dept of Tourism · Office of the Tax Ombud",
 	},
 	{
 		icon: Building2,
 		title: "Public entities & agencies",
-		names: "Transnet · Road Accident Fund · CBRTA · ERWAT · INSETA",
+		names:
+			"Transnet · Road Accident Fund · Cross-Border Road Transport Agency · ERWAT · INSETA",
 	},
 	{
 		icon: Briefcase,
 		title: "Financial services & corporate",
-		names: "FNB · Momentum · ARM · ICAS",
+		names: "FNB · Momentum · African Rainbow Minerals · IGT · ICAS",
 	},
 	{
 		icon: Microscope,
 		title: "Research & development institutions",
-		names: "NIHSS · SANBI · ALRD · EWSC",
+		names: "NIHSS · SANBI",
 	},
 ];
 
@@ -358,6 +360,70 @@ const H2 = ({
 	</h2>
 );
 
+function useHashScroll(onBeforeScroll?: () => void) {
+	useEffect(() => {
+		const headerOffset = () =>
+			(document.querySelector("header")?.getBoundingClientRect().height ?? 0) +
+			16;
+
+		const targetTop = (el: HTMLElement) =>
+			el.getBoundingClientRect().top + window.scrollY - headerOffset();
+
+		const scrollToId = (id: string, smooth = true) => {
+			const el = document.getElementById(id);
+			if (!el) return;
+			const reduce = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches;
+			window.scrollTo({
+				top: targetTop(el),
+				behavior: smooth && !reduce ? "smooth" : "auto",
+			});
+
+			// Correct once if images/fonts above the target shifted the layout mid-scroll
+			const settle = () => {
+				const diff = Math.abs(el.getBoundingClientRect().top - headerOffset());
+				if (diff > 4) window.scrollTo({ top: targetTop(el), behavior: "auto" });
+			};
+			if ("onscrollend" in window) {
+				window.addEventListener("scrollend", settle, { once: true });
+			} else {
+				setTimeout(settle, 700);
+			}
+		};
+
+		const onClick = (e: MouseEvent) => {
+			const a = (e.target as HTMLElement).closest<HTMLAnchorElement>(
+				'a[href^="#"]',
+			);
+			if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+			const id = a.getAttribute("href")!.slice(1);
+			if (!id) return;
+			e.preventDefault();
+			onBeforeScroll?.(); // close the mobile menu first…
+			// …then wait two frames so the header has its final height
+			requestAnimationFrame(() =>
+				requestAnimationFrame(() => {
+					scrollToId(id);
+					history.pushState(null, "", `#${id}`);
+				}),
+			);
+		};
+
+		document.addEventListener("click", onClick);
+
+		// Landing on /#contact from another page or a shared link
+		if (window.location.hash) {
+			const id = window.location.hash.slice(1);
+			window.addEventListener("load", () => scrollToId(id, false), {
+				once: true,
+			});
+		}
+
+		return () => document.removeEventListener("click", onClick);
+	}, [onBeforeScroll]);
+}
+
 /* ------------------------------------------------------------------ */
 /* HEADER                                                              */
 /* ------------------------------------------------------------------ */
@@ -380,10 +446,12 @@ function Header() {
 		};
 	}, []);
 
-	const closeAll = () => {
+	const closeAll = useCallback(() => {
 		setOpenGroup(null);
 		setMobileOpen(false);
-	};
+	}, []);
+
+	useHashScroll(closeAll);
 
 	return (
 		<header className="sticky top-0 z-50 border-b border-[#E3E8EA] bg-white">
@@ -586,7 +654,7 @@ export default function Index() {
 					</div>
 				</section>
 
-				<section className="scroll-mt-20 bg-[#0B1929] text-white">
+				<section id="values" className="scroll-mt-20 bg-[#0B1929] text-white">
 					<div className={`${wrap} flex flex-col gap-12 py-24`}>
 						<div className="grid gap-6 md:grid-cols-3">
 							{[
@@ -1066,12 +1134,12 @@ export default function Index() {
 					<div className="flex flex-wrap justify-between gap-3 border-t border-[#22394A] pt-6 text-[13px]">
 						<span>© {new Date().getFullYear()} Freedom 27 (Pty) Ltd</span>
 						{/* Point this at your privacy notice */}
-						<a
+						{/* <a
 							href="/privacy-notice"
 							className="text-[#C9D6DD] hover:text-[#22D3EE]"
 						>
 							Privacy Notice
-						</a>
+						</a> */}
 					</div>
 				</div>
 			</footer>
