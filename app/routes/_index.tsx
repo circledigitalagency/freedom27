@@ -108,6 +108,12 @@ const orgServices = [
 		title: "Strategy Facilitation & Performance",
 		description: "Aligning strategy, teams, and KPIs for measurable outcomes.",
 	},
+	{
+		number: "06",
+		title: "6 Talent & Psychometric Assessments",
+		description:
+			"Supporting informed talent decisions, leadership development and employee growth through scientifically validated assessments.",
+	},
 ];
 
 const programmes = [
@@ -292,7 +298,7 @@ export const links: LinksFunction = () => [
 
 export const meta: MetaFunction = () => {
 	const title =
-		"Freedom 27 | Leadership Coaching, Team Effectiveness & Workplace Wellbeing";
+		"Freedom 27 | Leadership Coaching, Team Effectiveness, Workplace Wellbeing & Talent Assessments";
 	const description =
 		"Freedom 27 helps corporates, government and development institutions develop effective leaders, strengthen working relationships and support employee wellbeing through coaching and facilitated programmes.";
 	const url = "https://www.freedom27.co.za";
@@ -556,7 +562,8 @@ export default function Index() {
 					>
 						<div className="flex min-w-0 flex-1 flex-col gap-6">
 							<Eyebrow>
-								Workplace Wellbeing | Leadership Coaching | Team Effectiveness
+								Leadership Coaching | Workplace Wellbeing | Team Effectiveness |
+								Talent Assessments
 							</Eyebrow>
 							<h1
 								className={`${heading} text-[40px] font-extrabold leading-[1.05] tracking-[-0.02em] md:text-6xl`}
