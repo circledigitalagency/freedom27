@@ -110,7 +110,7 @@ const orgServices = [
 	},
 	{
 		number: "06",
-		title: "6 Talent & Psychometric Assessments",
+		title: "Talent & Psychometric Assessments",
 		description:
 			"Supporting informed talent decisions, leadership development and employee growth through scientifically validated assessments.",
 	},
