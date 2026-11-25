@@ -752,7 +752,7 @@ export default function Index() {
 							<h3 className="text-[15px] font-bold uppercase tracking-[0.04em] text-[#3E4F5B]">
 								Organisational support
 							</h3>
-							<div className="grid gap-6 md:grid-cols-2">
+							<div className="grid gap-6 md:grid-cols-3">
 								{orgServices.map((s) => (
 									<div
 										key={s.number}
